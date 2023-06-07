@@ -2,11 +2,8 @@ import os
 import pandas as pd
 
 
-os.chdir("c:/work")
-
-
 def merge_files():
-    path = f'{os.getcwd()[:-7]}data'
+    path = f'{os.getcwd()}\data'
     csv_file1 = f'{path}\MOCK_DATA_1.csv'
     csv_file2 = f'{path}\MOCK_DATA_2.csv'
     csv_file3 = f'{path}\MOCK_DATA_3.csv'

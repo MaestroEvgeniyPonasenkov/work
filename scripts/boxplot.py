@@ -1,17 +1,20 @@
+import pandas as pd
 import matplotlib.pyplot as plt
-import numpy as np
+import os
 
 
-def boxplot():
-    # Создаем случайные данные
-    data = np.random.normal(size=(3, 5))
-    print(data)
-    # Создаем ящик с усами с помощью функции boxplot
-    plt.boxplot(data)
-    # Добавляем заголовок
-    plt.title('Boxplot')
-    # Показываем график
+def report_price_by_category(data):
+    categories = data.groupby('Category')
+    prices_by_category = [category[1]['Price'].tolist() for category in categories]
+    plt.boxplot(prices_by_category)
+    print([category[0] for category in categories])
+    plt.xticks(range(1, len(categories) + 1), [category[0] for category in categories], rotation=60, ha='right')
+    plt.title('Распределение цен по категориям товаров')
+    plt.xlabel('Категория товара')
+    plt.ylabel('Цена')
     plt.show()
-
-
-boxplot()
+    
+path = f'{os.getcwd()}\data'
+data = pd.read_csv(f"{path}\MOCK_DATA_1.csv")
+data['Price'] = data['Price'].replace('[\$,]', '', regex=True).astype(float)
+report_price_by_category(data)
