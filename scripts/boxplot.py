@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
+
+
 def boxplot():
     # Создаем случайные данные
     data = np.random.normal(size=(3, 5))
@@ -10,5 +12,6 @@ def boxplot():
     plt.title('Boxplot')
     # Показываем график
     plt.show()
+
 
 boxplot()
