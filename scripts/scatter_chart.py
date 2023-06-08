@@ -15,7 +15,7 @@ def report_price_by_quantity(data):
     plt.show()
     
     
-path = f'{os.getcwd()}\data'
+path = f'{os.getcwd()[:-7]}\data'
 data_1 = pd.read_csv(f"{path}\MOCK_DATA_1.csv",
                       delimiter=',', encoding='utf8')
 data_2 = pd.read_csv(
