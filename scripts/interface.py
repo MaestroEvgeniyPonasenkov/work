@@ -3,6 +3,7 @@ from tkinter import ttk
 import csv
 import os
 
+
 def load_csv(file_path):
     data = []
     with open(file_path, 'r') as file:
@@ -10,6 +11,7 @@ def load_csv(file_path):
         for row in csv_reader:
             data.append(row)
     return data
+
 
 def create_table(tab, file_path):
     table_frame = ttk.Frame(tab)
@@ -39,6 +41,7 @@ def change_color():
     color = color_entry.get()
     root.configure(background=color)
 
+
 root = tk.Tk()
 root.title("CSV Viewer")
 
@@ -63,8 +66,9 @@ color_button = ttk.Button(root, text='Изменить цвет', command=change
 color_button.pack()
 
 # Создаем таблицы для каждой вкладки
-create_table(tab1, f"{os.getcwd()}\data\MOCK_DATA_1.csv")
-create_table(tab2, f"{os.getcwd()}\data\MOCK_DATA_2.csv")
-create_table(tab3, f"{os.getcwd()}\data\MOCK_DATA_3.csv")
+path = f'{os.getcwd()[:-7]}data'
+create_table(tab1, f"{path}\MOCK_DATA_1.csv")
+create_table(tab2, f"{path}\MOCK_DATA_2.csv")
+create_table(tab3, f"{path}\MOCK_DATA_3.csv")
 
 root.mainloop()
