@@ -17,8 +17,20 @@ def save_tables(GOODS: pd.DataFrame, ORDERS: pd.DataFrame, ORDERS_STRUCTURE: pd.
 
 def save_as(table: pd.DataFrame) -> None:
     path = f'{os.getcwd()[:-7]}data'
-    ftypes = [('csv файлы', '.csv'), ('Все файлы', '*')]
+    ftypes = [('csv', '.csv'), ('excel', '.xlsx'), ('doc', '.doc'), ('pickle', '.pickle')]
     filepath = fld.asksaveasfilename(filetypes=ftypes, initialdir=path, defaultextension='csv')
-    print(filepath)
     if filepath != "":
-        table.to_csv(filepath, index=False)
+        file_format = filepath.split('.')[-1]
+        if file_format == 'csv':
+            table.to_csv(filepath, index=False)
+            return
+        if file_format == 'xlsx':
+            table.to_excel(filepath, index=False)
+            return
+        if file_format == 'doc':
+            #table.to_doc
+            return
+        if file_format == 'pick':
+            table.to_pickle(filepath)
+            return
+
