@@ -1,16 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
-import csv
 import os
-
-
-def load_csv(file_path):
-    data = []
-    with open(file_path, 'r') as file:
-        csv_reader = csv.reader(file)
-        for row in csv_reader:
-            data.append(row)
-    return data
+import pandas as pd
 
 
 def create_table(tab, file_path):
@@ -25,8 +16,8 @@ def create_table(tab, file_path):
     scrollbar.pack(side='right', fill='y')
     table.configure(yscroll=scrollbar.set)
 
-    data = load_csv(file_path)
-    heads = data[0]
+    data = pd.read_csv(file_path)
+    heads = list(data.columns)
     table['columns'] = heads
     table['show'] = 'headings'
 
@@ -34,8 +25,10 @@ def create_table(tab, file_path):
         table.heading(header, text=header)
         table.column(header)
 
-    for row in data[1:]:
-        table.insert('', 'end', values=row)
+    for i, row in data.iterrows():
+        values = list(row)
+        table.insert("", "end", text=i, values=values)
+    return data
 
 
 def add_color_change():
@@ -71,12 +64,12 @@ def add_reports():
     btn_7 = ttk.Button(root, text='Scatter')
     btn_7.grid(column=1, row=6, sticky="w")
 
+
 root = tk.Tk()
 root.title("CSV Viewer")
 
 # Создаем вкладки
 tab_control = ttk.Notebook(root)
-# tab_control.configure(style='Treeview')
 tab1 = ttk.Frame(tab_control)
 tab2 = ttk.Frame(tab_control)
 tab3 = ttk.Frame(tab_control)
@@ -91,20 +84,23 @@ tab_control.add(tab3, text='Состав заказов')
 tab_control.grid(column=0, row=0, rowspan=7, sticky='nswe')
 root.columnconfigure(index=0, weight=1)
 root.rowconfigure(index=0, weight=1)
+
 # Создаем таблицы для каждой вкладкиэ
 path = f'{os.getcwd()[:-7]}data'
-create_table(tab1, f"{path}\MOCK_DATA_1.csv")
-create_table(tab2, f"{path}\MOCK_DATA_2.csv")
-create_table(tab3, f"{path}\MOCK_DATA_3.csv")
+Goods = create_table(tab1, f"{path}\MOCK_DATA_1.csv")
+Orders = create_table(tab2, f"{path}\MOCK_DATA_2.csv")
+Orders_structure = create_table(tab3, f"{path}\MOCK_DATA_3.csv")
 add_reports()
 
 mainmenu = tk.Menu(root, tearoff=0)
-mainmenu.add_command(label="Загрузить данные", command=add_color_change)
-
-
-#mainmenu.add_command(label="Составить отчёт", command = doc)
-mainmenu.add_command(label="Выход", command = root.destroy)
-
+mainmenu.add_command(label='Настройки')
+mainmenu.add_command(label='Экспорт данных')
+mainmenu.add_command(label="Выход", command=root.destroy)
 root.config(menu=mainmenu)
+
+for c in range(1):
+    root.columnconfigure(index=c, weight=1)
+for r in range(7):
+    root.rowconfigure(index=r, weight=1)
 
 root.mainloop()
