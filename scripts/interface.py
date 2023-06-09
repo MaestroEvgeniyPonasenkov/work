@@ -50,7 +50,7 @@ def add_color_change():
 
 
 def add_reports():
-    btn_1 = ttk.Button(root, text='Текстовый отчёт 1')
+    btn_1 = ttk.Button(root, text='Текстовый отчёт 1', command=func)
     btn_1.grid(column=1, row=0, sticky="nesw")
     btn_2 = ttk.Button(root, text='Текстовый отчёт 2')
     btn_2.grid(column=1, row=1, sticky="nesw")
@@ -66,10 +66,66 @@ def add_reports():
     btn_7.grid(column=1, row=6, sticky="nesw")
 
 
-def save2():
+def new_save():
     index = tab_control.index(tab_control.select())
     table = tabs[index]
     save_as(table)
+
+
+def add_datas(parent) -> None:
+    """
+    Функция для добавления в окно полей ввода даты
+    :param parent:
+    """
+    start_date_label = tk.Label(parent, text='Выберите начальную дату:')
+    start_date_label.grid(column=0, row=0, columnspan=3, sticky="nesw")
+    start_date_day = tk.Spinbox(parent, from_=1, to=31, width=2)
+    start_date_day.grid(column=0, row=1, sticky="nesw")
+    start_date_month = tk.Spinbox(parent, from_=1, to=12, width=2)
+    start_date_month.grid(column=1, row=1, sticky="nesw")
+    start_date_year = tk.Spinbox(parent, from_=2000, to=2022, width=4)
+    start_date_year.grid(column=2, row=1, sticky="nesw")
+
+    end_date_label = tk.Label(parent, text='Выберите конечную дату:')
+    end_date_label.grid(column=0, row=2, columnspan=3, sticky="nesw")
+    end_date_day = tk.Spinbox(parent, from_=1, to=31, width=2)
+    end_date_day.grid(column=0, row=3, sticky="nesw")
+    end_date_month = tk.Spinbox(parent, from_=1, to=12, width=2)
+    end_date_month.grid(column=1, row=3, sticky="nesw")
+    end_date_year = tk.Spinbox(parent, from_=2000, to=2022, width=4)
+    end_date_year.grid(column=2, row=3, sticky="nesw")
+
+
+def config_widgets(parent, rows: int, cols: int):
+    """
+    Функция для задания веса каждому элемента окна.
+    Необходимо для коректного отображения окна при растяжении.
+    :param parent: Название окна
+    :param rows: Количество рядов в сетке окна
+    :param cols: Количество столбцов в сетке окна
+    """
+    for col in range(cols+1):
+        parent.columnconfigure(index=col, weight=1)
+    for row in range(rows+1):
+        parent.rowconfigure(index=row, weight=1)
+
+
+def func():
+    dialog = tk.Toplevel(root)
+    dialog.title("Текстовый отчёт 1")
+    add_datas(dialog)
+    tk.Label(dialog, text="Введите фирму:").grid(row=4, column=0, columnspan=3)
+    email_entry = tk.Entry(dialog)
+    email_entry.grid(row=5, column=0, columnspan=3, sticky="nesw")
+    #config_widgets(dialog, 7, 3)
+
+    def ok_button():
+        # name = name_entry.get()
+        # age = age_entry.get()
+        # email = email_entry.get()
+        dialog.destroy()
+
+    tk.Button(dialog, text="ОК", command=ok_button).grid(row=6, column=0, columnspan=3, sticky="nesw")
 
 
 root = tk.Tk()
@@ -107,13 +163,13 @@ root.config(menu=menu_bar)
 file_menu = tk.Menu(menu_bar)
 menu_bar.add_cascade(label="Файл", menu=file_menu)
 file_menu.add_command(label="Сохранить", command=lambda x=tabs[0], y=tabs[1], z=tabs[2]: save_tables(x, y, z))
-file_menu.add_command(label="Сохранить как", command=save2)
+file_menu.add_command(label="Сохранить как", command=new_save)
 
 edit_menu = tk.Menu(menu_bar)
 menu_bar.add_cascade(label="Изменить", menu=edit_menu)
 
 edit_menu.add_command(label="Удалить запись")
-edit_menu.add_command(label="Добавить запись")
+edit_menu.add_command(label="Добавить запись", command=func)
 edit_menu.add_command(label="Изменить запись")
 
 for c in range(1):
