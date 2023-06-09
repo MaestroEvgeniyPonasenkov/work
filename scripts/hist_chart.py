@@ -11,7 +11,7 @@ def histogram(data):
     plt.show()
 
 
-path = f'{os.getcwd()[:-7]}data'
+path = f'{os.getcwd()}/data'
 print(path)
 data = pd.read_csv(f"{path}\MOCK_DATA_3.csv",
                    delimiter=',', encoding='utf8')

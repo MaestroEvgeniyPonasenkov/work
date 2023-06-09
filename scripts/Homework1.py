@@ -16,7 +16,7 @@ def csv_to_npz(outputf: str) -> None:
     Example:
     >>> csv_to_npz('my_data')
     """
-    path = f'{os.getcwd()[:-7]}data'
+    path = f'{os.getcwd()}data'
     csv_file1 = f'{path}\MOCK_DATA_1.csv'
     csv_file2 = f'{path}\MOCK_DATA_2.csv'
     csv_file3 = f'{path}\MOCK_DATA_3.csv'
