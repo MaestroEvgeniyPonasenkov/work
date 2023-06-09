@@ -38,12 +38,12 @@ def create_table(tab, file_path):
         table.insert('', 'end', values=row)
 
 
-def add_color_change(root):
+def add_color_change():
     # Создаем кнопку для изменения цвета
     color_label = ttk.Label(root, text='Цвет фона (RGB):')
-    color_label.pack()
+    color_label.grid(column=1, row=0, sticky='nswe')
     color_entry = ttk.Entry(root)
-    color_entry.pack()
+    color_entry.grid(column=1, row=1, sticky='nswe')
 
     def change_color():
         color = color_entry.get()
@@ -52,9 +52,24 @@ def add_color_change(root):
                               foreground="black")
 
     color_button = ttk.Button(root, text='Изменить цвет', command=change_color)
-    color_button.pack()
+    color_button.grid(column=1, row=2, sticky='nswe')
 
 
+def add_reports():
+    btn_1 = ttk.Button(root, text='Текстовый отчёт 1')
+    btn_1.grid(column=1, row=0, sticky="w")
+    btn_2 = ttk.Button(root, text='Текстовый отчёт 2')
+    btn_2.grid(column=1, row=1, sticky="w")
+    btn_3 = ttk.Button(root, text='Текстовый отчёт 3')
+    btn_3.grid(column=1, row=2, sticky="w")
+    btn_4 = ttk.Button(root, text='Гистограмма')
+    btn_4.grid(column=1, row=3, sticky="w")
+    btn_5 = ttk.Button(root, text='Стобчатая диаграмма')
+    btn_5.grid(column=1, row=4, sticky="w")
+    btn_6 = ttk.Button(root, text='Boxplot')
+    btn_6.grid(column=1, row=5, sticky="w")
+    btn_7 = ttk.Button(root, text='Scatter')
+    btn_7.grid(column=1, row=6, sticky="w")
 
 root = tk.Tk()
 root.title("CSV Viewer")
@@ -73,14 +88,23 @@ tab_control.add(tab1, text='Товары')
 tab_control.add(tab2, text='Заказы')
 tab_control.add(tab3, text='Состав заказов')
 
-tab_control.pack(expand=1, fill='both')
-# Создаем таблицы для каждой вкладки
+tab_control.grid(column=0, row=0, rowspan=7, sticky='nswe')
+root.columnconfigure(index=0, weight=1)
+root.rowconfigure(index=0, weight=1)
+# Создаем таблицы для каждой вкладкиэ
 path = f'{os.getcwd()[:-7]}data'
 create_table(tab1, f"{path}\MOCK_DATA_1.csv")
 create_table(tab2, f"{path}\MOCK_DATA_2.csv")
 create_table(tab3, f"{path}\MOCK_DATA_3.csv")
-#add_color_change(root)
+add_reports()
+
+mainmenu = tk.Menu(root, tearoff=0)
+mainmenu.add_command(label="Загрузить данные", command=add_color_change)
+
+
+#mainmenu.add_command(label="Составить отчёт", command = doc)
+mainmenu.add_command(label="Выход", command = root.destroy)
+
+root.config(menu=mainmenu)
 
 root.mainloop()
-
-
