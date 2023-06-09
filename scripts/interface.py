@@ -93,7 +93,8 @@ root.columnconfigure(index=0, weight=1)
 root.rowconfigure(index=0, weight=1)
 
 # Создаем таблицы для каждой вкладкиэ
-path = f'{os.getcwd()[:-7]}data'
+path = f'{os.getcwd()}\\data'
+print(path)
 GOODS = create_table(tab1, f"{path}\MOCK_DATA_1.csv")
 ORDERS = create_table(tab2, f"{path}\MOCK_DATA_2.csv")
 ORDERS_STRUCTURE = create_table(tab3, f"{path}\MOCK_DATA_3.csv")
