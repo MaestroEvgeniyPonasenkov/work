@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from data_export import save_tables, save_as
 import os
 import pandas as pd
 
@@ -50,19 +51,25 @@ def add_color_change():
 
 def add_reports():
     btn_1 = ttk.Button(root, text='Текстовый отчёт 1')
-    btn_1.grid(column=1, row=0, sticky="w")
+    btn_1.grid(column=1, row=0, sticky="nesw")
     btn_2 = ttk.Button(root, text='Текстовый отчёт 2')
-    btn_2.grid(column=1, row=1, sticky="w")
+    btn_2.grid(column=1, row=1, sticky="nesw")
     btn_3 = ttk.Button(root, text='Текстовый отчёт 3')
-    btn_3.grid(column=1, row=2, sticky="w")
+    btn_3.grid(column=1, row=2, sticky="nesw")
     btn_4 = ttk.Button(root, text='Гистограмма')
-    btn_4.grid(column=1, row=3, sticky="w")
+    btn_4.grid(column=1, row=3, sticky="nesw")
     btn_5 = ttk.Button(root, text='Стобчатая диаграмма')
-    btn_5.grid(column=1, row=4, sticky="w")
+    btn_5.grid(column=1, row=4, sticky="nesw")
     btn_6 = ttk.Button(root, text='Boxplot')
-    btn_6.grid(column=1, row=5, sticky="w")
+    btn_6.grid(column=1, row=5, sticky="nesw")
     btn_7 = ttk.Button(root, text='Scatter')
-    btn_7.grid(column=1, row=6, sticky="w")
+    btn_7.grid(column=1, row=6, sticky="nesw")
+
+
+def save2():
+    index = tab_control.index(tab_control.select())
+    table = tabs[index]
+    save_as(table)
 
 
 root = tk.Tk()
@@ -87,16 +94,26 @@ root.rowconfigure(index=0, weight=1)
 
 # Создаем таблицы для каждой вкладкиэ
 path = f'{os.getcwd()[:-7]}data'
-Goods = create_table(tab1, f"{path}\MOCK_DATA_1.csv")
-Orders = create_table(tab2, f"{path}\MOCK_DATA_2.csv")
-Orders_structure = create_table(tab3, f"{path}\MOCK_DATA_3.csv")
+GOODS = create_table(tab1, f"{path}\MOCK_DATA_1.csv")
+ORDERS = create_table(tab2, f"{path}\MOCK_DATA_2.csv")
+ORDERS_STRUCTURE = create_table(tab3, f"{path}\MOCK_DATA_3.csv")
+tabs = [GOODS, ORDERS, ORDERS_STRUCTURE]
 add_reports()
 
-mainmenu = tk.Menu(root, tearoff=0)
-mainmenu.add_command(label='Настройки')
-mainmenu.add_command(label='Экспорт данных')
-mainmenu.add_command(label="Выход", command=root.destroy)
-root.config(menu=mainmenu)
+menu_bar = tk.Menu(root)
+root.config(menu=menu_bar)
+
+file_menu = tk.Menu(menu_bar)
+menu_bar.add_cascade(label="Файл", menu=file_menu)
+file_menu.add_command(label="Сохранить", command=lambda x=tabs[0], y=tabs[1], z=tabs[2]: save_tables(x, y, z))
+file_menu.add_command(label="Сохранить как", command=save2)
+
+edit_menu = tk.Menu(menu_bar)
+menu_bar.add_cascade(label="Изменить", menu=edit_menu)
+
+edit_menu.add_command(label="Удалить запись")
+edit_menu.add_command(label="Добавить запись")
+edit_menu.add_command(label="Изменить запись")
 
 for c in range(1):
     root.columnconfigure(index=c, weight=1)
