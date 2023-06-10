@@ -215,7 +215,7 @@ def create_boxplot():
 
 def create_scatter():
     data = pd.merge(ORDERS_STRUCTURE, GOODS, on="Product ID")
-    data['Price'] = data['Price'].replace('[\$,]', '', regex=True).astype(float)
+    data['Price'] = data['Price'].astype(float)
     report_price_by_quantity(data)
 
 
@@ -223,19 +223,87 @@ def del_line():
     index = tab_control.index(tab_control.select())
     if index == 0:
         selected_item = goods_table.selection()[0]
+        selected_line = goods_table.item(selected_item)['values']
+        global GOODS
+        GOODS = GOODS.drop(GOODS.loc[GOODS['Product ID'] == selected_line[0]].index)
         goods_table.delete(selected_item)
     if index == 1:
         selected_item = orders_table.selection()[0]
+        selected_line = orders_table.item(selected_item)['values']
+        global ORDERS
+        ORDERS = ORDERS.drop(ORDERS.loc[ORDERS['Order ID'] == selected_line[0]].index)
         orders_table.delete(selected_item)
     if index == 2:
         selected_item = orders_structure_table.selection()[0]
+        selected_line = orders_structure_table.item(selected_item)['values']
+        global ORDERS_STRUCTURE
+        ORDERS_STRUCTURE = ORDERS_STRUCTURE.drop(
+            ORDERS_STRUCTURE.loc[ORDERS_STRUCTURE['Order ID'] == selected_line[0]].index)
         orders_structure_table.delete(selected_item)
     if index == 3:
         selected_item = merged_table.selection()[0]
+        selected_line = merged_table.item(selected_item)['values']
+        global MERGED
+        MERGED = MERGED.drop(MERGED.loc[MERGED['Order ID'] == selected_line[0]].index)
         merged_table.delete(selected_item)
 
+
 def edit_line():
-    pass
+    index = tab_control.index(tab_control.select())
+    if index == 0:
+        selected_item = goods_table.selection()[0]
+        selected_line = goods_table.item(selected_item)['values']
+        values = ['Product ID', 'Product', 'Description', 'Price', 'Category']
+        goods_table.item(selected_item, values=values)
+        name_entry, description_entry, price_entry, category_entry = goods_dialog()
+        name_entry.insert(0, selected_line[1])
+        description_entry.insert(0, selected_line[2])
+        price_entry.set(selected_line[3])
+        category_entry.insert(0, selected_line[4])
+
+    if index == 1:
+        selected_item = orders_table.selection()[0]
+        selected_line = orders_table.item(selected_item)['values']
+        values = ['Order ID', 'Date', 'Sum']
+        orders_table.item(selected_item, values=values)
+    if index == 2:
+        selected_item = orders_structure_table.selection()[0]
+        selected_line = orders_structure_table.item(selected_item)['values']
+        values = ['Order ID', 'Product ID', 'Quantity']
+        orders_structure_table.item(selected_item, values=values)
+    if index == 3:
+        selected_item = merged_table.selection()[0]
+        selected_line = merged_table.item(selected_item)['values']
+        values = ['Order ID', 'Product ID', 'Quantity', 'Product', 'Description', 'Price',
+                  'Category', 'Date', 'Sum']
+        merged_table.item(selected_item, values=values)
+
+
+def goods_dialog():
+    dialog = tk.Toplevel(root)
+    dialog.title('')
+    tk.Label(dialog, text="Название").grid(row=0, column=0, sticky="nesw", columnspan=2)
+    name_entry = tk.Entry(dialog)
+    name_entry.grid(row=1, column=0, sticky="nesw", columnspan=2)
+
+    tk.Label(dialog, text="Описание").grid(row=2, column=0, sticky="nesw", columnspan=2)
+    description_entry = tk.Entry(dialog)
+    description_entry.grid(row=3, column=0, sticky="nesw", columnspan=2)
+
+    tk.Label(dialog, text="Название").grid(row=4, column=0, sticky="nesw", columnspan=2)
+    price_entry = ttk.Spinbox(dialog, increment=0.01, from_=0, to=1000)
+    price_entry.grid(row=5, column=0, sticky="nesw", columnspan=2)
+
+    tk.Label(dialog, text="Категория").grid(row=6, column=0, sticky="nesw", columnspan=2)
+    category_entry = tk.Entry(dialog)
+    category_entry.grid(row=7, column=0, sticky="nesw", columnspan=2)
+
+    save_button = ttk.Button(dialog, text='Сохранить')
+    cancel_button = ttk.Button(dialog, text='Отмена', command=dialog.destroy)
+    save_button.grid(row=8, column=0, sticky="nesw")
+    cancel_button.grid(row=8, column=1, sticky="nesw")
+    config_widgets(dialog, 9,  2)
+    return name_entry, description_entry, price_entry, category_entry
 
 
 def add_line():
@@ -301,6 +369,5 @@ edit_menu.add_command(label="Удалить запись", command=del_line)
 edit_menu.add_command(label="Добавить запись", command=add_line)
 edit_menu.add_command(label="Изменить запись", command=edit_line)
 menu_bar.add_command(label='Изменить цвет', command=config_color)
-print(ORDERS_STRUCTURE)
 config_widgets(root, 7, 2)
 root.mainloop()
