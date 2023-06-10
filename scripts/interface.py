@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, Spinbox
 from text_reports import report_about_firm, merge_files
-
+from hist_chart import histogram
 from data_export import save_tables, save_as
 import os
 import pandas as pd
@@ -82,7 +82,7 @@ def add_datas(parent) -> tuple[Spinbox, Spinbox, Spinbox, Spinbox, Spinbox, Spin
     start_date_day.grid(column=0, row=1, sticky="nesw")
     start_date_month = tk.Spinbox(parent, from_=1, to=12, width=2)
     start_date_month.grid(column=1, row=1, sticky="nesw")
-    start_date_year = tk.Spinbox(parent, from_=2000, to=2022, width=4)
+    start_date_year = tk.Spinbox(parent, from_=2022, to=2023, width=4)
     start_date_year.grid(column=2, row=1, sticky="nesw")
 
     end_date_label = tk.Label(parent, text='Выберите конечную дату:')
@@ -91,7 +91,7 @@ def add_datas(parent) -> tuple[Spinbox, Spinbox, Spinbox, Spinbox, Spinbox, Spin
     end_date_day.grid(column=0, row=3, sticky="nesw")
     end_date_month = tk.Spinbox(parent, from_=1, to=12, width=2)
     end_date_month.grid(column=1, row=3, sticky="nesw")
-    end_date_year = tk.Spinbox(parent, from_=2000, to=2022, width=4)
+    end_date_year = tk.Spinbox(parent, from_=2022, to=2023, width=4)
     end_date_year.grid(column=2, row=3, sticky="nesw")
     return start_date_day, start_date_month, start_date_year, end_date_day, end_date_month, end_date_year
 
@@ -157,7 +157,17 @@ def report_3():
 
 
 def create_hist():
-    pass
+    dialog = tk.Toplevel(root)
+    dialog.title("Создание гистограммы")
+
+    tk.Button(dialog, text="Гистограмма распределения\nколичества товаров\nв заказе",
+              command=lambda: histogram(MERGED, 'Quantity')).grid(row=0, column=0, sticky="nesw")
+    tk.Button(dialog, text='Гистограмма распределения\nцены на товары',
+              command=lambda: histogram(MERGED, 'Price')).grid(row=0, column=1, sticky='nsew')
+    tk.Button(dialog, text="Гистограмма распределения\nсуммы заказов",
+              command=lambda: histogram(MERGED, 'Sum')).grid(row=1, column=0, sticky="nesw")
+    tk.Button(dialog, text='Отменить', command=dialog.destroy).grid(row=1, column=1, sticky='nsew')
+    config_widgets(dialog, 2, 2)
 
 
 def create_bar():
