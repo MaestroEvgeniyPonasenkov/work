@@ -16,8 +16,7 @@ def merge_files():
     return merged
 
 
-def report_about_firm(start_date, end_date, category):
-    merged = merge_files()
+def report_about_firm(merged, start_date, end_date, category):
     selector = (merged['Date'].between(start_date, end_date)) & (
         merged['Category'] == category)
     result = merged.loc[selector, ['Product',

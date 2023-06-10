@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, Spinbox
-from text_reports import report_about_firm
+from text_reports import report_about_firm, merge_files
 
 from data_export import save_tables, save_as
 import os
@@ -30,7 +30,10 @@ def create_table(tab, data: pd.DataFrame) -> None:
 
     for header in heads:
         table.heading(header, text=header)
-        table.column(header)
+        if len(heads) == 10:
+            table.column(header, width=0)
+        else:
+            table.column(header)
 
     for i, row in data.iterrows():
         values = list(row)
@@ -130,7 +133,7 @@ def report_1():
         second_date = f'{end_date_year.get()}-{end_date_month.get()}-{end_date_day.get()}'
         category = firm_entry.get()
 
-        report = report_about_firm(first_date, second_date, category)
+        report = report_about_firm(MERGED, first_date, second_date, category)
         dialog.destroy()
         dialog2 = tk.Toplevel(root)
         dialog2.title(f"Текстовый отчёт о продажах {category}")
@@ -192,6 +195,7 @@ tab_control = ttk.Notebook(root)
 tab1 = ttk.Frame(tab_control)
 tab2 = ttk.Frame(tab_control)
 tab3 = ttk.Frame(tab_control)
+tab4 = ttk.Frame(tab_control)
 
 ttk.Style().configure("Treeview", background="white",
                       foreground="black", fieldbackground="white")
@@ -199,6 +203,7 @@ ttk.Style().configure("Treeview", background="white",
 tab_control.add(tab1, text='Товары')
 tab_control.add(tab2, text='Заказы')
 tab_control.add(tab3, text='Состав заказов')
+tab_control.add(tab4, text='Полная таблица')
 
 tab_control.grid(column=0, row=0, rowspan=7, sticky='nswe')
 root.columnconfigure(index=0, weight=1)
@@ -211,6 +216,8 @@ ORDERS = pd.read_csv(f"{path}\MOCK_DATA_2.csv")
 create_table(tab2, ORDERS)
 ORDERS_STRUCTURE = pd.read_csv(f"{path}\MOCK_DATA_3.csv")
 create_table(tab3, ORDERS_STRUCTURE)
+MERGED = merge_files()
+create_table(tab4, MERGED)
 
 btn_1 = ttk.Button(root, text='Текстовый отчёт 1', command=report_1)
 btn_1.grid(column=1, row=0, sticky="nesw")
@@ -243,6 +250,6 @@ edit_menu.add_command(label="Добавить запись", command=add_line)
 edit_menu.add_command(label="Изменить запись", command=edit_line)
 
 menu_bar.add_command(label='Изменить цвет', command=config_color)
-config_widgets(root, 2, 8)
+config_widgets(root, 7, 2)
 
 root.mainloop()
