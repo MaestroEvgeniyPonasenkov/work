@@ -4,6 +4,7 @@ from text_reports import report_about_firm, merge_files
 from hist_chart import histogram
 from bar_chart import report_day_sales, report_week_sales, report_year_sales, report_month_sales
 from boxplot_chart import report_price_by_category
+from scatter_chart import report_price_by_quantity
 from data_export import save_tables, save_as
 import os
 import pandas as pd
@@ -191,7 +192,9 @@ def create_boxplot():
 
 
 def create_scatter():
-    pass
+    data = pd.merge(ORDERS_STRUCTURE, GOODS, on="Product ID")
+    data['Price'] = data['Price'].replace('[\$,]', '', regex=True).astype(float)
+    report_price_by_quantity(data)
 
 
 def del_line():

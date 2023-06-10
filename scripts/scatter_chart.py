@@ -15,11 +15,12 @@ def report_price_by_quantity(data):
     plt.show()
 
 
-path = f'{os.getcwd()}/data'
-data_1 = pd.read_csv(f"{path}\MOCK_DATA_1.csv",
-                     delimiter=',', encoding='utf8')
-data_2 = pd.read_csv(
-    f"{path}\MOCK_DATA_3.csv", delimiter=',', encoding='utf8')
-data = pd.merge(data_2, data_1, on="Product ID")
-data['Price'] = data['Price'].replace('[\$,]', '', regex=True).astype(float)
-report_price_by_quantity(data)
+if __name__ == '__main__':
+    path = f'{os.getcwd()}/data'
+    data_1 = pd.read_csv(f"{path}\MOCK_DATA_1.csv",
+                         delimiter=',', encoding='utf8')
+    data_2 = pd.read_csv(
+        f"{path}\MOCK_DATA_3.csv", delimiter=',', encoding='utf8')
+    data = pd.merge(data_2, data_1, on="Product ID")
+    data['Price'] = data['Price'].replace('[\$,]', '', regex=True).astype(float)
+    report_price_by_quantity(data)
