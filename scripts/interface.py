@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk, Spinbox
 from text_reports import report_about_firm, merge_files
 from hist_chart import histogram
+from bar_chart import report_day_sales, report_week_sales, report_year_sales, report_month_sales
 from data_export import save_tables, save_as
 import os
 import pandas as pd
@@ -159,7 +160,6 @@ def report_3():
 def create_hist():
     dialog = tk.Toplevel(root)
     dialog.title("Создание гистограммы")
-
     tk.Button(dialog, text="Гистограмма распределения\nколичества товаров\nв заказе",
               command=lambda: histogram(MERGED, 'Quantity')).grid(row=0, column=0, sticky="nesw")
     tk.Button(dialog, text='Гистограмма распределения\nцены на товары',
@@ -171,7 +171,18 @@ def create_hist():
 
 
 def create_bar():
-    pass
+    dialog = tk.Toplevel(root)
+    dialog.title("Создание столбчатой диаграммы")
+    tk.Button(dialog, text="Продажи по дням",
+              command=lambda: report_day_sales(ORDERS)).grid(row=0, column=0, sticky="nesw")
+    tk.Button(dialog, text='Продажи по неделям',
+              command=lambda: report_week_sales(ORDERS)).grid(row=0, column=1, sticky='nsew')
+    tk.Button(dialog, text="Продажи по месяцам",
+              command=lambda: report_month_sales(ORDERS)).grid(row=1, column=0, sticky="nesw")
+    tk.Button(dialog, text="Продажи по годам",
+              command=lambda: report_year_sales(ORDERS)).grid(row=1, column=1, sticky="nesw")
+    tk.Button(dialog, text='Отменить', command=dialog.destroy).grid(row=2, column=0, columnspan=2, sticky='nsew')
+    config_widgets(dialog, 3, 2)
 
 
 def create_boxplot():
