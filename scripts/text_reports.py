@@ -16,12 +16,13 @@ def merge_files():
     return merged
 
 
-def report_about_firm(merged, start_date, end_date, category):
+def report_about_firm(start_date, end_date, category):
+    merged = merge_files()
     selector = (merged['Date'].between(start_date, end_date)) & (
         merged['Category'] == category)
     result = merged.loc[selector, ['Product',
                                    'Description', 'Price', 'Quantity', 'Sum']]
-    result.to_excel("./output/report1.xlsx", index=False)
+    #result.to_excel("./output/report1.xlsx", index=False)
     return result
 
 
