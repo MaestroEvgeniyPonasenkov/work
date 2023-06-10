@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, Spinbox
+from tkinter.ttk import Treeview
+
 from text_reports import report_about_firm, merge_files
 from hist_chart import histogram
 from bar_chart import report_day_sales, report_week_sales, report_year_sales, report_month_sales
@@ -9,13 +11,26 @@ from data_export import save_tables, save_as
 import os
 import pandas as pd
 
+os.chdir('C:\\Users\Stepan\PycharmProjects\pythonProject\work')
 
-def create_table(tab, data: pd.DataFrame) -> None:
+
+def create_table(tab, data: pd.DataFrame) -> Treeview:
     """
     Функция для добавления таблицы в окно
     :param tab: Название окна
     :param data(pd.DataFrame): Данные таблицы
     """
+    translater = {
+        'Order ID': 'Номер заказа',
+        'Product ID': 'Номер товара',
+        'Quantity': 'Количество',
+        'Product': 'Товар',
+        'Description': 'Описание',
+        'Price': 'Цена',
+        'Category': 'Категория',
+        'Date': 'Дата',
+        'Sum': 'Сумма'
+    }
     table_frame = ttk.Frame(tab)
     table_frame.pack(fill='both', expand=True)
 
@@ -27,13 +42,13 @@ def create_table(tab, data: pd.DataFrame) -> None:
     scrollbar.pack(side='right', fill='y')
     table.configure(yscroll=scrollbar.set)
 
-    heads = list(data.columns)
+    heads = [translater[x] for x in data.columns]
     table['columns'] = heads
     table['show'] = 'headings'
 
     for header in heads:
         table.heading(header, text=header)
-        if len(heads) == 10:
+        if len(heads) == 9:
             table.column(header, width=0)
         else:
             table.column(header)
@@ -41,6 +56,7 @@ def create_table(tab, data: pd.DataFrame) -> None:
     for i, row in data.iterrows():
         values = list(row)
         table.insert("", "end", text=i, values=values)
+    return table
 
 
 def add_color_change():
@@ -69,9 +85,15 @@ def new_save():
     :return:
     """
     index = tab_control.index(tab_control.select())
-    tabs = [GOODS, ORDERS, ORDERS_STRUCTURE]
+    tabs = [GOODS, ORDERS, ORDERS_STRUCTURE, MERGED]
     table = tabs[index]
     save_as(table)
+
+
+def get_current_table_name():
+    index = tab_control.index(tab_control.select())
+    tabs = [GOODS, ORDERS, ORDERS_STRUCTURE, MERGED]
+    table = tabs[index]
 
 
 def add_datas(parent) -> tuple[Spinbox, Spinbox, Spinbox, Spinbox, Spinbox, Spinbox]:
@@ -198,8 +220,19 @@ def create_scatter():
 
 
 def del_line():
-    pass
-
+    index = tab_control.index(tab_control.select())
+    if index == 0:
+        selected_item = goods_table.selection()[0]
+        goods_table.delete(selected_item)
+    if index == 1:
+        selected_item = orders_table.selection()[0]
+        orders_table.delete(selected_item)
+    if index == 2:
+        selected_item = orders_structure_table.selection()[0]
+        orders_structure_table.delete(selected_item)
+    if index == 3:
+        selected_item = merged_table.selection()[0]
+        merged_table.delete(selected_item)
 
 def edit_line():
     pass
@@ -229,26 +262,23 @@ tab_control.add(tab1, text='Товары')
 tab_control.add(tab2, text='Заказы')
 tab_control.add(tab3, text='Состав заказов')
 tab_control.add(tab4, text='Полная таблица')
-
 tab_control.grid(column=0, row=0, rowspan=7, sticky='nswe')
-root.columnconfigure(index=0, weight=1)
-root.rowconfigure(index=0, weight=1)
 
 path = f'{os.getcwd()}\\data'
 GOODS = pd.read_csv(f"{path}\MOCK_DATA_1.csv")
-create_table(tab1, GOODS)
+goods_table = create_table(tab1, GOODS)
 ORDERS = pd.read_csv(f"{path}\MOCK_DATA_2.csv")
-create_table(tab2, ORDERS)
+orders_table = create_table(tab2, ORDERS)
 ORDERS_STRUCTURE = pd.read_csv(f"{path}\MOCK_DATA_3.csv")
-create_table(tab3, ORDERS_STRUCTURE)
+orders_structure_table = create_table(tab3, ORDERS_STRUCTURE)
 MERGED = merge_files()
-create_table(tab4, MERGED)
+merged_table = create_table(tab4, MERGED)
 
-btn_1 = ttk.Button(root, text='Текстовый отчёт 1', command=report_1)
+btn_1 = ttk.Button(root, text='Текстовый отчёт', command=report_1)
 btn_1.grid(column=1, row=0, sticky="nesw")
-btn_2 = ttk.Button(root, text='Текстовый отчёт 2', command=report_2)
+btn_2 = ttk.Button(root, text='Статистический отчёт', command=report_2)
 btn_2.grid(column=1, row=1, sticky="nesw")
-btn_3 = ttk.Button(root, text='Текстовый отчёт 3', command=report_3)
+btn_3 = ttk.Button(root, text='Сводная таблица', command=report_3)
 btn_3.grid(column=1, row=2, sticky="nesw")
 btn_4 = ttk.Button(root, text='Гистограмма', command=create_hist)
 btn_4.grid(column=1, row=3, sticky="nesw")
@@ -261,20 +291,16 @@ btn_7.grid(column=1, row=6, sticky="nesw")
 
 menu_bar = tk.Menu(root)
 root.config(menu=menu_bar)
-
 file_menu = tk.Menu(menu_bar)
 menu_bar.add_cascade(label="Файл", menu=file_menu)
 file_menu.add_command(label="Сохранить", command=lambda: save_tables(GOODS, ORDERS, ORDERS_STRUCTURE))
 file_menu.add_command(label="Сохранить как", command=new_save)
-
 edit_menu = tk.Menu(menu_bar)
 menu_bar.add_cascade(label="Изменить", menu=edit_menu)
-
 edit_menu.add_command(label="Удалить запись", command=del_line)
 edit_menu.add_command(label="Добавить запись", command=add_line)
 edit_menu.add_command(label="Изменить запись", command=edit_line)
-
 menu_bar.add_command(label='Изменить цвет', command=config_color)
+print(ORDERS_STRUCTURE)
 config_widgets(root, 7, 2)
-
 root.mainloop()
