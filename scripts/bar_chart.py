@@ -77,12 +77,11 @@ def format_func(value, tick_number):
     return value
 
 
-"""
-data = pd.read_csv(f'{os.getcwd()}/data/MOCK_DATA_2.csv')
-data['Date'] = data['Date'].astype("datetime64[ns]")
-data.set_index('Date', inplace=True)
-report_day_sales(data)
-report_week_sales(data)
-report_month_sales(data)
-report_year_sales(data)
-"""
+if __name__ == '__main__':
+    data = pd.read_csv(f'{os.getcwd()}/data/MOCK_DATA_2.csv')
+    data['Date'] = data['Date'].astype("datetime64[ns]")
+    data.set_index('Date', inplace=True)
+    report_day_sales(data)
+    report_week_sales(data)
+    report_month_sales(data)
+    report_year_sales(data)

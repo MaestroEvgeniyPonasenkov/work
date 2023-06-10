@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 import os
 
 
-def report_price_by_category(data):
+def report_price_by_category(data: pd.DataFrame) -> None:
+    data['Price'] = data['Price'].replace('[\$,]', '', regex=True).astype(float)
     categories = data.groupby('Category')
     prices_by_category = [category[1]['Price'].tolist() for category in categories]
     plt.boxplot(prices_by_category)
@@ -13,8 +14,9 @@ def report_price_by_category(data):
     plt.xlabel('Категория товара')
     plt.ylabel('Цена')
     plt.show()
-    
-path = f'{os.getcwd()}\data'
-data = pd.read_csv(f"{path}\MOCK_DATA_1.csv")
-data['Price'] = data['Price'].replace('[\$,]', '', regex=True).astype(float)
-report_price_by_category(data)
+
+
+if __name__ == '__main__':
+    path = f'{os.getcwd()}\data'
+    data = pd.read_csv(f"{path}\MOCK_DATA_1.csv")
+    report_price_by_category(data)

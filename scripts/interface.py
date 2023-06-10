@@ -3,6 +3,7 @@ from tkinter import ttk, Spinbox
 from text_reports import report_about_firm, merge_files
 from hist_chart import histogram
 from bar_chart import report_day_sales, report_week_sales, report_year_sales, report_month_sales
+from boxplot_chart import report_price_by_category
 from data_export import save_tables, save_as
 import os
 import pandas as pd
@@ -186,7 +187,7 @@ def create_bar():
 
 
 def create_boxplot():
-    pass
+    report_price_by_category(GOODS)
 
 
 def create_scatter():
