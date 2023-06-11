@@ -359,7 +359,7 @@ def goods_dialog(selected_item, selected_line) -> tuple[Entry, Entry, Spinbox, E
     :return: Виджеты ввода значений
     """
     dialog = tk.Toplevel(root)
-    dialog.title('Товар')
+    dialog.title('Изменение товара')
     tk.Label(dialog, text="Название").grid(row=0, column=0, sticky="nesw", columnspan=2)
     name_entry = tk.Entry(dialog)
     name_entry.grid(row=1, column=0, sticky="nesw", columnspan=2)
@@ -428,7 +428,7 @@ def orders_dialog(selected_item, selected_line):
     :return: Виджеты ввода значений
     """
     dialog = tk.Toplevel(root)
-    dialog.title('Заказ')
+    dialog.title('Изменение заказ')
     tk.Label(dialog, text='Дата').grid(column=0, row=0, columnspan=3, sticky="nesw")
     date_day = ttk.Spinbox(dialog, from_=1, to=31, width=2)
     date_day.grid(column=0, row=1, sticky="nesw")
@@ -485,7 +485,7 @@ def orders_structure_dialog(selected_item, selected_line):
     :return: Виджеты ввода значений
     """
     dialog = tk.Toplevel(root)
-    dialog.title('Состав заказа')
+    dialog.title('Изменение состава заказа')
     tk.Label(dialog, text='Товар').grid(column=0, row=0, sticky="nesw", columnspan=2)
     ids = list(GOODS['Product ID'])
     good_entry = ttk.Combobox(dialog, values=ids)
@@ -516,27 +516,79 @@ def orders_structure_dialog(selected_item, selected_line):
     return good_entry, quantity_entry
 
 
-def add_line():
+def generate_id(index) -> int:
     """
-    Функция для добавления строк таблицы
-    Автор: Болезнов С.А.
+    Функция для создания нового айди для справочников
+    :return:
     """
-    index = tab_control.index(tab_control.select())
     if index == 0:
-        selected_item = goods_table.selection()[0]
-        selected_line = goods_table.item(selected_item)['values']
-        name_entry, description_entry, price_entry, category_entry = goods_dialog(selected_item, selected_line[0],
-                                                                                  selected_line)
+        ids = [int(x) for x in GOODS['Product ID']]
+        for i in range(1, max(ids) + 1):
+            if i not in ids:
+                return i
+        return max(ids) + 1
     if index == 1:
-        selected_item = orders_table.selection()[0]
-        selected_line = orders_table.item(selected_item)['values']
-        date_day, date_month, date_year, sum_entry = orders_dialog(selected_item, selected_line[0], selected_line)
-    if index == 2:
-        selected_item = orders_structure_table.selection()[0]
-        selected_line = orders_structure_table.item(selected_item)['values']
-        good_entry, quantity_entry = orders_structure_dialog(selected_item, selected_line[0], selected_line)
-    if index == 3:
-        print('Данная операция невозможна. Данные можно добавлять только в отдельные справочники')
+        ids = [x for x in ORDERS['Order ID']]
+
+
+def add_order(ORDERS, ORDERS_STRUCTURE):
+    dialog = tk.Toplevel(root)
+    dialog.title('Создание нового заказа')
+    tk.Label(dialog, text='Дата').grid(column=0, row=0, columnspan=3, sticky="nesw")
+    date_day = ttk.Spinbox(dialog, from_=1, to=31, width=2)
+    date_day.grid(column=0, row=1, sticky="nesw")
+    date_day.set(1)
+    date_month = ttk.Spinbox(dialog, from_=1, to=12, width=2)
+    date_month.grid(column=1, row=1, sticky="nesw")
+    date_month.set(1)
+    date_year = ttk.Spinbox(dialog, from_=2022, to=2023, width=4)
+    date_year.grid(column=2, row=1, sticky="nesw")
+    date_year.set(2022)
+
+    tk.Label(dialog, text="Сумма").grid(row=2, column=0, sticky="nesw", columnspan=3)
+    sum_entry = ttk.Spinbox(dialog, increment=1, from_=0, to=100000)
+    sum_entry.set(1000)
+    sum_entry.grid(row=3, column=0, sticky="nesw", columnspan=3)
+
+    tk.Label(dialog, text='Товар').grid(column=0, row=4, sticky="nesw", columnspan=3)
+    ids = list(GOODS['Product ID'])
+    products = list(GOODS['Product'])
+    good_entry = ttk.Combobox(dialog, values=products)
+    good_entry.set(products[0])
+    good_entry.grid(column=0, row=5, sticky="nesw", columnspan=3)
+    tk.Label(dialog, text="Количество").grid(row=6, column=0, sticky="nesw", columnspan=3)
+    quantity_entry = ttk.Spinbox(dialog, increment=1, from_=0, to=100)
+    quantity_entry.set(5)
+    quantity_entry.grid(row=7, column=0, sticky="nesw", columnspan=3)
+
+    def save(ORDERS, ORDERS_STRCUTURE):
+        date = f'{date_month.get()}/{date_day.get()}/{date_year.get()}'
+        sum = sum_entry.get()
+        quantity = quantity_entry.get()
+        product = good_entry.get()
+        order_id = generate_id(1)
+        order_values = {
+            "Order ID": order_id,
+            "Date": date,
+            'Sum': sum
+        }
+        struct_values = {
+            "Order ID": order_id,
+            "Product ID": product,
+            "Quantity": quantity
+        }
+        ORDERS = ORDERS.append(order_values, ignore_index=True)
+        ORDERS_STRCUTURE = ORDERS_STRCUTURE.append(struct_values, ignore_index=True)
+
+    save_button = ttk.Button(dialog, text='Создать', command=lambda: save(ORDERS, ORDERS_STRUCTURE))
+    cancel_button = ttk.Button(dialog, text='Отмена', command=dialog.destroy)
+    save_button.grid(row=8, column=0, sticky="nesw", columnspan=2)
+    cancel_button.grid(row=8, column=2, sticky="nesw")
+    config_widgets(dialog, 9, 3)
+
+
+def add_product():
+    pass
 
 
 def config_color():
@@ -559,32 +611,29 @@ tab_control.add(tab1, text='Товары')
 tab_control.add(tab2, text='Заказы')
 tab_control.add(tab3, text='Состав заказов')
 tab_control.add(tab4, text='Полная таблица')
-tab_control.grid(column=0, row=0, rowspan=7, sticky='nswe')
+tab_control.grid(column=0, row=0, rowspan=6, columnspan=2, sticky='nswe')
 
 path = f'{os.getcwd()}\\data'
 GOODS = pd.read_csv(f"{path}\MOCK_DATA_1.csv")
-goods_table, goods_scroll = create_table(tab1, GOODS)
+goods_table = create_table(tab1, GOODS)
 ORDERS = pd.read_csv(f"{path}\MOCK_DATA_2.csv")
-orders_table, order_scroll = create_table(tab2, ORDERS)
+orders_table = create_table(tab2, ORDERS)
 ORDERS_STRUCTURE = pd.read_csv(f"{path}\MOCK_DATA_3.csv")
-orders_structure_table, orders_structure_scroll = create_table(tab3, ORDERS_STRUCTURE)
+orders_structure_table = create_table(tab3, ORDERS_STRUCTURE)
 MERGED = merge_files(GOODS, ORDERS, ORDERS_STRUCTURE)
-merged_table, merged_scroll = create_table(tab4, MERGED)
+merged_table = create_table(tab4, MERGED)
 
-btn_1 = ttk.Button(root, text='Текстовый отчёт', command=report_1)
-btn_1.grid(column=1, row=0, sticky="nesw")
-btn_2 = ttk.Button(root, text='Статистический отчёт', command=report_2)
-btn_2.grid(column=1, row=1, sticky="nesw")
-btn_3 = ttk.Button(root, text='Сводная таблица', command=create_pivot_table)
-btn_3.grid(column=1, row=2, sticky="nesw")
-btn_4 = ttk.Button(root, text='Гистограмма', command=create_hist)
-btn_4.grid(column=1, row=3, sticky="nesw")
-btn_5 = ttk.Button(root, text='Стобчатая диаграмма', command=create_bar)
-btn_5.grid(column=1, row=4, sticky="nesw")
-btn_6 = ttk.Button(root, text='Boxplot', command=lambda: report_price_by_category(GOODS))
-btn_6.grid(column=1, row=5, sticky="nesw")
-btn_7 = ttk.Button(root, text='Scatter', command=create_scatter)
-btn_7.grid(column=1, row=6, sticky="nesw")
+ttk.Button(root, text='Текстовый отчёт', command=report_1).grid(column=2, row=0, sticky="nesw")
+ttk.Button(root, text='Статистический отчёт', command=report_2).grid(column=2, row=1, sticky="nesw")
+ttk.Button(root, text='Сводная таблица', command=create_pivot_table).grid(column=2, row=2, sticky="nesw")
+ttk.Button(root, text='Гистограмма', command=create_hist).grid(column=2, row=3, sticky="nesw")
+ttk.Button(root, text='Стобчатая диаграмма', command=create_bar).grid(column=2, row=4, sticky="nesw")
+ttk.Button(root, text='Boxplot', command=lambda: report_price_by_category(GOODS)) \
+    .grid(column=2, row=5, sticky="nesw")
+ttk.Button(root, text='Scatter', command=create_scatter).grid(column=2, row=6, sticky="nesw")
+ttk.Button(root, text='Добавить заказ', command=lambda: add_order(ORDERS, ORDERS_STRUCTURE)).grid(column=0, row=6,
+                                                                                                  sticky='nesw')
+ttk.Button(root, text='Добавить товар', command=add_product).grid(column=1, row=6, sticky='nesw')
 
 menu_bar = tk.Menu(root)
 root.config(menu=menu_bar)
@@ -595,8 +644,7 @@ file_menu.add_command(label="Сохранить как", command=new_save)
 edit_menu = tk.Menu(menu_bar)
 menu_bar.add_cascade(label="Изменить", menu=edit_menu)
 edit_menu.add_command(label="Удалить запись", command=del_line)
-edit_menu.add_command(label="Добавить запись", command=add_line)
 edit_menu.add_command(label="Изменить запись", command=edit_line)
 menu_bar.add_command(label='Изменить цвет', command=config_color)
-config_widgets(root, 7, 2)
+config_widgets(root, 7, 3)
 root.mainloop()
