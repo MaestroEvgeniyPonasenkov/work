@@ -10,7 +10,7 @@ import tkinter as tk
 from tkinter import ttk, Entry, colorchooser
 from tkinter.ttk import Treeview, Spinbox
 
-os.chdir("\\".join(os.getcwd().split("\\")))
+os.chdir("\\".join(os.getcwd().split("\\")[:-1]))
 sys.path.append("\\".join(os.getcwd().split("\\")))
 sys.path.append("\\".join(os.getcwd().split("\\")) + '\\library')
 from library.read_ini import read_ini_file, update_ini_value
