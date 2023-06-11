@@ -1,7 +1,8 @@
 import tkinter as tk
-from tkinter import ttk, Spinbox, Entry, colorchooser, font
-from tkinter.ttk import Treeview, Scrollbar, Spinbox
+from tkinter import ttk, Spinbox, Entry, colorchooser
+from tkinter.ttk import Treeview, Spinbox
 
+from read_ini import read_ini_file, write_ini_file
 from text_reports import report_about_firm, merge_files, generate_attribute_report
 from hist_chart import histogram
 from bar_chart import report_day_sales, report_week_sales, report_year_sales, report_month_sales
@@ -691,6 +692,28 @@ def config_color():
     if color[1] is not None:
         style.configure("Treeview", background=color[1])
 
+def get_settings():
+    config = read_ini_file().get('Settings')
+    height = config.get('Height')
+    width = config.get('Width')
+    resize_h = config.get('ResizableHeight')
+    resize_w = config.get('ResizableWidth')
+    background_color = config.get('BackgroundColor')
+    font_size = config.get('FontSize')
+    font_family = config.get('FontFamily')
+    font_style = config.get('FontStyle')
+    cfg = [height,
+           width,
+           bool(resize_h),
+           bool(resize_w),
+           background_color,
+           int(font_size),
+           font_family,
+           font_style]
+    return cfg
+
+
+settings = get_settings()
 
 root = tk.Tk()
 root.title("Редактор справочников")
@@ -701,8 +724,8 @@ tab2 = ttk.Frame(tab_control)
 tab3 = ttk.Frame(tab_control)
 tab4 = ttk.Frame(tab_control)
 
-ttk.Style().configure("Treeview", background="white",
-                      foreground="black", fieldbackground="white", font=("Arial", 12, "bold"))
+ttk.Style().configure("Treeview", background=settings[4],
+                      foreground="black", fieldbackground="white", font=(settings[6], settings[5], settings[7]))
 
 tab_control.add(tab1, text='Товары')
 tab_control.add(tab2, text='Заказы')
@@ -743,6 +766,6 @@ edit_menu.add_command(label="Удалить запись", command=del_line)
 edit_menu.add_command(label="Изменить запись", command=edit_line)
 menu_bar.add_command(label='Изменить цвет', command=config_color)
 config_widgets(root, 7, 3)
-root.geometry("1000x1000+{}+{}".format(root.winfo_screenwidth() // 2 - 400, root.winfo_screenheight() // 2 - 300))
-root.resizable(True, True)
+root.geometry(f"{settings[0]}x{settings[1]}".format(root.winfo_screenwidth() // 2 - 400, root.winfo_screenheight() // 2 - 300))
+root.resizable(settings[2], settings[3])
 root.mainloop()
