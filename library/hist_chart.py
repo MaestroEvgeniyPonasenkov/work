@@ -4,12 +4,12 @@ import pandas as pd
 
 def histogram(data: pd.DataFrame, colomn: str) -> None:
     if colomn == 'Quantity':
-        plt.hist(data[colomn], bins=30, color='blue', edgecolor='black')
+        plt.hist(data[colomn], bins=20, color='blue', edgecolor='black')
         plt.title('Гистограмма распределения количества\nтоваров в заказе')
         plt.xlabel('Количество товаров в заказе')
         plt.ylabel('Количество')
     if colomn == 'Price':
-        prices = [int(x[:-3]) for x in data[colomn]]
+        prices = [int(str(x)[:-3]) for x in data[colomn]]
         plt.hist(prices, bins=30, color='blue', edgecolor='black')
         plt.title('Гистограмма распределения цены на товары')
         plt.xlabel('Цена товара')
