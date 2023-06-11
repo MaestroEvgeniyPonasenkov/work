@@ -644,22 +644,22 @@ def add_product():
     """
     dialog = tk.Toplevel(root)
     dialog.title('Создание нового товара')
-    tk.Label(dialog, text="Название").grid(row=0, column=0, sticky="nesw")
+    tk.Label(dialog, text="Название").grid(row=0, column=0, sticky="nesw", columnspan=2)
     product_entry = tk.Entry(dialog)
-    product_entry.grid(row=1, column=0, sticky="nesw")
+    product_entry.grid(row=1, column=0, sticky="nesw", columnspan=2)
 
-    tk.Label(dialog, text="Описание").grid(row=2, column=0, sticky="nesw")
+    tk.Label(dialog, text="Описание").grid(row=2, column=0, sticky="nesw", columnspan=2)
     description_entry = tk.Entry(dialog)
-    description_entry.grid(row=3, column=0, sticky="nesw")
+    description_entry.grid(row=3, column=0, sticky="nesw", columnspan=2)
 
     tk.Label(dialog, text="Цена").grid(row=4, column=0, sticky="nesw")
     sum_entry = ttk.Spinbox(dialog, increment=1, from_=0, to=100000)
     sum_entry.set(1000)
-    sum_entry.grid(row=5, column=0, sticky="nesw")
+    sum_entry.grid(row=5, column=0, sticky="nesw", columnspan=2)
 
     tk.Label(dialog, text="Категория").grid(row=6, column=0, sticky="nesw")
     category_entry = tk.Entry(dialog)
-    category_entry.grid(row=7, column=0, sticky="nesw")
+    category_entry.grid(row=7, column=0, sticky="nesw", columnspan=2)
 
     def save():
         """
@@ -682,12 +682,11 @@ def add_product():
         global goods_table
         goods_table = create_table(tab1, GOODS)
 
-
     save_button = ttk.Button(dialog, text='Создать', command=save)
     cancel_button = ttk.Button(dialog, text='Отмена', command=dialog.destroy)
-    save_button.grid(row=8, column=0, sticky="nesw", columnspan=2)
-    cancel_button.grid(row=8, column=2, sticky="nesw")
-    config_widgets(dialog, 9, 3)
+    save_button.grid(row=8, column=0, sticky="nesw")
+    cancel_button.grid(row=8, column=1, sticky="nesw")
+    config_widgets(dialog, 9, 2)
 
 
 def config_color():
@@ -772,6 +771,7 @@ edit_menu.add_command(label="Удалить запись", command=del_line)
 edit_menu.add_command(label="Изменить запись", command=edit_line)
 menu_bar.add_command(label='Изменить цвет', command=config_color)
 config_widgets(root, 7, 3)
-root.geometry(f"{settings[0]}x{settings[1]}".format(root.winfo_screenwidth() // 2 - 400, root.winfo_screenheight() // 2 - 300))
+root.geometry(
+    f"{settings[0]}x{settings[1]}".format(root.winfo_screenwidth() // 2 - 400, root.winfo_screenheight() // 2 - 300))
 root.resizable(settings[2], settings[3])
 root.mainloop()
