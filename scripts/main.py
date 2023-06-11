@@ -9,6 +9,7 @@ from tkinter.ttk import Treeview, Spinbox
 os.chdir("\\".join(os.getcwd().split("\\")))
 sys.path.append("\\".join(os.getcwd().split("\\")))
 sys.path.append("\\".join(os.getcwd().split("\\")) + '\\library')
+import read_ini
 from library.read_ini import read_ini_file, update_ini_value
 from library.text_reports import report_about_firm, merge_files, generate_attribute_report
 from library.hist_chart import histogram
