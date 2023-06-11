@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, Spinbox
-from tkinter.ttk import Treeview
+from tkinter.ttk import Treeview, Scrollbar
+from typing import Tuple
 
 from text_reports import report_about_firm, merge_files
 from hist_chart import histogram
@@ -46,11 +47,12 @@ def create_pivot_table():
         except Exception:
             print("Данные не подходят для создания сводной таблицы")
 
-    tk.Button(dialog, text="Создать таблицу", command=create_pivot_table).grid(row=2, column=0, columnspan=3, sticky="nesw")
+    tk.Button(dialog, text="Создать таблицу", command=create_pivot_table).grid(row=2, column=0, columnspan=3,
+                                                                               sticky="nesw")
     config_widgets(dialog, 3, 3)
 
 
-def create_table(tab, data: pd.DataFrame, pivot=False) -> Treeview:
+def create_table(tab, data: pd.DataFrame, pivot=False) -> tuple[Treeview, Scrollbar]:
     """
     Функция для добавления таблицы в окно
     :param tab: Название окна
@@ -94,7 +96,7 @@ def create_table(tab, data: pd.DataFrame, pivot=False) -> Treeview:
     for i, row in data.iterrows():
         values = list(row)
         table.insert("", "end", text=i, values=values)
-    return table
+    return table, scrollbar
 
 
 def add_color_change():
@@ -215,10 +217,6 @@ def report_2():
     pass
 
 
-def report_3():
-    pass
-
-
 def create_hist():
     dialog = tk.Toplevel(root)
     dialog.title("Создание гистограммы")
@@ -300,13 +298,18 @@ def edit_line():
         selected_item = orders_table.selection()[0]
         selected_line = orders_table.item(selected_item)['values']
         date_day, date_month, date_year, sum_entry = orders_dialog(selected_item, selected_line[0])
-
+        month, day, year = selected_line[1].split('/')
+        date_day.set(day)
+        date_month.set(month)
+        date_year.set(year)
+        sum_entry.set(selected_line[2])
 
     if index == 2:
         selected_item = orders_structure_table.selection()[0]
         selected_line = orders_structure_table.item(selected_item)['values']
-        values = ['Order ID', 'Product ID', 'Quantity']
-        orders_structure_table.item(selected_item, values=values)
+        good_entry, quantity_entry = orders_structure_dialog(selected_item, selected_line[0])
+        good_entry.set(selected_line[1])
+        quantity_entry.set(selected_line[2])
     if index == 3:
         print('Так нельзя')
 
@@ -338,6 +341,9 @@ def goods_dialog(selected_item, id):
         values = [id, name, description, price, category]
         goods_table.item(selected_item, values=values)
         dialog.destroy()
+        global MERGED, merged_table
+        MERGED = merge_files(GOODS, ORDERS, ORDERS_STRUCTURE)
+        merged_table = create_table(tab4, MERGED)
 
     save_button = ttk.Button(dialog, text='Сохранить', command=save)
     cancel_button = ttk.Button(dialog, text='Отмена', command=dialog.destroy)
@@ -359,22 +365,56 @@ def orders_dialog(selected_item, id):
     date_year.grid(column=2, row=1, sticky="nesw")
 
     tk.Label(dialog, text="Сумма").grid(row=2, column=0, sticky="nesw", columnspan=3)
-    sum_entry = ttk.Spinbox(dialog, increment=0.01, from_=0, to=1000)
+    sum_entry = ttk.Spinbox(dialog, increment=1, from_=0, to=100000)
     sum_entry.grid(row=3, column=0, sticky="nesw", columnspan=3)
 
     def save():
-        date = f'{date_day.get()}/{date_month.get()}/{date_year.get()}'
+        date = f'{date_month.get()}/{date_day.get()}/{date_year.get()}'
         sum = sum_entry.get()
         values = [id, date, sum]
-        goods_table.item(selected_item, values=values)
+        orders_table.item(selected_item, values=values)
         dialog.destroy()
+        global MERGED, merged_table
+        MERGED = merge_files(GOODS, ORDERS, ORDERS_STRUCTURE)
+        merged_table = create_table(tab4, MERGED)
 
     save_button = ttk.Button(dialog, text='Сохранить', command=save)
     cancel_button = ttk.Button(dialog, text='Отмена', command=dialog.destroy)
-    save_button.grid(row=8, column=0, sticky="nesw")
-    cancel_button.grid(row=8, column=1, sticky="nesw")
+    save_button.grid(row=8, column=0, sticky="nesw", columnspan=2)
+    cancel_button.grid(row=8, column=2, sticky="nesw")
     config_widgets(dialog, 4, 3)
     return date_day, date_month, date_year, sum_entry
+
+
+def orders_structure_dialog(selected_item, id):
+    dialog = tk.Toplevel(root)
+    dialog.title('Состав заказа')
+    tk.Label(dialog, text='Товар').grid(column=0, row=0, sticky="nesw", columnspan=2)
+    ids = list(GOODS['Product ID'])
+    good_entry = ttk.Combobox(dialog, values=ids)
+    good_entry.grid(column=0, row=1, sticky="nesw", columnspan=2)
+    tk.Label(dialog, text="Количество").grid(row=2, column=0, sticky="nesw", columnspan=2)
+    quantity_entry = ttk.Spinbox(dialog, increment=1, from_=0, to=100)
+    quantity_entry.grid(row=3, column=0, sticky="nesw", columnspan=2)
+
+    def save():
+        good = good_entry.get()
+        quantity = quantity_entry.get()
+        values = [id, good, quantity]
+        orders_structure_table.item(selected_item, values=values)
+        dialog.destroy()
+        global MERGED, merged_table
+        merged_table.pack_forget()
+        merged_scroll.pack_forget()
+        MERGED = merge_files(GOODS, ORDERS, ORDERS_STRUCTURE)
+        merged_table = create_table(tab4, MERGED)
+
+    save_button = ttk.Button(dialog, text='Сохранить', command=save)
+    cancel_button = ttk.Button(dialog, text='Отмена', command=dialog.destroy)
+    save_button.grid(row=4, column=0, sticky="nesw")
+    cancel_button.grid(row=4, column=1, sticky="nesw")
+    config_widgets(dialog, 5, 2)
+    return good_entry, quantity_entry
 
 
 def add_line():
@@ -405,13 +445,13 @@ tab_control.grid(column=0, row=0, rowspan=7, sticky='nswe')
 
 path = f'{os.getcwd()}\\data'
 GOODS = pd.read_csv(f"{path}\MOCK_DATA_1.csv")
-goods_table = create_table(tab1, GOODS)
+goods_table, goods_scroll = create_table(tab1, GOODS)
 ORDERS = pd.read_csv(f"{path}\MOCK_DATA_2.csv")
-orders_table = create_table(tab2, ORDERS)
+orders_table, order_scroll = create_table(tab2, ORDERS)
 ORDERS_STRUCTURE = pd.read_csv(f"{path}\MOCK_DATA_3.csv")
-orders_structure_table = create_table(tab3, ORDERS_STRUCTURE)
-MERGED = merge_files()
-merged_table = create_table(tab4, MERGED)
+orders_structure_table, orders_structure_scroll = create_table(tab3, ORDERS_STRUCTURE)
+MERGED = merge_files(GOODS, ORDERS, ORDERS_STRUCTURE)
+merged_table, merged_scroll = create_table(tab4, MERGED)
 
 btn_1 = ttk.Button(root, text='Текстовый отчёт', command=report_1)
 btn_1.grid(column=1, row=0, sticky="nesw")
