@@ -49,9 +49,9 @@ def create_table(tab, data: pd.DataFrame) -> Treeview:
     for header in heads:
         table.heading(header, text=header)
         if len(heads) == 9:
-            table.column(header, width=0)
+            table.column(header, width=0, anchor='center')
         else:
-            table.column(header)
+            table.column(header, anchor='center')
 
     for i, row in data.iterrows():
         values = list(row)
@@ -253,35 +253,29 @@ def edit_line():
     if index == 0:
         selected_item = goods_table.selection()[0]
         selected_line = goods_table.item(selected_item)['values']
-        values = ['Product ID', 'Product', 'Description', 'Price', 'Category']
-        goods_table.item(selected_item, values=values)
-        name_entry, description_entry, price_entry, category_entry = goods_dialog()
+        name_entry, description_entry, price_entry, category_entry = goods_dialog(selected_item, selected_line[0])
         name_entry.insert(0, selected_line[1])
         description_entry.insert(0, selected_line[2])
         price_entry.set(selected_line[3])
         category_entry.insert(0, selected_line[4])
-
     if index == 1:
         selected_item = orders_table.selection()[0]
         selected_line = orders_table.item(selected_item)['values']
-        values = ['Order ID', 'Date', 'Sum']
-        orders_table.item(selected_item, values=values)
+        date_day, date_month, date_year, sum_entry = orders_dialog(selected_item, selected_line[0])
+
+
     if index == 2:
         selected_item = orders_structure_table.selection()[0]
         selected_line = orders_structure_table.item(selected_item)['values']
         values = ['Order ID', 'Product ID', 'Quantity']
         orders_structure_table.item(selected_item, values=values)
     if index == 3:
-        selected_item = merged_table.selection()[0]
-        selected_line = merged_table.item(selected_item)['values']
-        values = ['Order ID', 'Product ID', 'Quantity', 'Product', 'Description', 'Price',
-                  'Category', 'Date', 'Sum']
-        merged_table.item(selected_item, values=values)
+        print('Так нельзя')
 
 
-def goods_dialog():
+def goods_dialog(selected_item, id):
     dialog = tk.Toplevel(root)
-    dialog.title('')
+    dialog.title('Товар')
     tk.Label(dialog, text="Название").grid(row=0, column=0, sticky="nesw", columnspan=2)
     name_entry = tk.Entry(dialog)
     name_entry.grid(row=1, column=0, sticky="nesw", columnspan=2)
@@ -298,12 +292,51 @@ def goods_dialog():
     category_entry = tk.Entry(dialog)
     category_entry.grid(row=7, column=0, sticky="nesw", columnspan=2)
 
-    save_button = ttk.Button(dialog, text='Сохранить')
+    def save():
+        name = name_entry.get()
+        description = description_entry.get()
+        price = price_entry.get()
+        category = category_entry.get()
+        values = [id, name, description, price, category]
+        goods_table.item(selected_item, values=values)
+        dialog.destroy()
+
+    save_button = ttk.Button(dialog, text='Сохранить', command=save)
     cancel_button = ttk.Button(dialog, text='Отмена', command=dialog.destroy)
     save_button.grid(row=8, column=0, sticky="nesw")
     cancel_button.grid(row=8, column=1, sticky="nesw")
-    config_widgets(dialog, 9,  2)
+    config_widgets(dialog, 9, 2)
     return name_entry, description_entry, price_entry, category_entry
+
+
+def orders_dialog(selected_item, id):
+    dialog = tk.Toplevel(root)
+    dialog.title('Заказ')
+    tk.Label(dialog, text='Дата').grid(column=0, row=0, columnspan=3, sticky="nesw")
+    date_day = ttk.Spinbox(dialog, from_=1, to=31, width=2)
+    date_day.grid(column=0, row=1, sticky="nesw")
+    date_month = ttk.Spinbox(dialog, from_=1, to=12, width=2)
+    date_month.grid(column=1, row=1, sticky="nesw")
+    date_year = ttk.Spinbox(dialog, from_=2022, to=2023, width=4)
+    date_year.grid(column=2, row=1, sticky="nesw")
+
+    tk.Label(dialog, text="Сумма").grid(row=2, column=0, sticky="nesw", columnspan=3)
+    sum_entry = ttk.Spinbox(dialog, increment=0.01, from_=0, to=1000)
+    sum_entry.grid(row=3, column=0, sticky="nesw", columnspan=3)
+
+    def save():
+        date = f'{date_day.get()}/{date_month.get()}/{date_year.get()}'
+        sum = sum_entry.get()
+        values = [id, date, sum]
+        goods_table.item(selected_item, values=values)
+        dialog.destroy()
+
+    save_button = ttk.Button(dialog, text='Сохранить', command=save)
+    cancel_button = ttk.Button(dialog, text='Отмена', command=dialog.destroy)
+    save_button.grid(row=8, column=0, sticky="nesw")
+    cancel_button.grid(row=8, column=1, sticky="nesw")
+    config_widgets(dialog, 4, 3)
+    return date_day, date_month, date_year, sum_entry
 
 
 def add_line():
@@ -315,7 +348,7 @@ def config_color():
 
 
 root = tk.Tk()
-root.title("CSV Viewer")
+root.title("Редактор справочников")
 
 tab_control = ttk.Notebook(root)
 tab1 = ttk.Frame(tab_control)
