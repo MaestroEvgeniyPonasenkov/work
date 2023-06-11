@@ -116,11 +116,11 @@ def create_statistic_report():
     config_widgets(dialog, 3, 2)
 
 
-def create_table(tab, data: pd.DataFrame, pivot=False) -> Treeview:
+def create_table(tab: tk.ttk.Frame, data: pd.DataFrame, pivot=False) -> Treeview:
     """
     Функция для добавления таблицы в окно
-    :param pivot:
-    :param tab: Название окна
+    :param pivot: Является ли таблица сводной
+    :param tab(tk.ttk.Frame): Название окна
     :param data(pd.DataFrame): Данные таблицы
     :return: Полученный виджет таблицы
     Автор: Болезнов С.А., Ряднов И.М.
