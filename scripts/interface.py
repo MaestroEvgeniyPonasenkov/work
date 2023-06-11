@@ -88,7 +88,7 @@ def create_statistic_report():
         attribute_rep = generate_attribute_report(MERGED, attribute_1, attribute_2)
 
         dialog2 = tk.Toplevel(root)
-        dialog2.title("Сводная таблица")
+        dialog2.title("Статистический отчёт")
         create_table(dialog2, attribute_rep[0])
         create_table(dialog2, attribute_rep[1])
         create_table(dialog2, attribute_rep[2])
