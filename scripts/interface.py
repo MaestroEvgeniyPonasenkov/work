@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, Spinbox, Entry
+from tkinter import ttk, Spinbox, Entry, colorchooser
 from tkinter.ttk import Treeview, Scrollbar, Spinbox
 
 from text_reports import report_about_firm, merge_files, generate_attribute_report
@@ -686,7 +686,10 @@ def add_product():
 
 
 def config_color():
-    pass
+    style = ttk.Style()
+    color = colorchooser.askcolor(title="Выберите цвет фона")
+    if color[1] is not None:
+        style.configure("Treeview", background=color[1])
 
 
 root = tk.Tk()
