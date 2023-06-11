@@ -6,10 +6,9 @@ import tkinter as tk
 from tkinter import ttk, Spinbox, Entry, colorchooser
 from tkinter.ttk import Treeview, Spinbox
 
-os.chdir("\\".join(os.getcwd().split("\\")[:-1]))
+os.chdir("\\".join(os.getcwd().split("\\")))
 sys.path.append("\\".join(os.getcwd().split("\\")))
 sys.path.append("\\".join(os.getcwd().split("\\")) + '\\library')
-import read_ini
 from library.read_ini import read_ini_file, update_ini_value
 from library.text_reports import report_about_firm, merge_files, generate_attribute_report
 from library.hist_chart import histogram
@@ -234,7 +233,7 @@ def report_1():
     Автор: Болезнов С.А.
     """
     dialog = tk.Toplevel(root)
-    dialog.title("Текстовый отчёт 1")
+    dialog.title("Текстовый отчёт")
     start_date_day, start_date_month, start_date_year, end_date_day, \
         end_date_month, end_date_year = add_datas(dialog)
     tk.Label(dialog, text="Выберете категорию:").grid(row=4, column=0, columnspan=3)
