@@ -6,6 +6,9 @@ from matplotlib.ticker import FuncFormatter
 
 
 def report_day_sales(data):
+    if data.index.name is None:
+        data['Date'] = data['Date'].astype("datetime64[ns]")
+        data.set_index('Date', inplace=True)
     sales_by_day = data['Sum'].resample('D').sum()
     x_labels = []
     for date in sales_by_day.index:
@@ -27,6 +30,9 @@ def report_day_sales(data):
 
 
 def report_week_sales(data):
+    if data.index.name is None:
+        data['Date'] = data['Date'].astype("datetime64[ns]")
+        data.set_index('Date', inplace=True)
     sales_by_week = data['Sum'].resample('W').sum()
     plt.figure(figsize=(300, 300))
     plt.bar(sales_by_week.index, sales_by_week, width=3)
@@ -40,6 +46,9 @@ def report_week_sales(data):
 
 
 def report_month_sales(data):
+    if data.index.name is None:
+        data['Date'] = data['Date'].astype("datetime64[ns]")
+        data.set_index('Date', inplace=True)
     sales_by_month = data['Sum'].resample('M').sum()
     plt.figure(figsize=(300, 300))
     plt.bar(sales_by_month.index, sales_by_month, width=10)
@@ -55,6 +64,9 @@ def report_month_sales(data):
 
 
 def report_year_sales(data):
+    if data.index.name is None:
+        data['Date'] = data['Date'].astype("datetime64[ns]")
+        data.set_index('Date', inplace=True)
     sales_by_year = data['Sum'].resample('Y').sum()
     plt.figure(figsize=(300, 300))
     plt.bar(sales_by_year.index, sales_by_year, width=10)
@@ -79,8 +91,6 @@ def format_func(value, tick_number):
 
 if __name__ == '__main__':
     data = pd.read_csv(f'{os.getcwd()}/data/MOCK_DATA_2.csv')
-    data['Date'] = data['Date'].astype("datetime64[ns]")
-    data.set_index('Date', inplace=True)
     report_day_sales(data)
     report_week_sales(data)
     report_month_sales(data)
