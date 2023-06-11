@@ -1,11 +1,14 @@
-import pandas as pd
 import matplotlib.pyplot as plt
 import calendar
-import os
 from matplotlib.ticker import FuncFormatter
 
 
 def report_day_sales(data):
+    """
+    Функция для отображения графика продаж по дням
+    :param data(pd.DataFrame): Данные таблицы 2
+    Автор: Ряднов И.М.
+    """
     if data.index.name is None:
         data['Date'] = data['Date'].astype("datetime64[ns]")
         data.set_index('Date', inplace=True)
@@ -18,7 +21,6 @@ def report_day_sales(data):
             x_labels.append(f'{month} {day}')
         else:
             x_labels.append('')
-    plt.figure(figsize=(300, 300))
     plt.bar(sales_by_day.index, sales_by_day, width=0.7)
     plt.xlabel('Дата')
     plt.ylabel('Продажи')
@@ -33,11 +35,15 @@ def report_day_sales(data):
 
 
 def report_week_sales(data):
+    """
+    Функция для отображения графика продаж по неделям
+    :param data(pd.DataFrame): Данные таблицы 2
+    Автор: Ряднов И.М.
+    """
     if data.index.name is None:
         data['Date'] = data['Date'].astype("datetime64[ns]")
         data.set_index('Date', inplace=True)
     sales_by_week = data['Sum'].resample('W').sum()
-    plt.figure(figsize=(300, 300))
     plt.bar(sales_by_week.index, sales_by_week, width=3)
     plt.xlabel('Дата')
     plt.ylabel('Продажи')
@@ -49,11 +55,15 @@ def report_week_sales(data):
 
 
 def report_month_sales(data):
+    """
+    Функция для отображения графика продаж по месяцам
+    :param data(pd.DataFrame): Данные таблицы 2
+    Автор: Ряднов И.М.
+    """
     if data.index.name is None:
         data['Date'] = data['Date'].astype("datetime64[ns]")
         data.set_index('Date', inplace=True)
     sales_by_month = data['Sum'].resample('M').sum()
-    plt.figure(figsize=(300, 300))
     plt.bar(sales_by_month.index, sales_by_month, width=10)
     plt.xlabel('Дата')
     plt.ylabel('Продажи')
@@ -67,11 +77,15 @@ def report_month_sales(data):
 
 
 def report_year_sales(data):
+    """
+    Функция для отображения графика продаж по годам
+    :param data(pd.DataFrame): Данные таблицы 2
+    Автор: Ряднов И.М.
+    """
     if data.index.name is None:
         data['Date'] = data['Date'].astype("datetime64[ns]")
         data.set_index('Date', inplace=True)
     sales_by_year = data['Sum'].resample('Y').sum()
-    plt.figure(figsize=(300, 300))
     plt.bar(sales_by_year.index, sales_by_year, width=10)
     plt.xlabel('Дата')
     plt.ylabel('Продажи')
@@ -85,16 +99,13 @@ def report_year_sales(data):
 
 
 def format_func(value, tick_number):
+    """
+    Функция для изменения отображения больших значений на осях графиков
+    :param value(int): значение показателя на графике
+    Автор: Ряднов И.М.
+    """
     if value >= 1000000:
         value = f'{int(value / 1000000)}M'
     elif value >= 1000:
         value = f'{int(value / 1000)}K'
     return value
-
-
-if __name__ == '__main__':
-    data = pd.read_csv(f'{os.getcwd()}/data/MOCK_DATA_2.csv')
-    report_day_sales(data)
-    report_week_sales(data)
-    report_month_sales(data)
-    report_year_sales(data)
