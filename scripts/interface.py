@@ -1,6 +1,7 @@
 import tkinter as tk
-from tkinter import ttk, Spinbox
-from tkinter.ttk import Treeview
+from tkinter import ttk, Spinbox, Entry
+from tkinter.ttk import Treeview, Scrollbar, Spinbox
+from typing import Tuple
 
 from text_reports import report_about_firm, merge_files
 from hist_chart import histogram
@@ -17,19 +18,18 @@ def create_pivot_table():
     dialog = tk.Toplevel(root)
     dialog.title("Сводная таблица")
     agg_functions = {
-    "среднее значение": "mean",
-    "сумма": "sum",
-    "минимальное значение": "min",
-    "максимальное значение": "max",
-    "количество непустых значений": "count",
-    "медиана": "median",
-    "стандартное отклонение": "std",
-    "дисперсия": "var",
-    "первое значение": "first",
-    "последнее значение": "last",
-    "произведение": "prod"
+        "среднее значение": "mean",
+        "сумма": "sum",
+        "минимальное значение": "min",
+        "максимальное значение": "max",
+        "количество непустых значений": "count",
+        "медиана": "median",
+        "стандартное отклонение": "std",
+        "дисперсия": "var",
+        "первое значение": "first",
+        "последнее значение": "last",
+        "произведение": "prod"
     }
-
 
     tk.Label(dialog, text="Выберите значения (values):").grid(row=0, column=0, sticky="nesw")
     values_entry = ttk.Combobox(dialog, values=['None'] + list(MERGED.columns), state='readonly')
@@ -42,7 +42,7 @@ def create_pivot_table():
     tk.Label(dialog, text="Выберите столбцы (columns):").grid(row=0, column=2, sticky="nesw")
     columns_entry = ttk.Combobox(dialog, values=['None'] + list(MERGED.columns), state='readonly')
     columns_entry.grid(row=1, column=2, sticky="nesw")
-    
+
     tk.Label(dialog, text="Выберите функцию агрегации (aggfunc):").grid(row=0, column=3, sticky="nesw")
     aggfunc_entry = ttk.Combobox(dialog, values=list(agg_functions.keys()), state='readonly')
     aggfunc_entry.grid(row=1, column=3, sticky="nesw")
@@ -65,15 +65,19 @@ def create_pivot_table():
         except Exception as ex:
             print(f"Данные не подходят для создания сводной таблицы\nДетали: {ex}")
 
-    tk.Button(dialog, text="Создать таблицу", command=create_pivot_table).grid(row=2, column=0, columnspan=4, sticky="nesw")
+    tk.Button(dialog, text="Создать таблицу", command=create_pivot_table).grid(row=2, column=0, columnspan=4,
+                                                                               sticky="nesw")
     config_widgets(dialog, 3, 4)
 
 
 def create_table(tab, data: pd.DataFrame, pivot=False) -> Treeview:
     """
     Функция для добавления таблицы в окно
+    :param pivot:
     :param tab: Название окна
     :param data(pd.DataFrame): Данные таблицы
+    :return: Полученный виджет таблицы
+    Автор: Болезнов С.А., Ряднов И.М.
     """
     translater = {
         'Order ID': 'Номер заказа',
@@ -106,9 +110,9 @@ def create_table(tab, data: pd.DataFrame, pivot=False) -> Treeview:
     for header in heads:
         table.heading(header, text=header)
         if len(heads) == 9:
-            table.column(header, width=0)
+            table.column(header, width=0, anchor='center')
         else:
-            table.column(header)
+            table.column(header, anchor='center')
 
     for i, row in data.iterrows():
         values = list(row)
@@ -138,8 +142,8 @@ def add_color_change():
 
 def new_save():
     """
-    Функция для сохранения одной таблицы
-    :return:
+    Функция для сохранения одной таблицы в отдельный файл
+    Автор: Болезнов С.А.
     """
     index = tab_control.index(tab_control.select())
     tabs = [GOODS, ORDERS, ORDERS_STRUCTURE, MERGED]
@@ -147,16 +151,12 @@ def new_save():
     save_as(table)
 
 
-def get_current_table_name():
-    index = tab_control.index(tab_control.select())
-    tabs = [GOODS, ORDERS, ORDERS_STRUCTURE, MERGED]
-    table = tabs[index]
-
-
 def add_datas(parent) -> tuple[Spinbox, Spinbox, Spinbox, Spinbox, Spinbox, Spinbox]:
     """
     Функция для добавления в окно полей ввода даты
+    Автор: Болезнов С.А.
     :param parent: Название окна
+    :return: Добавленные виджеты
     """
     start_date_label = tk.Label(parent, text='Выберите начальную дату:')
     start_date_label.grid(column=0, row=0, columnspan=3, sticky="nesw")
@@ -182,6 +182,7 @@ def config_widgets(parent, rows: int, cols: int):
     """
     Функция для задания веса каждому элемента окна.
     Необходимо для коректного отображения окна при растяжении.
+    Автор: Болезнов С.А.
     :param parent: Название окна
     :param rows: Количество рядов в сетке окна
     :param cols: Количество столбцов в сетке окна
@@ -194,7 +195,8 @@ def config_widgets(parent, rows: int, cols: int):
 
 def report_1():
     """
-    Создание нового окна для ввода необходимых параметров
+    Создание нового окна для ввода необходимых параметров для текстового отчета
+    Автор: Болезнов С.А.
     """
     dialog = tk.Toplevel(root)
     dialog.title("Текстовый отчёт 1")
@@ -210,6 +212,7 @@ def report_1():
     def ok_button():
         """
         Вывод полученного отчета на экран
+        Автор: Болезнов С.А.
         """
         first_date = f'{start_date_year.get()}-{start_date_month.get()}-{start_date_day.get()}'
         second_date = f'{end_date_year.get()}-{end_date_month.get()}-{end_date_day.get()}'
@@ -234,11 +237,11 @@ def report_2():
     pass
 
 
-def report_3():
-    pass
-
-
 def create_hist():
+    """
+    Создание нового окна с выбором гистограмм
+    Автор: Болезнов С.А.
+    """
     dialog = tk.Toplevel(root)
     dialog.title("Создание гистограммы")
     tk.Button(dialog, text="Гистограмма распределения\nколичества товаров\nв заказе",
@@ -252,6 +255,10 @@ def create_hist():
 
 
 def create_bar():
+    """
+    Создание нового окна для выбора столбчатых диаграмм
+    Автор: Болезнов С.А.
+    """
     dialog = tk.Toplevel(root)
     dialog.title("Создание столбчатой диаграммы")
     tk.Button(dialog, text="Продажи по дням",
@@ -266,17 +273,21 @@ def create_bar():
     config_widgets(dialog, 3, 2)
 
 
-def create_boxplot():
-    report_price_by_category(GOODS)
-
-
 def create_scatter():
+    """
+    Функция для подготовки данных и отображения таблицы рассеивания
+    Автор: Ряднов И.М.
+    """
     data = pd.merge(ORDERS_STRUCTURE, GOODS, on="Product ID")
     data['Price'] = data['Price'].astype(float)
     report_price_by_quantity(data)
 
 
 def del_line():
+    """
+    Функция для удаления строк таблицы.
+    Автор: Болезнов С.А.
+    """
     index = tab_control.index(tab_control.select())
     if index == 0:
         selected_item = goods_table.selection()[0]
@@ -306,39 +317,49 @@ def del_line():
 
 
 def edit_line():
+    """
+    Функция для внесения изменений в строку таблицы.
+    Автор: Болезнов С.А.
+    """
     index = tab_control.index(tab_control.select())
     if index == 0:
         selected_item = goods_table.selection()[0]
         selected_line = goods_table.item(selected_item)['values']
-        values = ['Product ID', 'Product', 'Description', 'Price', 'Category']
-        goods_table.item(selected_item, values=values)
-        name_entry, description_entry, price_entry, category_entry = goods_dialog()
+        name_entry, description_entry, price_entry, category_entry = goods_dialog(selected_item,
+                                                                                  selected_line)
         name_entry.insert(0, selected_line[1])
         description_entry.insert(0, selected_line[2])
         price_entry.set(selected_line[3])
         category_entry.insert(0, selected_line[4])
-
     if index == 1:
         selected_item = orders_table.selection()[0]
         selected_line = orders_table.item(selected_item)['values']
-        values = ['Order ID', 'Date', 'Sum']
-        orders_table.item(selected_item, values=values)
+        date_day, date_month, date_year, sum_entry = orders_dialog(selected_item, selected_line)
+        month, day, year = selected_line[1].split('/')
+        date_day.set(day)
+        date_month.set(month)
+        date_year.set(year)
+        sum_entry.set(selected_line[2])
     if index == 2:
         selected_item = orders_structure_table.selection()[0]
         selected_line = orders_structure_table.item(selected_item)['values']
-        values = ['Order ID', 'Product ID', 'Quantity']
-        orders_structure_table.item(selected_item, values=values)
+        good_entry, quantity_entry = orders_structure_dialog(selected_item, selected_line)
+        good_entry.set(selected_line[1])
+        quantity_entry.set(selected_line[2])
     if index == 3:
-        selected_item = merged_table.selection()[0]
-        selected_line = merged_table.item(selected_item)['values']
-        values = ['Order ID', 'Product ID', 'Quantity', 'Product', 'Description', 'Price',
-                  'Category', 'Date', 'Sum']
-        merged_table.item(selected_item, values=values)
+        print('Данная операция невозможна. Данные можно изменять только в отдельных справочниках')
 
 
-def goods_dialog():
+def goods_dialog(selected_item, selected_line) -> tuple[Entry, Entry, Spinbox, Entry]:
+    """
+    Функция для создания нового окна с вводом новых/измененных значений для таблицы товары
+    Автор: Болезнов С.А.
+    :param selected_item: Выбранный объект в таблице
+    :param selected_line: Список выбранных значений
+    :return: Виджеты ввода значений
+    """
     dialog = tk.Toplevel(root)
-    dialog.title('')
+    dialog.title('Изменение товара')
     tk.Label(dialog, text="Название").grid(row=0, column=0, sticky="nesw", columnspan=2)
     name_entry = tk.Entry(dialog)
     name_entry.grid(row=1, column=0, sticky="nesw", columnspan=2)
@@ -347,7 +368,7 @@ def goods_dialog():
     description_entry = tk.Entry(dialog)
     description_entry.grid(row=3, column=0, sticky="nesw", columnspan=2)
 
-    tk.Label(dialog, text="Название").grid(row=4, column=0, sticky="nesw", columnspan=2)
+    tk.Label(dialog, text="Ценв").grid(row=4, column=0, sticky="nesw", columnspan=2)
     price_entry = ttk.Spinbox(dialog, increment=0.01, from_=0, to=1000)
     price_entry.grid(row=5, column=0, sticky="nesw", columnspan=2)
 
@@ -355,15 +376,218 @@ def goods_dialog():
     category_entry = tk.Entry(dialog)
     category_entry.grid(row=7, column=0, sticky="nesw", columnspan=2)
 
-    save_button = ttk.Button(dialog, text='Сохранить')
+    def save():
+        """
+        Функция для сохранения полученных значений
+        Автор: Болезнов С.А.
+        """
+        name = name_entry.get()
+        description = description_entry.get()
+        price = price_entry.get()
+        category = category_entry.get()
+        values = [selected_line[0], name, description, price, category]
+        goods_table.item(selected_item, values=values)
+        dialog.destroy()
+        global GOODS
+        GOODS = replace_row_values(GOODS, selected_line, values)
+        create_new_merge()
+
+    save_button = ttk.Button(dialog, text='Сохранить', command=save)
     cancel_button = ttk.Button(dialog, text='Отмена', command=dialog.destroy)
     save_button.grid(row=8, column=0, sticky="nesw")
     cancel_button.grid(row=8, column=1, sticky="nesw")
-    config_widgets(dialog, 9,  2)
+    config_widgets(dialog, 9, 2)
     return name_entry, description_entry, price_entry, category_entry
 
 
-def add_line():
+def replace_row_values(df: pd.DataFrame, old_values: list, new_values: list) -> pd.DataFrame:
+    """
+    Функция для замены одной строки датафрейма на новую
+    Автор: Болезнов С.А.
+    :param df: Исходный датафрейм
+    :param old_values: Список значений, которые будут изсменены
+    :param new_values: Список новых значений
+    :return: Изменененный датафрейм
+    """
+    if 'Quantity' in df.columns:
+        row_idx = (df['Order ID'] == old_values[0])
+    elif 'Product ID' in df.columns:
+        row_idx = (df['Product ID'] == old_values[0])
+    elif 'Order ID' in df.columns:
+        row_idx = (df['Order ID'] == old_values[0])
+    df.loc[row_idx] = new_values
+    return df
+
+
+def orders_dialog(selected_item, selected_line):
+    """
+    Функция для создания нового окна с вводом новых/измененных значений для таблицы заказы
+    Автор: Болезнов С.А.
+    :param selected_item: Выбранный объект в таблице
+    :param selected_line: Список выбранных значений
+    :return: Виджеты ввода значений
+    """
+    dialog = tk.Toplevel(root)
+    dialog.title('Изменение заказ')
+    tk.Label(dialog, text='Дата').grid(column=0, row=0, columnspan=3, sticky="nesw")
+    date_day = ttk.Spinbox(dialog, from_=1, to=31, width=2)
+    date_day.grid(column=0, row=1, sticky="nesw")
+    date_month = ttk.Spinbox(dialog, from_=1, to=12, width=2)
+    date_month.grid(column=1, row=1, sticky="nesw")
+    date_year = ttk.Spinbox(dialog, from_=2022, to=2023, width=4)
+    date_year.grid(column=2, row=1, sticky="nesw")
+
+    tk.Label(dialog, text="Сумма").grid(row=2, column=0, sticky="nesw", columnspan=3)
+    sum_entry = ttk.Spinbox(dialog, increment=1, from_=0, to=100000)
+    sum_entry.grid(row=3, column=0, sticky="nesw", columnspan=3)
+
+    def save():
+        """
+        Функция для сохранения полученных значений
+        Автор: Болезнов С.А.
+        """
+        date = f'{date_month.get()}/{date_day.get()}/{date_year.get()}'
+        sum = sum_entry.get()
+        values = [selected_line[0], date, sum]
+        orders_table.item(selected_item, values=values)
+        dialog.destroy()
+        global ORDERS
+        ORDERS = replace_row_values(ORDERS, selected_line, values)
+        create_new_merge()
+
+    save_button = ttk.Button(dialog, text='Сохранить', command=save)
+    cancel_button = ttk.Button(dialog, text='Отмена', command=dialog.destroy)
+    save_button.grid(row=8, column=0, sticky="nesw", columnspan=2)
+    cancel_button.grid(row=8, column=2, sticky="nesw")
+    config_widgets(dialog, 4, 3)
+    return date_day, date_month, date_year, sum_entry
+
+
+def create_new_merge():
+    """
+    Функция для обновления общей таблицы после внесения изменений в справочники
+    Автор: Болезнов С.А.
+    """
+    global MERGED
+    widgets_list = tab4.pack_slaves()
+    for element in widgets_list:
+        element.destroy()
+    MERGED = merge_files(GOODS, ORDERS, ORDERS_STRUCTURE)
+    create_table(tab4, MERGED)
+
+
+def orders_structure_dialog(selected_item, selected_line):
+    """
+    Функция для создания нового окна с вводом новых/измененных значений для таблицы состав заказов
+    Автор: Болезнов С.А.
+    :param selected_item: Выбранный объект в таблице
+    :param selected_line: Список выбранных значений
+    :return: Виджеты ввода значений
+    """
+    dialog = tk.Toplevel(root)
+    dialog.title('Изменение состава заказа')
+    tk.Label(dialog, text='Товар').grid(column=0, row=0, sticky="nesw", columnspan=2)
+    ids = list(GOODS['Product ID'])
+    good_entry = ttk.Combobox(dialog, values=ids)
+    good_entry.grid(column=0, row=1, sticky="nesw", columnspan=2)
+    tk.Label(dialog, text="Количество").grid(row=2, column=0, sticky="nesw", columnspan=2)
+    quantity_entry = ttk.Spinbox(dialog, increment=1, from_=0, to=100)
+    quantity_entry.grid(row=3, column=0, sticky="nesw", columnspan=2)
+
+    def save():
+        """
+        Функция для сохранения полученных значений
+        Автор: Болезнов С.А.
+        """
+        good_id = int(good_entry.get())
+        quantity = quantity_entry.get()
+        values = [selected_line[0], good_id, quantity]
+        orders_structure_table.item(selected_item, values=values)
+        dialog.destroy()
+        global ORDERS_STRUCTURE
+        ORDERS_STRUCTURE = replace_row_values(ORDERS_STRUCTURE, selected_line, values)
+        create_new_merge()
+
+    save_button = ttk.Button(dialog, text='Сохранить', command=save)
+    cancel_button = ttk.Button(dialog, text='Отмена', command=dialog.destroy)
+    save_button.grid(row=4, column=0, sticky="nesw")
+    cancel_button.grid(row=4, column=1, sticky="nesw")
+    config_widgets(dialog, 5, 2)
+    return good_entry, quantity_entry
+
+
+def generate_id(index) -> int:
+    """
+    Функция для создания нового айди для справочников
+    :return:
+    """
+    if index == 0:
+        ids = [int(x) for x in GOODS['Product ID']]
+        for i in range(1, max(ids) + 1):
+            if i not in ids:
+                return i
+        return max(ids) + 1
+    if index == 1:
+        ids = [x for x in ORDERS['Order ID']]
+
+
+def add_order(ORDERS, ORDERS_STRUCTURE):
+    dialog = tk.Toplevel(root)
+    dialog.title('Создание нового заказа')
+    tk.Label(dialog, text='Дата').grid(column=0, row=0, columnspan=3, sticky="nesw")
+    date_day = ttk.Spinbox(dialog, from_=1, to=31, width=2)
+    date_day.grid(column=0, row=1, sticky="nesw")
+    date_day.set(1)
+    date_month = ttk.Spinbox(dialog, from_=1, to=12, width=2)
+    date_month.grid(column=1, row=1, sticky="nesw")
+    date_month.set(1)
+    date_year = ttk.Spinbox(dialog, from_=2022, to=2023, width=4)
+    date_year.grid(column=2, row=1, sticky="nesw")
+    date_year.set(2022)
+
+    tk.Label(dialog, text="Сумма").grid(row=2, column=0, sticky="nesw", columnspan=3)
+    sum_entry = ttk.Spinbox(dialog, increment=1, from_=0, to=100000)
+    sum_entry.set(1000)
+    sum_entry.grid(row=3, column=0, sticky="nesw", columnspan=3)
+
+    tk.Label(dialog, text='Товар').grid(column=0, row=4, sticky="nesw", columnspan=3)
+    ids = list(GOODS['Product ID'])
+    products = list(GOODS['Product'])
+    good_entry = ttk.Combobox(dialog, values=products)
+    good_entry.set(products[0])
+    good_entry.grid(column=0, row=5, sticky="nesw", columnspan=3)
+    tk.Label(dialog, text="Количество").grid(row=6, column=0, sticky="nesw", columnspan=3)
+    quantity_entry = ttk.Spinbox(dialog, increment=1, from_=0, to=100)
+    quantity_entry.set(5)
+    quantity_entry.grid(row=7, column=0, sticky="nesw", columnspan=3)
+
+    def save(ORDERS, ORDERS_STRCUTURE):
+        date = f'{date_month.get()}/{date_day.get()}/{date_year.get()}'
+        sum = sum_entry.get()
+        quantity = quantity_entry.get()
+        product = good_entry.get()
+        order_id = generate_id(1)
+        order_values = {
+            "Order ID": order_id,
+            "Date": date,
+            'Sum': sum
+        }
+        struct_values = {
+            "Order ID": order_id,
+            "Product ID": product,
+            "Quantity": quantity
+        }
+        ORDERS = ORDERS.append(order_values, ignore_index=True)
+        ORDERS_STRCUTURE = ORDERS_STRCUTURE.append(struct_values, ignore_index=True)
+
+    save_button = ttk.Button(dialog, text='Создать', command=lambda: save(ORDERS, ORDERS_STRUCTURE))
+    cancel_button = ttk.Button(dialog, text='Отмена', command=dialog.destroy)
+    save_button.grid(row=8, column=0, sticky="nesw", columnspan=2)
+    cancel_button.grid(row=8, column=2, sticky="nesw")
+    config_widgets(dialog, 9, 3)
+
+
+def add_product():
     pass
 
 
@@ -372,7 +596,7 @@ def config_color():
 
 
 root = tk.Tk()
-root.title("CSV Viewer")
+root.title("Редактор справочников")
 
 tab_control = ttk.Notebook(root)
 tab1 = ttk.Frame(tab_control)
@@ -387,7 +611,7 @@ tab_control.add(tab1, text='Товары')
 tab_control.add(tab2, text='Заказы')
 tab_control.add(tab3, text='Состав заказов')
 tab_control.add(tab4, text='Полная таблица')
-tab_control.grid(column=0, row=0, rowspan=7, sticky='nswe')
+tab_control.grid(column=0, row=0, rowspan=6, columnspan=2, sticky='nswe')
 
 path = f'{os.getcwd()}\\data'
 GOODS = pd.read_csv(f"{path}\MOCK_DATA_1.csv")
@@ -396,23 +620,20 @@ ORDERS = pd.read_csv(f"{path}\MOCK_DATA_2.csv")
 orders_table = create_table(tab2, ORDERS)
 ORDERS_STRUCTURE = pd.read_csv(f"{path}\MOCK_DATA_3.csv")
 orders_structure_table = create_table(tab3, ORDERS_STRUCTURE)
-MERGED = merge_files()
+MERGED = merge_files(GOODS, ORDERS, ORDERS_STRUCTURE)
 merged_table = create_table(tab4, MERGED)
 
-btn_1 = ttk.Button(root, text='Текстовый отчёт', command=report_1)
-btn_1.grid(column=1, row=0, sticky="nesw")
-btn_2 = ttk.Button(root, text='Статистический отчёт', command=report_2)
-btn_2.grid(column=1, row=1, sticky="nesw")
-btn_3 = ttk.Button(root, text='Сводная таблица', command=create_pivot_table)
-btn_3.grid(column=1, row=2, sticky="nesw")
-btn_4 = ttk.Button(root, text='Гистограмма', command=create_hist)
-btn_4.grid(column=1, row=3, sticky="nesw")
-btn_5 = ttk.Button(root, text='Стобчатая диаграмма', command=create_bar)
-btn_5.grid(column=1, row=4, sticky="nesw")
-btn_6 = ttk.Button(root, text='Boxplot', command=create_boxplot)
-btn_6.grid(column=1, row=5, sticky="nesw")
-btn_7 = ttk.Button(root, text='Scatter', command=create_scatter)
-btn_7.grid(column=1, row=6, sticky="nesw")
+ttk.Button(root, text='Текстовый отчёт', command=report_1).grid(column=2, row=0, sticky="nesw")
+ttk.Button(root, text='Статистический отчёт', command=report_2).grid(column=2, row=1, sticky="nesw")
+ttk.Button(root, text='Сводная таблица', command=create_pivot_table).grid(column=2, row=2, sticky="nesw")
+ttk.Button(root, text='Гистограмма', command=create_hist).grid(column=2, row=3, sticky="nesw")
+ttk.Button(root, text='Стобчатая диаграмма', command=create_bar).grid(column=2, row=4, sticky="nesw")
+ttk.Button(root, text='Boxplot', command=lambda: report_price_by_category(GOODS)) \
+    .grid(column=2, row=5, sticky="nesw")
+ttk.Button(root, text='Scatter', command=create_scatter).grid(column=2, row=6, sticky="nesw")
+ttk.Button(root, text='Добавить заказ', command=lambda: add_order(ORDERS, ORDERS_STRUCTURE)).grid(column=0, row=6,
+                                                                                                  sticky='nesw')
+ttk.Button(root, text='Добавить товар', command=add_product).grid(column=1, row=6, sticky='nesw')
 
 menu_bar = tk.Menu(root)
 root.config(menu=menu_bar)
@@ -423,8 +644,7 @@ file_menu.add_command(label="Сохранить как", command=new_save)
 edit_menu = tk.Menu(menu_bar)
 menu_bar.add_cascade(label="Изменить", menu=edit_menu)
 edit_menu.add_command(label="Удалить запись", command=del_line)
-edit_menu.add_command(label="Добавить запись", command=add_line)
 edit_menu.add_command(label="Изменить запись", command=edit_line)
 menu_bar.add_command(label='Изменить цвет', command=config_color)
-config_widgets(root, 7, 2)
+config_widgets(root, 7, 3)
 root.mainloop()
