@@ -9,7 +9,6 @@ from tkinter.ttk import Treeview, Spinbox
 os.chdir("\\".join(os.getcwd().split("\\")))
 sys.path.append("\\".join(os.getcwd().split("\\")))
 sys.path.append("\\".join(os.getcwd().split("\\")) + '\\library')
-import read_ini
 from library.read_ini import read_ini_file, update_ini_value
 from library.text_reports import report_about_firm, merge_files, generate_attribute_report
 from library.hist_chart import histogram
@@ -20,6 +19,10 @@ from library.data_export import save_tables, save_as
 
 
 def create_pivot_table():
+    """
+    Создание сводной таблицы
+    Автор Ряднов И.М.
+    """
     dialog = tk.Toplevel(root)
     dialog.title("Сводная таблица")
     agg_functions = {
@@ -76,6 +79,10 @@ def create_pivot_table():
 
 
 def create_statistic_report():
+    """
+    Создание статистического отчета
+    Автор Ряднов И.М.
+    """
     dialog = tk.Toplevel(root)
     dialog.title("Статистический отчет")
 
@@ -153,26 +160,6 @@ def create_table(tab, data: pd.DataFrame, pivot=False) -> Treeview:
         values = list(row)
         table.insert("", "end", text=i, values=values)
     return table
-
-
-def add_color_change():
-    """
-    Хуйня из-под коня, надо переделать
-    """
-    # Создаем кнопку для изменения цвета
-    color_label = ttk.Label(root, text='Цвет фона (RGB):')
-    color_label.grid(column=1, row=0, sticky='nswe')
-    color_entry = ttk.Entry(root)
-    color_entry.grid(column=1, row=1, sticky='nswe')
-
-    def change_color():
-        color = color_entry.get()
-        root.configure(background=color)
-        ttk.Style().configure("Treeview", background=color, fieldbackground=color,
-                              foreground="black")
-
-    color_button = ttk.Button(root, text='Изменить цвет', command=change_color)
-    color_button.grid(column=1, row=2, sticky='nswe')
 
 
 def new_save():
@@ -349,7 +336,7 @@ def del_line():
 
 def edit_line():
     """
-    Функция для внесения изменений в строку таблицы.
+    Внесение изменений в строку таблицы.
     Автор: Болезнов С.А.
     """
     index = tab_control.index(tab_control.select())
@@ -383,7 +370,7 @@ def edit_line():
 
 def goods_dialog(selected_item, selected_line) -> tuple[Entry, Entry, Spinbox, Entry]:
     """
-    Функция для создания нового окна с вводом новых/измененных значений для таблицы товары
+    Создание нового окна с вводом новых/измененных значений для таблицы товары
     Автор: Болезнов С.А.
     :param selected_item: Выбранный объект в таблице
     :param selected_line: Список выбранных значений
@@ -550,7 +537,7 @@ def orders_structure_dialog(selected_item, selected_line):
 def generate_id(index) -> int:
     """
     Функция для создания нового айди для справочников
-    :return:
+    Автор: Болезнов С.А.
     """
     if index == 0:
         ids = [int(x) for x in GOODS['Product ID']]
@@ -691,6 +678,10 @@ def add_product():
 
 
 def config_color():
+    """
+    Открытие палитры и изменение цвета
+    Автор Ряднов И.М.
+    """
     style = ttk.Style()
     color = colorchooser.askcolor(title="Выберите цвет фона")
     if color[1] is not None:
@@ -699,6 +690,10 @@ def config_color():
 
 
 def get_settings():
+    """
+    Чтение ini файла и применение полученных значений к приложению
+    Автор Ряднов И.М.
+    """
     config = read_ini_file().get('Settings')
     height = config.get('Height')
     width = config.get('Width')
