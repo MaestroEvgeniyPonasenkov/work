@@ -25,13 +25,10 @@ def report_day_sales(data):
     plt.xlabel('Дата')
     plt.ylabel('Продажи')
     plt.title('Продажи по дням')
-    #plt.xticks(sales_by_day.index, x_labels, rotation=60, ha='right')
-    print(1)
-    #formatter = FuncFormatter(format_func)
-    #plt.gca().yaxis.set_major_formatter(formatter)
-    print(1)
+    plt.xticks(sales_by_day.index, x_labels, rotation=60, ha='right')
+    formatter = FuncFormatter(format_func)
+    plt.gca().yaxis.set_major_formatter(formatter)
     plt.show()
-    print(1)
 
 
 def report_week_sales(data):
