@@ -23,9 +23,6 @@ def save_as(table: pd.DataFrame) -> None:
         if file_format == 'xlsx':
             table.to_excel(filepath, index=False)
             return
-        if file_format == 'doc':
-            # table.to_doc
-            return
         if file_format == 'pick':
             table.to_pickle(filepath)
             return
