@@ -25,3 +25,9 @@ def write_ini_file(config):
             for key, value in values.items():
                 file.write(f'{key} = {value}\n')
             file.write('\n')
+
+
+def update_ini_value(key, value):
+    config = read_ini_file()
+    config['Settings'][key] = value
+    write_ini_file(config)

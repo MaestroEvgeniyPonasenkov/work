@@ -1,17 +1,22 @@
+import os
+import sys
+import pandas as pd
+import numpy as np
 import tkinter as tk
 from tkinter import ttk, Spinbox, Entry, colorchooser
 from tkinter.ttk import Treeview, Spinbox
 
-from read_ini import read_ini_file, write_ini_file
-from text_reports import report_about_firm, merge_files, generate_attribute_report
-from hist_chart import histogram
-from bar_chart import report_day_sales, report_week_sales, report_year_sales, report_month_sales
-from boxplot_chart import report_price_by_category
-from scatter_chart import report_price_by_quantity
-from data_export import save_tables, save_as
-import os
-import pandas as pd
-import numpy as np
+os.chdir("\\".join(os.getcwd().split("\\")[:-1]))
+sys.path.append("\\".join(os.getcwd().split("\\")))
+sys.path.append("\\".join(os.getcwd().split("\\")) + '\\library')
+import read_ini
+from library.read_ini import read_ini_file, update_ini_value
+from library.text_reports import report_about_firm, merge_files, generate_attribute_report
+from library.hist_chart import histogram
+from library.bar_chart import report_day_sales, report_week_sales, report_year_sales, report_month_sales
+from library.boxplot_chart import report_price_by_category
+from library.scatter_chart import report_price_by_quantity
+from library.data_export import save_tables, save_as
 
 
 def create_pivot_table():
@@ -691,6 +696,8 @@ def config_color():
     color = colorchooser.askcolor(title="Выберите цвет фона")
     if color[1] is not None:
         style.configure("Treeview", background=color[1])
+    update_ini_value('BackgroundColor', color[1])
+
 
 def get_settings():
     config = read_ini_file().get('Settings')
@@ -748,9 +755,9 @@ ttk.Button(root, text='Статистический отчёт', command=create_
 ttk.Button(root, text='Сводная таблица', command=create_pivot_table).grid(column=2, row=2, sticky="nesw")
 ttk.Button(root, text='Гистограмма', command=create_hist).grid(column=2, row=3, sticky="nesw")
 ttk.Button(root, text='Стобчатая диаграмма', command=create_bar).grid(column=2, row=4, sticky="nesw")
-ttk.Button(root, text='Boxplot', command=lambda: report_price_by_category(GOODS)) \
+ttk.Button(root, text='Блочная диаграмма', command=lambda: report_price_by_category(GOODS)) \
     .grid(column=2, row=5, sticky="nesw")
-ttk.Button(root, text='Scatter', command=create_scatter).grid(column=2, row=6, sticky="nesw")
+ttk.Button(root, text='Диаграмма рассеяния', command=create_scatter).grid(column=2, row=6, sticky="nesw")
 ttk.Button(root, text='Добавить заказ', command=add_order).grid(column=0, row=6, sticky='nesw')
 ttk.Button(root, text='Добавить товар', command=add_product).grid(column=1, row=6, sticky='nesw')
 
