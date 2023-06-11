@@ -307,7 +307,8 @@ def edit_line():
     if index == 0:
         selected_item = goods_table.selection()[0]
         selected_line = goods_table.item(selected_item)['values']
-        name_entry, description_entry, price_entry, category_entry = goods_dialog(selected_item, selected_line[0])
+        name_entry, description_entry, price_entry, category_entry = goods_dialog(selected_item, selected_line[0],
+                                                                                  selected_line)
         name_entry.insert(0, selected_line[1])
         description_entry.insert(0, selected_line[2])
         price_entry.set(selected_line[3])
@@ -315,24 +316,23 @@ def edit_line():
     if index == 1:
         selected_item = orders_table.selection()[0]
         selected_line = orders_table.item(selected_item)['values']
-        date_day, date_month, date_year, sum_entry = orders_dialog(selected_item, selected_line[0])
+        date_day, date_month, date_year, sum_entry = orders_dialog(selected_item, selected_line[0], selected_line)
         month, day, year = selected_line[1].split('/')
         date_day.set(day)
         date_month.set(month)
         date_year.set(year)
         sum_entry.set(selected_line[2])
-
     if index == 2:
         selected_item = orders_structure_table.selection()[0]
         selected_line = orders_structure_table.item(selected_item)['values']
-        good_entry, quantity_entry = orders_structure_dialog(selected_item, selected_line[0])
+        good_entry, quantity_entry = orders_structure_dialog(selected_item, selected_line[0], selected_line)
         good_entry.set(selected_line[1])
         quantity_entry.set(selected_line[2])
     if index == 3:
-        print('Так нельзя')
+        print('Данная операция невозможна. Данные можно изменять только в отдельных справочниках')
 
 
-def goods_dialog(selected_item, id):
+def goods_dialog(selected_item, id, selected_line):
     dialog = tk.Toplevel(root)
     dialog.title('Товар')
     tk.Label(dialog, text="Название").grid(row=0, column=0, sticky="nesw", columnspan=2)
@@ -343,7 +343,7 @@ def goods_dialog(selected_item, id):
     description_entry = tk.Entry(dialog)
     description_entry.grid(row=3, column=0, sticky="nesw", columnspan=2)
 
-    tk.Label(dialog, text="Название").grid(row=4, column=0, sticky="nesw", columnspan=2)
+    tk.Label(dialog, text="Ценв").grid(row=4, column=0, sticky="nesw", columnspan=2)
     price_entry = ttk.Spinbox(dialog, increment=0.01, from_=0, to=1000)
     price_entry.grid(row=5, column=0, sticky="nesw", columnspan=2)
 
@@ -359,9 +359,9 @@ def goods_dialog(selected_item, id):
         values = [id, name, description, price, category]
         goods_table.item(selected_item, values=values)
         dialog.destroy()
-        global MERGED, merged_table
-        MERGED = merge_files(GOODS, ORDERS, ORDERS_STRUCTURE)
-        merged_table = create_table(tab4, MERGED)
+        global GOODS
+        GOODS = replace_row_values(GOODS, selected_line, values)
+        create_new_merge()
 
     save_button = ttk.Button(dialog, text='Сохранить', command=save)
     cancel_button = ttk.Button(dialog, text='Отмена', command=dialog.destroy)
@@ -371,7 +371,18 @@ def goods_dialog(selected_item, id):
     return name_entry, description_entry, price_entry, category_entry
 
 
-def orders_dialog(selected_item, id):
+def replace_row_values(df: pd.DataFrame, old_values, new_values):
+    if 'Quantity' in df.columns:
+        row_idx = (df['Order ID'] == old_values[0])
+    elif 'Product ID' in df.columns:
+        row_idx = (df['Product ID'] == old_values[0])
+    elif 'Order ID' in df.columns:
+        row_idx = (df['Order ID'] == old_values[0])
+    df.loc[row_idx] = new_values
+    return df
+
+
+def orders_dialog(selected_item, id, selected_line):
     dialog = tk.Toplevel(root)
     dialog.title('Заказ')
     tk.Label(dialog, text='Дата').grid(column=0, row=0, columnspan=3, sticky="nesw")
@@ -392,9 +403,9 @@ def orders_dialog(selected_item, id):
         values = [id, date, sum]
         orders_table.item(selected_item, values=values)
         dialog.destroy()
-        global MERGED, merged_table
-        MERGED = merge_files(GOODS, ORDERS, ORDERS_STRUCTURE)
-        merged_table = create_table(tab4, MERGED)
+        global ORDERS
+        ORDERS = replace_row_values(ORDERS, selected_line, values)
+        create_new_merge()
 
     save_button = ttk.Button(dialog, text='Сохранить', command=save)
     cancel_button = ttk.Button(dialog, text='Отмена', command=dialog.destroy)
@@ -404,7 +415,16 @@ def orders_dialog(selected_item, id):
     return date_day, date_month, date_year, sum_entry
 
 
-def orders_structure_dialog(selected_item, id):
+def create_new_merge():
+    global MERGED
+    widgets_list = tab4.pack_slaves()
+    for element in widgets_list:
+        element.destroy()
+    MERGED = merge_files(GOODS, ORDERS, ORDERS_STRUCTURE)
+    create_table(tab4, MERGED)
+
+
+def orders_structure_dialog(selected_item, id, selected_line):
     dialog = tk.Toplevel(root)
     dialog.title('Состав заказа')
     tk.Label(dialog, text='Товар').grid(column=0, row=0, sticky="nesw", columnspan=2)
@@ -416,16 +436,14 @@ def orders_structure_dialog(selected_item, id):
     quantity_entry.grid(row=3, column=0, sticky="nesw", columnspan=2)
 
     def save():
-        good = good_entry.get()
+        good_id = int(good_entry.get())
         quantity = quantity_entry.get()
-        values = [id, good, quantity]
+        values = [id, good_id, quantity]
         orders_structure_table.item(selected_item, values=values)
         dialog.destroy()
-        global MERGED, merged_table
-        merged_table.pack_forget()
-        merged_scroll.pack_forget()
-        MERGED = merge_files(GOODS, ORDERS, ORDERS_STRUCTURE)
-        merged_table = create_table(tab4, MERGED)
+        global ORDERS_STRUCTURE
+        ORDERS_STRUCTURE = replace_row_values(ORDERS_STRUCTURE, selected_line, values)
+        create_new_merge()
 
     save_button = ttk.Button(dialog, text='Сохранить', command=save)
     cancel_button = ttk.Button(dialog, text='Отмена', command=dialog.destroy)

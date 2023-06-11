@@ -1,15 +1,14 @@
-import os
 import pandas as pd
 
 
 def merge_files(PRODUCT, ORDERS, TOTAL_ORDERS):
     merged = pd.merge(TOTAL_ORDERS, PRODUCT, on="Product ID")
     merged = pd.merge(merged, ORDERS, on="Order ID")
-    merged['Date'] = merged['Date'].astype("datetime64[ns]")
     return merged
 
 
 def report_about_firm(merged, start_date, end_date, category):
+    merged['Date'] = merged['Date'].astype("datetime64[ns]")
     selector = (merged['Date'].between(start_date, end_date)) & (
         merged['Category'] == category)
     result = merged.loc[selector, ['Product',
