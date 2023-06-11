@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, Spinbox, Entry, colorchooser
+from tkinter import ttk, Spinbox, Entry, colorchooser, font
 from tkinter.ttk import Treeview, Scrollbar, Spinbox
 
 from text_reports import report_about_firm, merge_files, generate_attribute_report
@@ -702,7 +702,7 @@ tab3 = ttk.Frame(tab_control)
 tab4 = ttk.Frame(tab_control)
 
 ttk.Style().configure("Treeview", background="white",
-                      foreground="black", fieldbackground="white")
+                      foreground="black", fieldbackground="white", font=("Arial", 12, "bold"))
 
 tab_control.add(tab1, text='Товары')
 tab_control.add(tab2, text='Заказы')
@@ -743,4 +743,6 @@ edit_menu.add_command(label="Удалить запись", command=del_line)
 edit_menu.add_command(label="Изменить запись", command=edit_line)
 menu_bar.add_command(label='Изменить цвет', command=config_color)
 config_widgets(root, 7, 3)
+root.geometry("1000x1000+{}+{}".format(root.winfo_screenwidth() // 2 - 400, root.winfo_screenheight() // 2 - 300))
+root.resizable(True, True)
 root.mainloop()
