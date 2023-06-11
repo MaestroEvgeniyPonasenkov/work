@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, Spinbox, Entry
 from tkinter.ttk import Treeview, Scrollbar, Spinbox
-from typing import Tuple
 
 from text_reports import report_about_firm, merge_files
 from hist_chart import histogram
@@ -529,9 +528,11 @@ def generate_id(index) -> int:
         return max(ids) + 1
     if index == 1:
         ids = [x for x in ORDERS['Order ID']]
+        np.random.random()
 
 
-def add_order(ORDERS, ORDERS_STRUCTURE):
+
+def add_order():
     dialog = tk.Toplevel(root)
     dialog.title('Создание нового заказа')
     tk.Label(dialog, text='Дата').grid(column=0, row=0, columnspan=3, sticky="nesw")
@@ -561,7 +562,7 @@ def add_order(ORDERS, ORDERS_STRUCTURE):
     quantity_entry.set(5)
     quantity_entry.grid(row=7, column=0, sticky="nesw", columnspan=3)
 
-    def save(ORDERS, ORDERS_STRCUTURE):
+    def save():
         date = f'{date_month.get()}/{date_day.get()}/{date_year.get()}'
         sum = sum_entry.get()
         quantity = quantity_entry.get()
@@ -577,10 +578,11 @@ def add_order(ORDERS, ORDERS_STRUCTURE):
             "Product ID": product,
             "Quantity": quantity
         }
+        global ORDERS, ORDERS_STRUCTURE
         ORDERS = ORDERS.append(order_values, ignore_index=True)
-        ORDERS_STRCUTURE = ORDERS_STRCUTURE.append(struct_values, ignore_index=True)
+        ORDERS_STRUCTURE = ORDERS_STRUCTURE.append(struct_values, ignore_index=True)
 
-    save_button = ttk.Button(dialog, text='Создать', command=lambda: save(ORDERS, ORDERS_STRUCTURE))
+    save_button = ttk.Button(dialog, text='Создать', command=save)
     cancel_button = ttk.Button(dialog, text='Отмена', command=dialog.destroy)
     save_button.grid(row=8, column=0, sticky="nesw", columnspan=2)
     cancel_button.grid(row=8, column=2, sticky="nesw")
@@ -631,8 +633,7 @@ ttk.Button(root, text='Стобчатая диаграмма', command=create_ba
 ttk.Button(root, text='Boxplot', command=lambda: report_price_by_category(GOODS)) \
     .grid(column=2, row=5, sticky="nesw")
 ttk.Button(root, text='Scatter', command=create_scatter).grid(column=2, row=6, sticky="nesw")
-ttk.Button(root, text='Добавить заказ', command=lambda: add_order(ORDERS, ORDERS_STRUCTURE)).grid(column=0, row=6,
-                                                                                                  sticky='nesw')
+ttk.Button(root, text='Добавить заказ', command=add_order).grid(column=0, row=6, sticky='nesw')
 ttk.Button(root, text='Добавить товар', command=add_product).grid(column=1, row=6, sticky='nesw')
 
 menu_bar = tk.Menu(root)
