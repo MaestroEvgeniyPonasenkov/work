@@ -1,9 +1,13 @@
+"""
+Итоговый проект
+Авторы: Болезнов С.А., Ряднов И.М.
+"""
 import os
 import sys
 import pandas as pd
 import numpy as np
 import tkinter as tk
-from tkinter import ttk, Spinbox, Entry, colorchooser
+from tkinter import ttk, Entry, colorchooser
 from tkinter.ttk import Treeview, Spinbox
 
 os.chdir("\\".join(os.getcwd().split("\\")))

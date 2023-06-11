@@ -30,23 +30,23 @@ Product ID,Product,Description,Price,Category
 29,OXY Clinical Advanced Treatment,This drug is prescribed to relieve pain and reduce fever,144.66,Roche
 30,CS Brain,This drug is used to relieve symptoms of allergies such as sneezing and itching,414.08,Sanofi
 31,SambiFlu,This medication is used to treat high blood pressure,303.83,Johnson & Johnson
-32,Oxygen,This medication is used to treat high blood pressure,273.40,AbbVie
+32,Oxygen,This medication is used to treat high blood pressure,273.4,AbbVie
 33,Montelukast Sodium,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,389.93,Merck
 34,Firefly Mouth Swoosh Anti-Cavity Fluoride Rinse,This drug is prescribed to relieve pain and reduce fever,233.77,Johnson & Johnson
 35,Berkley and Jensen Naproxen Sodium,This prescription helps to control seizures in individuals with epilepsy,263.17,AbbVie
 36,Metolazone,This drug is used to relieve symptoms of allergies such as sneezing and itching,469.52,AstraZeneca
-37,Hydrogen Peroxide,This remedy is used to reduce inflammation and pain caused by arthritis,240.10,Novartis
+37,Hydrogen Peroxide,This remedy is used to reduce inflammation and pain caused by arthritis,240.1,Novartis
 38,FAST RELIEF REUMACETIN,This remedy is used to treat insomnia and promote sleep.,184.18,Novartis
 39,PreferaOB One,This drug is used to relieve symptoms of allergies such as sneezing and itching,497.81,Merck
 40,BOTANICAL VANILLA PACT,This medication is used to treat high blood pressure,370.51,Johnson & Johnson
 41,Equaline Hemorrhoidal,This drug is prescribed to relieve pain and reduce fever,428.68,Novartis
 42,Carbocaine,This remedy is used to treat insomnia and promote sleep.,347.47,Roche
 43,FRAXINUS AMERICANA POLLEN,This drug is used to relieve symptoms of allergies such as sneezing and itching,290.24,Roche
-44,Oat Smut,This medication is prescribed to treat depression and improve mood,455.20,Merck
+44,Oat Smut,This medication is prescribed to treat depression and improve mood,455.2,Merck
 45,Pink Eye Relief,This remedy is used to treat insomnia and promote sleep.,234.12,GlaxoSmithKline
 46,DeNino Diaper Rash,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,104.26,Bristol-Myers Squibb
 47,Sunmark Camphor Spirit,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,200.26,Johnson & Johnson
-48,Xylocaine,This drug is prescribed to relieve pain and reduce fever,338.70,AstraZeneca
+48,Xylocaine,This drug is prescribed to relieve pain and reduce fever,338.7,AstraZeneca
 49,Atenolol and Chlorthalidone,This medication is used to treat high blood pressure,252.54,Sanofi
 50,Ciprofloxacin,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,443.97,Sanofi
 51,DEFEND Cough,This drug is prescribed to relieve pain and reduce fever,121.73,Johnson & Johnson
@@ -75,10 +75,10 @@ Product ID,Product,Description,Price,Category
 74,Triamcinolone Acetonide,This drug is used to relieve symptoms of allergies such as sneezing and itching,87.38,Bristol-Myers Squibb
 75,ISOPROPYL RUBBING ALCOHOL,This drug is used to relieve symptoms of allergies such as sneezing and itching,262.25,Roche
 76,Furosemide,This medicine is used to manage anxiety and panic disorders,384.82,Novartis
-77,DEPRESSION,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,64.30,AstraZeneca
-78,Sunmark calcium antacid,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,127.40,Sanofi
+77,DEPRESSION,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,64.3,AstraZeneca
+78,Sunmark calcium antacid,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,127.4,Sanofi
 79,Painazin CP,This remedy is used to treat insomnia and promote sleep.,401.73,Novartis
-80,Clear Complexion Toner,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,53.80,Sanofi
+80,Clear Complexion Toner,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,53.8,Sanofi
 81,Senna-Lax,This medication is used to treat high blood pressure,169.41,Roche
 82,Vivelle-Dot,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,190.27,Sanofi
 83,IBUPROFEN,This medicine is used to manage anxiety and panic disorders,191.91,Johnson & Johnson
@@ -92,32 +92,32 @@ Product ID,Product,Description,Price,Category
 91,Suave,This drug is prescribed to relieve pain and reduce fever,184.01,GlaxoSmithKline
 92,Childrens Delsym,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,337.27,Roche
 93,Telmisartan and Amlodipine,This drug is prescribed to relieve pain and reduce fever,128.81,Sanofi
-94,California Black Oak,This drug is prescribed to relieve pain and reduce fever,137.20,Sanofi
+94,California Black Oak,This drug is prescribed to relieve pain and reduce fever,137.2,Sanofi
 95,Tetracycline Hydrochloride,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,414.18,Bristol-Myers Squibb
 96,lisinopril,This medication is used to treat high blood pressure,444.58,AstraZeneca
-97,Melvita PROSUN SPF 15 Sun,This medication is prescribed to treat depression and improve mood,203.30,AstraZeneca
+97,Melvita PROSUN SPF 15 Sun,This medication is prescribed to treat depression and improve mood,203.3,AstraZeneca
 98,Healthy Accents All Day Pain Relief,This remedy is used to reduce inflammation and pain caused by arthritis,116.42,Bristol-Myers Squibb
-99,Tramadol Hydrochloride,This medication is prescribed to treat depression and improve mood,491.80,Roche
+99,Tramadol Hydrochloride,This medication is prescribed to treat depression and improve mood,491.8,Roche
 100,TRAMADOL HYDROCHLORIDE,This remedy is used to reduce inflammation and pain caused by arthritis,101.22,Merck
 101,Oxytocin,This medicine is used to manage anxiety and panic disorders,142.19,Novartis
 102,Levetiracetam,This remedy is used to treat insomnia and promote sleep.,352.39,AbbVie
 103,Fenofibric Acid,This prescription helps to control seizures in individuals with epilepsy,324.34,AstraZeneca
 104,Derma-Smoothe/FS,This medication is prescribed to treat depression and improve mood,319.03,Johnson & Johnson
-105,Barley Grain,This medicine is used to manage anxiety and panic disorders,276.20,Merck
+105,Barley Grain,This medicine is used to manage anxiety and panic disorders,276.2,Merck
 106,Caduet,This remedy is used to reduce inflammation and pain caused by arthritis,434.87,Pfizer
 107,Ice Quake,This remedy is used to treat insomnia and promote sleep.,355.38,Bristol-Myers Squibb
 108,Cardizem CD,This medicine is used to manage anxiety and panic disorders,135.85,Roche
 109,Ipratropium Bromide,This drug is prescribed to relieve pain and reduce fever,151.24,Roche
 110,Kitchen Citrus,This drug is used to relieve symptoms of allergies such as sneezing and itching,220.53,Sanofi
 111,Lomotil,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,324.69,Sanofi
-112,Famotidine,This drug is used to relieve symptoms of allergies such as sneezing and itching,387.90,Bristol-Myers Squibb
+112,Famotidine,This drug is used to relieve symptoms of allergies such as sneezing and itching,387.9,Bristol-Myers Squibb
 113,Veletri,This prescription helps to control seizures in individuals with epilepsy,381.61,Merck
 114,CELEBREX,This remedy is used to reduce inflammation and pain caused by arthritis,200.78,Novartis
 115,LBEL HYDRATESS,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,420.59,AstraZeneca
 116,True Blue Spa Cooling Sunscreen Mist Broad Spectrum SPF 25 Water Resistant (40 minutes) Monoi Oil,This drug is prescribed to relieve pain and reduce fever,342.25,Sanofi
 117,Triamcinolone Acetonide,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,366.93,GlaxoSmithKline
 118,Atorvastatin Calcium,This drug is prescribed to relieve pain and reduce fever,154.19,AbbVie
-119,ANTIBACTERIAL HAND SANITIZER,This medicine is used to manage anxiety and panic disorders,203.70,Johnson & Johnson
+119,ANTIBACTERIAL HAND SANITIZER,This medicine is used to manage anxiety and panic disorders,203.7,Johnson & Johnson
 120,SKINFOOD ALOE SUN BB,This drug is used to relieve symptoms of allergies such as sneezing and itching,314.35,Pfizer
 121,Argentum Quartz,This remedy is used to reduce inflammation and pain caused by arthritis,91.16,Novartis
 122,Sterile Water,This medicine is used to manage anxiety and panic disorders,68.84,Johnson & Johnson
@@ -133,14 +133,14 @@ Product ID,Product,Description,Price,Category
 132,Health Mart Aspirin,This prescription helps to control seizures in individuals with epilepsy,211.47,Johnson & Johnson
 133,equate nicotine,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,191.35,Pfizer
 134,Lansoprazole Amoxicillin Clarithromycin,This medicine is used to manage anxiety and panic disorders,174.62,AbbVie
-135,AMLODIPINE BESYLATE,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,432.50,GlaxoSmithKline
+135,AMLODIPINE BESYLATE,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,432.5,GlaxoSmithKline
 136,Prevacid,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,491.58,Sanofi
 137,Ibuprofen,This remedy is used to treat insomnia and promote sleep.,392.27,Pfizer
 138,Wal-Dryl,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,303.91,Pfizer
 139,METOPROLOL SUCCINATE,This drug is prescribed to relieve pain and reduce fever,437.48,Johnson & Johnson
 140,Dr G Whitening FORTIFIER by EGF,This drug is used to relieve symptoms of allergies such as sneezing and itching,87.68,Bristol-Myers Squibb
 141,GenRx Daily Defense Skin Repairing,This drug is used to relieve symptoms of allergies such as sneezing and itching,416.02,Johnson & Johnson
-142,Symbyax,This remedy is used to treat insomnia and promote sleep.,463.70,Roche
+142,Symbyax,This remedy is used to treat insomnia and promote sleep.,463.7,Roche
 143,Multi-Strain FluCare,This prescription helps to control seizures in individuals with epilepsy,239.31,AbbVie
 144,clindamycin hydrochloride,This prescription helps to control seizures in individuals with epilepsy,459.65,Pfizer
 145,LBEL COULEUR LUXE AMPLIFIER XP,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,150.88,Bristol-Myers Squibb
@@ -157,10 +157,10 @@ Product ID,Product,Description,Price,Category
 156,Clonazepam,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,121.74,GlaxoSmithKline
 157,Instant Hand Sanitizer Extra Enriched With Vitamin E Bead Strawberry Scent,This remedy is used to treat insomnia and promote sleep.,355.11,Merck
 158,Medline Alcohol Prep,This remedy is used to reduce inflammation and pain caused by arthritis,86.67,Johnson & Johnson
-159,California Black Walnut,This drug is used to relieve symptoms of allergies such as sneezing and itching,436.60,Johnson & Johnson
+159,California Black Walnut,This drug is used to relieve symptoms of allergies such as sneezing and itching,436.6,Johnson & Johnson
 160,lisinopril,This prescription helps to control seizures in individuals with epilepsy,220.87,Bristol-Myers Squibb
 161,Nabumetone,This drug is used to relieve symptoms of allergies such as sneezing and itching,356.71,GlaxoSmithKline
-162,Suave,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,77.20,GlaxoSmithKline
+162,Suave,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,77.2,GlaxoSmithKline
 163,CEFAZOLIN,This drug is used to relieve symptoms of allergies such as sneezing and itching,295.03,Bristol-Myers Squibb
 164,Kadian,This remedy is used to reduce inflammation and pain caused by arthritis,104.34,GlaxoSmithKline
 165,Nifedipine,This drug is used to relieve symptoms of allergies such as sneezing and itching,105.87,AbbVie
@@ -180,19 +180,19 @@ Product ID,Product,Description,Price,Category
 179,Prazosin Hydrochloride,This remedy is used to reduce inflammation and pain caused by arthritis,330.58,AstraZeneca
 180,Famotidine,This remedy is used to reduce inflammation and pain caused by arthritis,378.15,AbbVie
 181,G-Tuss-NL Ped,This medicine is used to manage anxiety and panic disorders,197.45,Pfizer
-182,Healthy Accents Cold and Cough,This remedy is used to treat insomnia and promote sleep.,294.50,Johnson & Johnson
+182,Healthy Accents Cold and Cough,This remedy is used to treat insomnia and promote sleep.,294.5,Johnson & Johnson
 183,Cheongin Samrakhwan,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,439.47,Roche
 184,Mirtazapine,This remedy is used to treat insomnia and promote sleep.,170.84,GlaxoSmithKline
 185,Duloxetine,This remedy is used to reduce inflammation and pain caused by arthritis,402.06,AstraZeneca
 186,NutraRX Digest-Able,This prescription helps to control seizures in individuals with epilepsy,86.57,Merck
-187,Valacyclovir Hydrochloride,This remedy is used to reduce inflammation and pain caused by arthritis,350.00,GlaxoSmithKline
+187,Valacyclovir Hydrochloride,This remedy is used to reduce inflammation and pain caused by arthritis,350.0,GlaxoSmithKline
 188,Atomoxetine hydrochloride,This medicine is used to manage anxiety and panic disorders,131.83,GlaxoSmithKline
 189,Orange,This remedy is used to reduce inflammation and pain caused by arthritis,387.83,AbbVie
 190,Clearasil Ultra,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,90.01,Sanofi
 191,Baby Orajel Naturals,This remedy is used to reduce inflammation and pain caused by arthritis,295.12,Novartis
 192,CVS PHARMACY,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,393.02,Novartis
 193,Scilla Crataegus,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,225.11,Novartis
-194,Sertraline Hydrochloride,This drug is used to relieve symptoms of allergies such as sneezing and itching,273.50,Novartis
+194,Sertraline Hydrochloride,This drug is used to relieve symptoms of allergies such as sneezing and itching,273.5,Novartis
 195,Edarbi,This remedy is used to reduce inflammation and pain caused by arthritis,116.25,Novartis
 196,BRIGHTENING POWDER,This remedy is used to reduce inflammation and pain caused by arthritis,156.13,Novartis
 197,DIGOX,This remedy is used to reduce inflammation and pain caused by arthritis,119.93,Merck
@@ -208,12 +208,12 @@ Product ID,Product,Description,Price,Category
 207,Minivelle,This remedy is used to treat insomnia and promote sleep.,487.85,AstraZeneca
 208,Givenchy Photo Perfexion Fluid Foundation SPF 20 Perfect Praline Tint 5,This medicine is used to manage anxiety and panic disorders,277.65,Pfizer
 209,cold and allergy,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,210.78,Roche
-210,Complete Eye Relief Single Use,This remedy is used to reduce inflammation and pain caused by arthritis,101.50,Bristol-Myers Squibb
+210,Complete Eye Relief Single Use,This remedy is used to reduce inflammation and pain caused by arthritis,101.5,Bristol-Myers Squibb
 211,Multiple Miasm,This remedy is used to treat insomnia and promote sleep.,369.71,Johnson & Johnson
 212,Pepper Tree Pollen,This medication is prescribed to treat depression and improve mood,188.43,Bristol-Myers Squibb
 213,Detox Intestinum,This drug is used to relieve symptoms of allergies such as sneezing and itching,495.95,Sanofi
 214,DONEPEZIL HYDROCHLORIDE,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,196.84,Pfizer
-215,Pain Relief Aspirin,This remedy is used to reduce inflammation and pain caused by arthritis,356.30,Bristol-Myers Squibb
+215,Pain Relief Aspirin,This remedy is used to reduce inflammation and pain caused by arthritis,356.3,Bristol-Myers Squibb
 216,rizatriptan benzoate,This remedy is used to treat insomnia and promote sleep.,413.66,Merck
 217,SUMADAN XLT,This drug is used to relieve symptoms of allergies such as sneezing and itching,294.15,Bristol-Myers Squibb
 218,Cyclobenzaprine Hydrochloride,This remedy is used to reduce inflammation and pain caused by arthritis,159.45,Pfizer
@@ -238,8 +238,8 @@ Product ID,Product,Description,Price,Category
 237,PROAIRHFA,This drug is used to relieve symptoms of allergies such as sneezing and itching,219.21,AstraZeneca
 238,infants acetaminophen,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,430.17,Merck
 239,Chaetomium globosum,This medicine is used to manage anxiety and panic disorders,309.55,GlaxoSmithKline
-240,Fentanyl,This drug is used to relieve symptoms of allergies such as sneezing and itching,450.60,Roche
-241,HYPERICUM PERFORATUM,This drug is prescribed to relieve pain and reduce fever,360.60,Novartis
+240,Fentanyl,This drug is used to relieve symptoms of allergies such as sneezing and itching,450.6,Roche
+241,HYPERICUM PERFORATUM,This drug is prescribed to relieve pain and reduce fever,360.6,Novartis
 242,RESCRIPTOR,This medication is used to treat high blood pressure,282.45,Merck
 243,Perfecting Liquid Foundation Alabaster,This prescription helps to control seizures in individuals with epilepsy,54.73,AstraZeneca
 244,Curad Alcohol,This medication is prescribed to treat depression and improve mood,111.12,Novartis
@@ -247,8 +247,8 @@ Product ID,Product,Description,Price,Category
 246,Aquaphor Healing,This medicine is used to manage anxiety and panic disorders,479.18,AstraZeneca
 247,EPZICOM,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,290.83,Roche
 248,ERY-TAB,This medicine is used to manage anxiety and panic disorders,91.71,AbbVie
-249,granisetron hydrochloride,This medicine is used to manage anxiety and panic disorders,403.20,Roche
-250,Zicam,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,337.70,AstraZeneca
+249,granisetron hydrochloride,This medicine is used to manage anxiety and panic disorders,403.2,Roche
+250,Zicam,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,337.7,AstraZeneca
 251,Gumsol,This medication is prescribed to treat depression and improve mood,487.12,Merck
 252,Treatment Set TS342370,This medication is prescribed to treat depression and improve mood,88.07,AbbVie
 253,Allure Creamy Petroleum,This medicine is used to manage anxiety and panic disorders,283.63,Roche
@@ -270,7 +270,7 @@ Product ID,Product,Description,Price,Category
 269,Ketorolac Tromethamine,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,345.09,Roche
 270,DermaCen Instant Hand Sanitizer with Aloe,This drug is used to relieve symptoms of allergies such as sneezing and itching,356.72,AstraZeneca
 271,allergy relief,This medication is prescribed to treat depression and improve mood,100.11,Johnson & Johnson
-272,Propranolol Hyrochloride,This remedy is used to reduce inflammation and pain caused by arthritis,257.70,AbbVie
+272,Propranolol Hyrochloride,This remedy is used to reduce inflammation and pain caused by arthritis,257.7,AbbVie
 273,enfuselle BODY SUNSCREEN BROAD SPECTRUM SPF 30,This drug is prescribed to relieve pain and reduce fever,247.39,Bristol-Myers Squibb
 274,Sprayology DigestivEase,This drug is used to relieve symptoms of allergies such as sneezing and itching,300.94,Merck
 275,Tretinoin,This medication is used to treat high blood pressure,319.38,Johnson & Johnson
@@ -312,7 +312,7 @@ Product ID,Product,Description,Price,Category
 311,fexofenadine hydrochloride,This medicine is used to manage anxiety and panic disorders,181.13,Roche
 312,Proactiv plus Skin Purifying Mask,This remedy is used to treat insomnia and promote sleep.,472.94,Merck
 313,Blackhead Clearing Scrub,This drug is prescribed to relieve pain and reduce fever,57.18,Merck
-314,Ondansetron Hydrochloride,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,299.20,Roche
+314,Ondansetron Hydrochloride,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,299.2,Roche
 315,Alprazolam,This medicine is used to manage anxiety and panic disorders,155.77,Novartis
 316,Allerest,This medication is prescribed to treat depression and improve mood,301.45,AstraZeneca
 317,Shopko Antibacterial Hand Sanitizer,This remedy is used to reduce inflammation and pain caused by arthritis,473.06,AbbVie
@@ -320,7 +320,7 @@ Product ID,Product,Description,Price,Category
 319,Lorazepam,This medication is prescribed to treat depression and improve mood,340.29,Sanofi
 320,SIMPLY RIGHT BODY CARE,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,341.56,Roche
 321,Disopyramide Phosphate,This medicine is used to manage anxiety and panic disorders,479.68,Sanofi
-322,Levothyroxine sodium,This medication is used to treat high blood pressure,325.60,Roche
+322,Levothyroxine sodium,This medication is used to treat high blood pressure,325.6,Roche
 323,Ipratropium Bromide,This remedy is used to reduce inflammation and pain caused by arthritis,378.31,Roche
 324,Telmisartan and Hydrochlorothiazide,This medication is prescribed to treat depression and improve mood,78.51,Sanofi
 325,Skin So Soft Bug Guard Plus IR3535,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,167.93,Pfizer
@@ -346,7 +346,7 @@ Product ID,Product,Description,Price,Category
 345,Montelukast Sodium,This medicine is used to manage anxiety and panic disorders,213.82,AbbVie
 346,stomach relief,This remedy is used to reduce inflammation and pain caused by arthritis,437.04,Sanofi
 347,Lemon Verbena Antibacterial Hand Wash,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,192.94,Johnson & Johnson
-348,Bupivacaine Hydrochloride,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,204.70,Merck
+348,Bupivacaine Hydrochloride,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,204.7,Merck
 349,meloxicam,This medication is used to treat high blood pressure,212.85,Pfizer
 350,Perfecting Liquid Foundation Toffee Bronze,This medication is prescribed to treat depression and improve mood,359.09,AbbVie
 351,Cesamet,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,127.39,Pfizer
@@ -365,7 +365,7 @@ Product ID,Product,Description,Price,Category
 364,Thuja Thymus comp.,This remedy is used to reduce inflammation and pain caused by arthritis,247.05,Pfizer
 365,Valsartan and Hydrochlorothiazide,This medication is used to treat high blood pressure,418.92,Bristol-Myers Squibb
 366,LIME,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,264.16,Novartis
-367,kirkland signature pain relief,This drug is prescribed to relieve pain and reduce fever,70.10,AstraZeneca
+367,kirkland signature pain relief,This drug is prescribed to relieve pain and reduce fever,70.1,AstraZeneca
 368,Lisinopril and Hydrochlorothiazide,This medication is used to treat high blood pressure,298.67,Johnson & Johnson
 369,BETULA NIGRA POLLEN,This medication is used to treat high blood pressure,355.17,Merck
 370,Cephalexin,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,228.86,Merck
@@ -379,14 +379,14 @@ Product ID,Product,Description,Price,Category
 378,Cefoxitin,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,466.59,Pfizer
 379,Decon Hand Instant Hand Sanitizer,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,373.51,GlaxoSmithKline
 380,MMA Elite Pain Relief,This medication is used to treat high blood pressure,470.44,Johnson & Johnson
-381,Licorice,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,237.20,AbbVie
-382,Pacific Anti-bacterial Hand Cleanse Kiwi Essence,This remedy is used to reduce inflammation and pain caused by arthritis,222.30,Merck
+381,Licorice,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,237.2,AbbVie
+382,Pacific Anti-bacterial Hand Cleanse Kiwi Essence,This remedy is used to reduce inflammation and pain caused by arthritis,222.3,Merck
 383,dg health cold head congestion severe,This drug is used to relieve symptoms of allergies such as sneezing and itching,226.72,Pfizer
 384,Sesame,This medication is prescribed to treat depression and improve mood,194.49,GlaxoSmithKline
 385,Neutrogena Pure and free Baby Sunblock,This prescription helps to control seizures in individuals with epilepsy,315.44,Novartis
 386,Body Wash,This remedy is used to treat insomnia and promote sleep.,403.06,Bristol-Myers Squibb
 387,Captopril,This prescription helps to control seizures in individuals with epilepsy,442.37,AstraZeneca
-388,Methylphenidate Hydrochloride,This medication is used to treat high blood pressure,426.80,Merck
+388,Methylphenidate Hydrochloride,This medication is used to treat high blood pressure,426.8,Merck
 389,MAX HYALURONIC STEMCELL SLEEPING PACK,This medication is used to treat high blood pressure,95.61,Johnson & Johnson
 390,Sulfamethoxazole and Trimethoprim,This medication is prescribed to treat depression and improve mood,470.23,Novartis
 391,HYPERICUM PERFORATUM,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,97.32,Sanofi
@@ -444,16 +444,16 @@ Product ID,Product,Description,Price,Category
 443,DEODORANT,This drug is prescribed to relieve pain and reduce fever,484.74,Pfizer
 444,Best Choice,This prescription helps to control seizures in individuals with epilepsy,90.56,Johnson & Johnson
 445,Garnier Fructis Antidandruff,This medicine is used to manage anxiety and panic disorders,277.26,AstraZeneca
-446,Dexamethasone Sodium Phosphate,This medicine is used to manage anxiety and panic disorders,84.20,Sanofi
+446,Dexamethasone Sodium Phosphate,This medicine is used to manage anxiety and panic disorders,84.2,Sanofi
 447,good neighbor pharmacy cold,This medicine is used to manage anxiety and panic disorders,150.09,AstraZeneca
-448,HAWAIIAN Tropic,This medication is prescribed to treat depression and improve mood,393.40,Novartis
+448,HAWAIIAN Tropic,This medication is prescribed to treat depression and improve mood,393.4,Novartis
 449,Alprazolam,This medicine is used to manage anxiety and panic disorders,373.28,Pfizer
 450,Antiseptic Hand Gel,This medication is prescribed to treat depression and improve mood,394.75,Merck
 451,Gabapentin,This remedy is used to treat insomnia and promote sleep.,460.82,AbbVie
 452,Nabumetone,This remedy is used to reduce inflammation and pain caused by arthritis,354.85,AbbVie
 453,Regular Strength Aspirin EC,This medication is used to treat high blood pressure,443.59,Merck
 454,Lisinopril and Hydrochlorothiazide,This medication is prescribed to treat depression and improve mood,436.23,AstraZeneca
-455,GENTAMICIN SULFATE,This drug is prescribed to relieve pain and reduce fever,349.90,Sanofi
+455,GENTAMICIN SULFATE,This drug is prescribed to relieve pain and reduce fever,349.9,Sanofi
 456,Oxygen,This remedy is used to treat insomnia and promote sleep.,158.87,AbbVie
 457,Saline Refills,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,475.76,GlaxoSmithKline
 458,Lamotrigine,This remedy is used to reduce inflammation and pain caused by arthritis,281.48,Bristol-Myers Squibb
@@ -467,7 +467,7 @@ Product ID,Product,Description,Price,Category
 466,povidine iodine,This medication is prescribed to treat depression and improve mood,343.41,Johnson & Johnson
 467,heartburn relief,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,357.99,AstraZeneca
 468,Pramipexole Dihydrochloride,This medication is prescribed to treat depression and improve mood,179.84,Roche
-469,HISTAPRIN,This medication is used to treat high blood pressure,202.40,AstraZeneca
+469,HISTAPRIN,This medication is used to treat high blood pressure,202.4,AstraZeneca
 470,Omeprazole,This drug is used to relieve symptoms of allergies such as sneezing and itching,440.32,Roche
 471,Childrens Plus Cough and Runny Nose,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,158.95,Bristol-Myers Squibb
 472,Naproxen,This remedy is used to treat insomnia and promote sleep.,76.69,Merck
@@ -477,11 +477,11 @@ Product ID,Product,Description,Price,Category
 476,Hepatatox,This remedy is used to reduce inflammation and pain caused by arthritis,297.58,Pfizer
 477,Chooz,This medicine is used to manage anxiety and panic disorders,363.31,Pfizer
 478,SEPIA,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,319.14,Johnson & Johnson
-479,Miracle Rub,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,201.30,Pfizer
+479,Miracle Rub,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,201.3,Pfizer
 480,Acetylcholine Chloride,This drug is used to relieve symptoms of allergies such as sneezing and itching,461.26,AstraZeneca
 481,Lovastatin,This remedy is used to treat insomnia and promote sleep.,289.69,AbbVie
 482,Oral Care - Gingivitis,This remedy is used to reduce inflammation and pain caused by arthritis,225.94,Merck
-483,Carbidopa and Levodopa,This medication is prescribed to treat depression and improve mood,175.60,Pfizer
+483,Carbidopa and Levodopa,This medication is prescribed to treat depression and improve mood,175.6,Pfizer
 484,Mometasone Furoate,This remedy is used to reduce inflammation and pain caused by arthritis,161.62,Bristol-Myers Squibb
 485,Cephalexin,This remedy is used to treat insomnia and promote sleep.,80.39,AbbVie
 486,CHAPSTICK CLASSICS SPEARMINT,This drug is prescribed to relieve pain and reduce fever,311.85,Pfizer
@@ -498,15 +498,15 @@ Product ID,Product,Description,Price,Category
 497,ACONITUM NAPELLUS,This medication is used to treat high blood pressure,345.13,Bristol-Myers Squibb
 498,DOXAZOSIN,This medication is used to treat high blood pressure,280.15,GlaxoSmithKline
 499,health mart nasal decongestant pe,This medication is used to treat high blood pressure,176.17,AstraZeneca
-500,Neutrogena Healthy Defense Daily Moisturizer,This medicine is used to manage anxiety and panic disorders,272.20,Johnson & Johnson
+500,Neutrogena Healthy Defense Daily Moisturizer,This medicine is used to manage anxiety and panic disorders,272.2,Johnson & Johnson
 501,Topical Anesthetic,This drug is prescribed to relieve pain and reduce fever,76.98,Sanofi
-502,Greasewood,This drug is used to relieve symptoms of allergies such as sneezing and itching,187.40,Pfizer
+502,Greasewood,This drug is used to relieve symptoms of allergies such as sneezing and itching,187.4,Pfizer
 503,Raxibacumab,This remedy is used to reduce inflammation and pain caused by arthritis,201.96,Johnson & Johnson
 504,Neomycin and Polymyxin B Sulfates and Bacitracin Zinc with Hydrocortisone Acetate,This drug is used to relieve symptoms of allergies such as sneezing and itching,356.62,Bristol-Myers Squibb
 505,Promethazine Hydrochloride,This medication is used to treat high blood pressure,496.02,Roche
 506,Sumatriptan Succinate,This medicine is used to manage anxiety and panic disorders,332.35,Bristol-Myers Squibb
 507,Walgreens Cold Sore Treatment,This medicine is used to manage anxiety and panic disorders,263.81,Merck
-508,Lamotrigine,This drug is used to relieve symptoms of allergies such as sneezing and itching,399.10,Bristol-Myers Squibb
+508,Lamotrigine,This drug is used to relieve symptoms of allergies such as sneezing and itching,399.1,Bristol-Myers Squibb
 509,Artificial Tears,This remedy is used to reduce inflammation and pain caused by arthritis,223.66,Novartis
 510,Griseofulvin,This drug is used to relieve symptoms of allergies such as sneezing and itching,480.54,Novartis
 511,Treatment Set TS332487,This remedy is used to treat insomnia and promote sleep.,446.47,GlaxoSmithKline
@@ -515,7 +515,7 @@ Product ID,Product,Description,Price,Category
 514,Levothyroxine Sodium,This remedy is used to reduce inflammation and pain caused by arthritis,329.54,Bristol-Myers Squibb
 515,Surfak Stool Softener,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,329.89,Pfizer
 516,Didanosine,This medicine is used to manage anxiety and panic disorders,271.86,AbbVie
-517,XtraCare Foaming Facial Cleanser,This medication is used to treat high blood pressure,95.00,Novartis
+517,XtraCare Foaming Facial Cleanser,This medication is used to treat high blood pressure,95.0,Novartis
 518,SODIUM SULFACETAMIDE AND SULFUR,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,121.66,Pfizer
 519,Nix Complete Maximum Strength Lice Elimination,This prescription helps to control seizures in individuals with epilepsy,218.48,Johnson & Johnson
 520,Blue Spruce,This prescription helps to control seizures in individuals with epilepsy,350.11,AbbVie
@@ -531,12 +531,12 @@ Product ID,Product,Description,Price,Category
 530,Paricalcitol,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,267.83,Bristol-Myers Squibb
 531,Antimonium Tart Kit Refill,This drug is prescribed to relieve pain and reduce fever,457.78,Pfizer
 532,"Pollens - Weeds and Garden Plants, Dog Fennel, Eastern Eupatorium capillifolium",This remedy is used to reduce inflammation and pain caused by arthritis,118.36,Johnson & Johnson
-533,Mannitol,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,299.70,AstraZeneca
+533,Mannitol,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,299.7,AstraZeneca
 534,LBel,This medication is prescribed to treat depression and improve mood,251.73,AstraZeneca
 535,Monodox,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,302.56,Johnson & Johnson
 536,Ibuprofen,This medicine is used to manage anxiety and panic disorders,345.24,GlaxoSmithKline
 537,nifedipine,This medication is used to treat high blood pressure,495.17,Pfizer
-538,Gas-X,This remedy is used to treat insomnia and promote sleep.,474.80,Roche
+538,Gas-X,This remedy is used to treat insomnia and promote sleep.,474.8,Roche
 539,Fungicure,This medication is used to treat high blood pressure,282.68,Bristol-Myers Squibb
 540,Oxymorphone hydrochloride,This medication is prescribed to treat depression and improve mood,449.84,Novartis
 541,Medpride,This prescription helps to control seizures in individuals with epilepsy,457.93,Johnson & Johnson
@@ -546,7 +546,7 @@ Product ID,Product,Description,Price,Category
 545,Healthcare Antiseptic Towelette,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,306.35,Johnson & Johnson
 546,Triadine,This medication is used to treat high blood pressure,211.12,Bristol-Myers Squibb
 547,HELMINTHOSPORIUM SATIVUM,This remedy is used to reduce inflammation and pain caused by arthritis,89.64,AstraZeneca
-548,Red Snapper,This drug is prescribed to relieve pain and reduce fever,227.20,Bristol-Myers Squibb
+548,Red Snapper,This drug is prescribed to relieve pain and reduce fever,227.2,Bristol-Myers Squibb
 549,equaline anti itch,This drug is used to relieve symptoms of allergies such as sneezing and itching,340.81,AbbVie
 550,Bupropion Hydrochloride,This medicine is used to manage anxiety and panic disorders,170.46,AbbVie
 551,Dog Fennel,This medication is used to treat high blood pressure,370.92,AbbVie
@@ -566,11 +566,11 @@ Product ID,Product,Description,Price,Category
 565,Hydralazine Hydrochloride,This drug is used to relieve symptoms of allergies such as sneezing and itching,60.13,Johnson & Johnson
 566,dimethicone,This drug is used to relieve symptoms of allergies such as sneezing and itching,277.73,Merck
 567,SPF 30 Sunscreen,This drug is used to relieve symptoms of allergies such as sneezing and itching,59.03,Pfizer
-568,Ampicillin,This remedy is used to reduce inflammation and pain caused by arthritis,56.60,Pfizer
+568,Ampicillin,This remedy is used to reduce inflammation and pain caused by arthritis,56.6,Pfizer
 569,Diprivan,This drug is prescribed to relieve pain and reduce fever,125.18,GlaxoSmithKline
 570,Diltiazem Hydrochloride,This medication is prescribed to treat depression and improve mood,116.69,GlaxoSmithKline
 571,Hydrocodone Bitartrate And Acetaminophen,This drug is used to relieve symptoms of allergies such as sneezing and itching,483.18,Johnson & Johnson
-572,Clobex,This medication is used to treat high blood pressure,150.80,AstraZeneca
+572,Clobex,This medication is used to treat high blood pressure,150.8,AstraZeneca
 573,FELODIPINEEXTENDED-RELEASE TABLETS,This medicine is used to manage anxiety and panic disorders,103.04,Roche
 574,Psorinoheel,This medication is used to treat high blood pressure,379.44,GlaxoSmithKline
 575,Delsym,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,113.62,AstraZeneca
@@ -580,16 +580,16 @@ Product ID,Product,Description,Price,Category
 579,Metolazone,This remedy is used to reduce inflammation and pain caused by arthritis,279.91,Johnson & Johnson
 580,FUNGUS MD,This medicine is used to manage anxiety and panic disorders,443.58,Johnson & Johnson
 581,Lysol,This medication is prescribed to treat depression and improve mood,54.42,Merck
-582,GUAIFENESIN,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,371.30,Bristol-Myers Squibb
+582,GUAIFENESIN,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,371.3,Bristol-Myers Squibb
 583,Pacnex,This medication is used to treat high blood pressure,287.06,Sanofi
 584,Artichoke,This medicine is used to manage anxiety and panic disorders,364.05,AstraZeneca
 585,California Black Walnut,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,115.42,GlaxoSmithKline
-586,Flu and Severe Cold and Cough,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,88.60,AstraZeneca
+586,Flu and Severe Cold and Cough,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,88.6,AstraZeneca
 587,hemorrhoidal,This drug is used to relieve symptoms of allergies such as sneezing and itching,134.12,AbbVie
 588,Dandruff,This prescription helps to control seizures in individuals with epilepsy,202.15,Bristol-Myers Squibb
 589,Enteric Aspirin,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,398.14,Bristol-Myers Squibb
 590,good neighbor pharmacy cold,This prescription helps to control seizures in individuals with epilepsy,170.65,Novartis
-591,Spironolactone,This medication is used to treat high blood pressure,141.00,Roche
+591,Spironolactone,This medication is used to treat high blood pressure,141.0,Roche
 592,Kadian,This drug is prescribed to relieve pain and reduce fever,68.11,Pfizer
 593,Irbesartan,This prescription helps to control seizures in individuals with epilepsy,58.66,AstraZeneca
 594,MORELLA CERIFERA POLLEN,This medication is used to treat high blood pressure,117.31,Roche
@@ -604,11 +604,11 @@ Product ID,Product,Description,Price,Category
 603,Vancocin,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,227.85,AstraZeneca
 604,Glipizide,This medication is used to treat high blood pressure,179.76,AbbVie
 605,Clobetasol Propionate,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,430.54,AbbVie
-606,Hemorrhoidal Cooling,This remedy is used to treat insomnia and promote sleep.,362.10,AbbVie
+606,Hemorrhoidal Cooling,This remedy is used to treat insomnia and promote sleep.,362.1,AbbVie
 607,Technetium Tc99m Generator,This drug is used to relieve symptoms of allergies such as sneezing and itching,291.05,AbbVie
 608,Womens Laxative,This prescription helps to control seizures in individuals with epilepsy,344.45,Pfizer
 609,Long-Lasting Wicked Fresh - Cool Peppermint,This prescription helps to control seizures in individuals with epilepsy,477.69,Johnson & Johnson
-610,Neptune E2 ANTISEPTIC FOAM HAND,This remedy is used to treat insomnia and promote sleep.,425.30,Novartis
+610,Neptune E2 ANTISEPTIC FOAM HAND,This remedy is used to treat insomnia and promote sleep.,425.3,Novartis
 611,Fluocinonide,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,142.77,Merck
 612,equaline daytime nighttime cold and flu relief,This drug is used to relieve symptoms of allergies such as sneezing and itching,420.49,Novartis
 613,Oxygen,This medication is used to treat high blood pressure,239.61,Roche
@@ -625,7 +625,7 @@ Product ID,Product,Description,Price,Category
 624,Coralite Antibacterial,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,120.14,GlaxoSmithKline
 625,Glimepiride,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,375.25,Roche
 626,Zosyn,This drug is used to relieve symptoms of allergies such as sneezing and itching,405.53,Merck
-627,Treatment Set TS345050,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,463.20,AstraZeneca
+627,Treatment Set TS345050,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,463.2,AstraZeneca
 628,Terazosin,This remedy is used to reduce inflammation and pain caused by arthritis,235.84,Merck
 629,rexall hemorrhoidal,This medication is prescribed to treat depression and improve mood,488.33,Pfizer
 630,Dexamethasone,This drug is prescribed to relieve pain and reduce fever,323.02,Pfizer
@@ -640,7 +640,7 @@ Product ID,Product,Description,Price,Category
 639,Simethicone,This remedy is used to treat insomnia and promote sleep.,202.66,Johnson & Johnson
 640,LOVASTATIN,This drug is used to relieve symptoms of allergies such as sneezing and itching,214.27,Sanofi
 641,Linkus Lozenges,This remedy is used to treat insomnia and promote sleep.,177.32,Novartis
-642,Lidocaine Hydrochloride,This prescription helps to control seizures in individuals with epilepsy,277.20,GlaxoSmithKline
+642,Lidocaine Hydrochloride,This prescription helps to control seizures in individuals with epilepsy,277.2,GlaxoSmithKline
 643,good neighbor pharmacy ibuprofen,This remedy is used to treat insomnia and promote sleep.,298.23,Sanofi
 644,stop smoking aid,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,54.81,AbbVie
 645,PARAID Alcohol,This drug is prescribed to relieve pain and reduce fever,217.02,Bristol-Myers Squibb
@@ -668,7 +668,7 @@ Product ID,Product,Description,Price,Category
 667,KENALOG-40,This medicine is used to manage anxiety and panic disorders,109.56,Johnson & Johnson
 668,Maximum Strength Menstrual Relief,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,289.31,Sanofi
 669,No7 Protect and Perfect Day Cream SPF 15,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,179.36,Bristol-Myers Squibb
-670,CANDIDA ALB,This medication is prescribed to treat depression and improve mood,76.30,Sanofi
+670,CANDIDA ALB,This medication is prescribed to treat depression and improve mood,76.3,Sanofi
 671,Furosemide,This drug is prescribed to relieve pain and reduce fever,61.62,Novartis
 672,Omega 3 Heat Therapy,This prescription helps to control seizures in individuals with epilepsy,122.12,Sanofi
 673,Bambusa Stibium,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,235.82,Johnson & Johnson
@@ -681,8 +681,8 @@ Product ID,Product,Description,Price,Category
 680,phenol,This medication is used to treat high blood pressure,168.36,Roche
 681,Publix Kids,This remedy is used to reduce inflammation and pain caused by arthritis,465.22,Merck
 682,Timolol Maleate,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,158.09,AbbVie
-683,CPDA-1,This prescription helps to control seizures in individuals with epilepsy,373.60,Johnson & Johnson
-684,health mart childrens ibuprofen,This drug is used to relieve symptoms of allergies such as sneezing and itching,266.40,Johnson & Johnson
+683,CPDA-1,This prescription helps to control seizures in individuals with epilepsy,373.6,Johnson & Johnson
+684,health mart childrens ibuprofen,This drug is used to relieve symptoms of allergies such as sneezing and itching,266.4,Johnson & Johnson
 685,Divalproex Sodium,This medication is used to treat high blood pressure,293.64,Merck
 686,Aranelle,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,429.06,Novartis
 687,AETHUSA CYNAPIUM,This remedy is used to treat insomnia and promote sleep.,484.42,AbbVie
@@ -694,21 +694,21 @@ Product ID,Product,Description,Price,Category
 693,Omeprazole Magnesium,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,298.42,Sanofi
 694,Technetium Tc 99m Medronate,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,82.21,Bristol-Myers Squibb
 695,Tussin CF,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,293.39,Sanofi
-696,Pussy Willow Pollen,This medication is prescribed to treat depression and improve mood,111.10,AstraZeneca
+696,Pussy Willow Pollen,This medication is prescribed to treat depression and improve mood,111.1,AstraZeneca
 697,FERROUS SULFATE,This medicine is used to manage anxiety and panic disorders,300.87,Sanofi
 698,Proquin,This prescription helps to control seizures in individuals with epilepsy,458.37,AstraZeneca
 699,KOCHIA SCOPARIA POLLEN,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,342.93,Novartis
 700,Oxaprozin,This medication is prescribed to treat depression and improve mood,241.01,Johnson & Johnson
-701,Gemcitabine Hydrochloride,This remedy is used to reduce inflammation and pain caused by arthritis,411.30,Merck
+701,Gemcitabine Hydrochloride,This remedy is used to reduce inflammation and pain caused by arthritis,411.3,Merck
 702,Simvastatin,This drug is used to relieve symptoms of allergies such as sneezing and itching,480.79,AbbVie
 703,dg health tussin dm,This drug is used to relieve symptoms of allergies such as sneezing and itching,215.92,AbbVie
 704,DECONEX,This medication is used to treat high blood pressure,433.99,AstraZeneca
 705,Fentanyl,This prescription helps to control seizures in individuals with epilepsy,103.74,Pfizer
 706,benzoyl peroxide,This remedy is used to reduce inflammation and pain caused by arthritis,178.65,Roche
-707,OHUI AGE RECOVERY TRI SHIELD PACT 10,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,114.00,GlaxoSmithKline
+707,OHUI AGE RECOVERY TRI SHIELD PACT 10,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,114.0,GlaxoSmithKline
 708,Desipramine Hydrochloride,This drug is used to relieve symptoms of allergies such as sneezing and itching,413.15,Roche
 709,Alclometasone Dipropionate,This medication is prescribed to treat depression and improve mood,172.68,Sanofi
-710,CEFADROXIL,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,221.40,Sanofi
+710,CEFADROXIL,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,221.4,Sanofi
 711,Heparin Sodium,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,219.53,Johnson & Johnson
 712,Stay Clean Foam Hand Sanitizer,This prescription helps to control seizures in individuals with epilepsy,272.92,Merck
 713,Mulberry,This drug is prescribed to relieve pain and reduce fever,95.45,AbbVie
@@ -722,7 +722,7 @@ Product ID,Product,Description,Price,Category
 721,HYDROCODONE BITARTRATE AND ACETAMINOPHEN,This medication is used to treat high blood pressure,191.88,Johnson & Johnson
 722,DIGOXIN,This drug is used to relieve symptoms of allergies such as sneezing and itching,340.33,Pfizer
 723,Koh Gen Do Maifanshi Makeup Color Base,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,51.16,AstraZeneca
-724,Ciprofloxacin,This remedy is used to treat insomnia and promote sleep.,209.60,Bristol-Myers Squibb
+724,Ciprofloxacin,This remedy is used to treat insomnia and promote sleep.,209.6,Bristol-Myers Squibb
 725,Zodryl DEC 60,This medication is prescribed to treat depression and improve mood,344.59,Novartis
 726,Personal Care Pyrithione Zinc Dandruff,This medication is prescribed to treat depression and improve mood,433.23,Pfizer
 727,Meprobamate,This prescription helps to control seizures in individuals with epilepsy,77.23,AstraZeneca
@@ -742,11 +742,11 @@ Product ID,Product,Description,Price,Category
 741,Metoprolol Succinate,This drug is used to relieve symptoms of allergies such as sneezing and itching,332.19,AstraZeneca
 742,Clarithromycin,This remedy is used to treat insomnia and promote sleep.,126.64,Johnson & Johnson
 743,Albuterol Sulfate,This remedy is used to reduce inflammation and pain caused by arthritis,116.88,Bristol-Myers Squibb
-744,Exelon,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,92.60,Novartis
+744,Exelon,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,92.6,Novartis
 745,Citalopram,This remedy is used to treat insomnia and promote sleep.,293.84,Bristol-Myers Squibb
 746,Stavudine,This medication is used to treat high blood pressure,142.69,Sanofi
 747,Nortriptyline Hydrochloride,This medication is used to treat high blood pressure,258.64,AstraZeneca
-748,DIETHYLPROPION HYDROCHLORIDE,This prescription helps to control seizures in individuals with epilepsy,375.60,Johnson & Johnson
+748,DIETHYLPROPION HYDROCHLORIDE,This prescription helps to control seizures in individuals with epilepsy,375.6,Johnson & Johnson
 749,Enoxaparin Sodium,This drug is used to relieve symptoms of allergies such as sneezing and itching,413.66,Merck
 750,Balamine,This medication is prescribed to treat depression and improve mood,274.03,Johnson & Johnson
 751,NATRUM PHOSPHORICUM,This medicine is used to manage anxiety and panic disorders,311.73,AstraZeneca
@@ -776,7 +776,7 @@ Product ID,Product,Description,Price,Category
 775,Oxygen,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,88.57,Johnson & Johnson
 776,"Pollens - Weeds and Garden Plants, Nettle Urtica dioica",This remedy is used to reduce inflammation and pain caused by arthritis,268.96,Johnson & Johnson
 777,Amoxicillin,This medication is prescribed to treat depression and improve mood,435.31,Roche
-778,Vecuronium Bromide,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,289.30,Merck
+778,Vecuronium Bromide,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,289.3,Merck
 779,Simvastatin,This prescription helps to control seizures in individuals with epilepsy,428.29,Novartis
 780,Isolyte S in Dextrose,This prescription helps to control seizures in individuals with epilepsy,248.12,GlaxoSmithKline
 781,CTx4 Gel 1100,This medication is used to treat high blood pressure,476.39,Pfizer
@@ -790,8 +790,8 @@ Product ID,Product,Description,Price,Category
 789,Panic Ease,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,320.22,Merck
 790,Metformin Hydrochloride,This medication is prescribed to treat depression and improve mood,308.82,Johnson & Johnson
 791,Cartia,This prescription helps to control seizures in individuals with epilepsy,456.19,Novartis
-792,Acetaminophen,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,448.10,Merck
-793,Magnesium Citrate,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,176.10,Bristol-Myers Squibb
+792,Acetaminophen,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,448.1,Merck
+793,Magnesium Citrate,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,176.1,Bristol-Myers Squibb
 794,Furosemide,This remedy is used to reduce inflammation and pain caused by arthritis,111.57,Sanofi
 795,SINUS RELIEF,This medication is prescribed to treat depression and improve mood,299.63,AbbVie
 796,Prochlorperazine Maleate,This medication is prescribed to treat depression and improve mood,158.83,Sanofi
@@ -814,24 +814,24 @@ Product ID,Product,Description,Price,Category
 813,Famotidine,This drug is used to relieve symptoms of allergies such as sneezing and itching,418.11,Pfizer
 814,Intervene Makeup SPF 15 Soft Beige,This medicine is used to manage anxiety and panic disorders,461.16,Novartis
 815,Sheer Defense Tinted Moisturizer Broad Spectrum SPF 15 MD 70,This drug is prescribed to relieve pain and reduce fever,433.87,AstraZeneca
-816,Throat and Chest Honey Lemon and Menthol,This medication is prescribed to treat depression and improve mood,73.80,Pfizer
-817,Mustard Seed,This medication is prescribed to treat depression and improve mood,182.80,Roche
-818,Tendon Rescue,This medication is prescribed to treat depression and improve mood,197.90,Pfizer
+816,Throat and Chest Honey Lemon and Menthol,This medication is prescribed to treat depression and improve mood,73.8,Pfizer
+817,Mustard Seed,This medication is prescribed to treat depression and improve mood,182.8,Roche
+818,Tendon Rescue,This medication is prescribed to treat depression and improve mood,197.9,Pfizer
 819,SHISEIDO THE MAKEUP LIFTING FOUNDATION,This medication is prescribed to treat depression and improve mood,473.55,AstraZeneca
 820,ziprasidone hydrochloride,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,242.81,Sanofi
-821,Othree 50 Whitening,This drug is used to relieve symptoms of allergies such as sneezing and itching,175.00,AstraZeneca
+821,Othree 50 Whitening,This drug is used to relieve symptoms of allergies such as sneezing and itching,175.0,AstraZeneca
 822,amoxicillin and clavulanate potassium,This drug is used to relieve symptoms of allergies such as sneezing and itching,484.96,Roche
 823,Nauzene,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,474.83,AstraZeneca
 824,Palgic,This remedy is used to treat insomnia and promote sleep.,462.56,Novartis
 825,CVS Pharmacy Cold and Sore Throat,This medication is used to treat high blood pressure,384.72,Roche
-826,Colic,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,150.20,Sanofi
+826,Colic,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,150.2,Sanofi
 827,Fluconazole,This prescription helps to control seizures in individuals with epilepsy,214.52,AstraZeneca
 828,Captopril,This medication is prescribed to treat depression and improve mood,454.32,GlaxoSmithKline
 829,Avalide,This remedy is used to treat insomnia and promote sleep.,441.41,AstraZeneca
 830,Sodium Chloride,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,376.65,Sanofi
 831,Amitriptyline Hydrochloride,This remedy is used to treat insomnia and promote sleep.,498.45,AbbVie
 832,Ibuprofen,This prescription helps to control seizures in individuals with epilepsy,122.51,AbbVie
-833,Softlips Jelly Bean,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,475.50,AbbVie
+833,Softlips Jelly Bean,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,475.5,AbbVie
 834,Daily Balance,This prescription helps to control seizures in individuals with epilepsy,384.59,Novartis
 835,acid controller,This medicine is used to manage anxiety and panic disorders,487.65,Bristol-Myers Squibb
 836,Isosulfan Blue,This medication is prescribed to treat depression and improve mood,370.31,Johnson & Johnson
@@ -847,17 +847,17 @@ Product ID,Product,Description,Price,Category
 846,Flawless by Sonya Aloe BB Creme,This medication is prescribed to treat depression and improve mood,224.02,AbbVie
 847,Xodol,This medicine is used to manage anxiety and panic disorders,274.54,AbbVie
 848,LanoGuard,This medication is used to treat high blood pressure,207.67,Merck
-849,Nivea A Kiss of Intense Moisture Healing Medicated Lip Care,This drug is used to relieve symptoms of allergies such as sneezing and itching,148.10,Merck
+849,Nivea A Kiss of Intense Moisture Healing Medicated Lip Care,This drug is used to relieve symptoms of allergies such as sneezing and itching,148.1,Merck
 850,Pancreas Equisetum,This remedy is used to reduce inflammation and pain caused by arthritis,467.97,Sanofi
 851,LBel Paris,This drug is used to relieve symptoms of allergies such as sneezing and itching,143.66,AstraZeneca
 852,Sensodyne,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,56.12,Roche
 853,NEO-POLY-DEX,This medication is prescribed to treat depression and improve mood,377.22,AstraZeneca
-854,Migraine Relief,This remedy is used to treat insomnia and promote sleep.,330.30,AstraZeneca
+854,Migraine Relief,This remedy is used to treat insomnia and promote sleep.,330.3,AstraZeneca
 855,Anti-Itch,This medication is used to treat high blood pressure,74.86,Sanofi
 856,LBEL COULEUR LUXE AMPLIFIER XP,This remedy is used to treat insomnia and promote sleep.,476.31,AbbVie
 857,MOXEZA,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,219.57,Merck
 858,TopCare Childrens All Day Allergy,This drug is used to relieve symptoms of allergies such as sneezing and itching,314.88,Novartis
-859,COUMADIN,This medication is used to treat high blood pressure,266.50,Johnson & Johnson
+859,COUMADIN,This medication is used to treat high blood pressure,266.5,Johnson & Johnson
 860,Triamterene and Hydrochlorothiazide,This medication is prescribed to treat depression and improve mood,246.78,Johnson & Johnson
 861,Fluphenazine Hydrochloride,This medication is prescribed to treat depression and improve mood,351.73,Sanofi
 862,Treatment Set TS346157,This remedy is used to treat insomnia and promote sleep.,186.11,Pfizer
@@ -867,9 +867,9 @@ Product ID,Product,Description,Price,Category
 866,Bupropion Hydrochloride,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,384.35,Johnson & Johnson
 867,Daily Body Moisture Hydrating Complex SPF8,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,381.34,GlaxoSmithKline
 868,Fexofenadine Hydrochloride,This medication is prescribed to treat depression and improve mood,269.33,Bristol-Myers Squibb
-869,SKIN STRONG - SKIN EQUIPMENT,This remedy is used to reduce inflammation and pain caused by arthritis,294.50,AbbVie
+869,SKIN STRONG - SKIN EQUIPMENT,This remedy is used to reduce inflammation and pain caused by arthritis,294.5,AbbVie
 870,Dolce and Gabbana The Lift Foundation Amber 148,This medication is prescribed to treat depression and improve mood,365.58,Sanofi
-871,Ceftriaxone Sodium,This medication is prescribed to treat depression and improve mood,468.10,Johnson & Johnson
+871,Ceftriaxone Sodium,This medication is prescribed to treat depression and improve mood,468.1,Johnson & Johnson
 872,Jute,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,99.65,Novartis
 873,CLADOSPORIUM CLADOSPORIOIDES,This remedy is used to reduce inflammation and pain caused by arthritis,158.01,Novartis
 874,Allergy,This remedy is used to treat insomnia and promote sleep.,260.69,GlaxoSmithKline
@@ -877,17 +877,17 @@ Product ID,Product,Description,Price,Category
 876,Prednisone,This remedy is used to reduce inflammation and pain caused by arthritis,140.97,GlaxoSmithKline
 877,Burn-B Gone OTC,This medicine is used to manage anxiety and panic disorders,211.97,GlaxoSmithKline
 878,Sciatica Relief,This remedy is used to treat insomnia and promote sleep.,172.01,Merck
-879,Ciprofloxacin,This medication is used to treat high blood pressure,324.30,Novartis
+879,Ciprofloxacin,This medication is used to treat high blood pressure,324.3,Novartis
 880,Exchange Select Calcium Antacid,This drug is used to relieve symptoms of allergies such as sneezing and itching,484.42,Pfizer
 881,SYLATRON,This medicine is used to manage anxiety and panic disorders,292.34,Novartis
 882,Neutrogena Ultimate Sport,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,463.05,Merck
-883,lisinopril,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,492.40,Bristol-Myers Squibb
-884,ORTHO TRI CYCLEN Lo,This medicine is used to manage anxiety and panic disorders,353.80,Bristol-Myers Squibb
+883,lisinopril,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,492.4,Bristol-Myers Squibb
+884,ORTHO TRI CYCLEN Lo,This medicine is used to manage anxiety and panic disorders,353.8,Bristol-Myers Squibb
 885,CRESTOR,This drug is prescribed to relieve pain and reduce fever,454.66,Sanofi
 886,Amlodipine Besylate,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,208.13,Johnson & Johnson
 887,Diphenhydramine Hydrochloride,This medication is prescribed to treat depression and improve mood,377.11,Roche
 888,Sterile Vancomycin Hydrochloride,This medication is prescribed to treat depression and improve mood,352.45,Johnson & Johnson
-889,BETHANECHOL CHLORIDE,This medication is used to treat high blood pressure,313.50,Bristol-Myers Squibb
+889,BETHANECHOL CHLORIDE,This medication is used to treat high blood pressure,313.5,Bristol-Myers Squibb
 890,LOreal Paris Advanced Suncare Silky Sheer 50 Plus Broad Spectrum SPF 50 Plus Sunscreen,This medication is used to treat high blood pressure,263.42,Sanofi
 891,Diclofenac Sodium,This medicine is used to treat bacterial infections such as pneumonia and bronchitis,314.51,Roche
 892,Antibacterial Hand Towelettes,This remedy is used to treat insomnia and promote sleep.,79.45,AstraZeneca
@@ -895,7 +895,7 @@ Product ID,Product,Description,Price,Category
 894,SINGULAIR,This drug is prescribed to relieve pain and reduce fever,354.02,Sanofi
 895,"Pollens - Trees, Cottonwood, Common Populus deltoides",This prescription helps to control seizures in individuals with epilepsy,163.48,AstraZeneca
 896,Drink Ease,This remedy is used to reduce inflammation and pain caused by arthritis,213.89,Pfizer
-897,Metaxalone,This remedy is used to reduce inflammation and pain caused by arthritis,211.50,Pfizer
+897,Metaxalone,This remedy is used to reduce inflammation and pain caused by arthritis,211.5,Pfizer
 898,clindamycin phosphate,This medication is used to treat high blood pressure,322.01,AstraZeneca
 899,Ifosfamide,This prescription helps to control seizures in individuals with epilepsy,177.42,Sanofi
 900,Herpeset,This drug is prescribed to relieve pain and reduce fever,223.47,Novartis
@@ -944,7 +944,7 @@ Product ID,Product,Description,Price,Category
 943,Hydrochlorothiazide,This drug is used to relieve symptoms of allergies such as sneezing and itching,337.27,AstraZeneca
 944,Trimethobenzamide Hydrochloride,This medicine is used to manage anxiety and panic disorders,94.76,Roche
 945,Metipranolol,This drug is used to relieve symptoms of allergies such as sneezing and itching,417.72,Johnson & Johnson
-946,ck one 3-in-1 face makeup,This medicine is used to manage anxiety and panic disorders,464.90,Johnson & Johnson
+946,ck one 3-in-1 face makeup,This medicine is used to manage anxiety and panic disorders,464.9,Johnson & Johnson
 947,No7 Lifting and Firming Day Sunscreen SPF 8,This remedy is used to treat insomnia and promote sleep.,53.15,AbbVie
 948,Tudorza Pressair,This drug is prescribed to relieve pain and reduce fever,276.85,Bristol-Myers Squibb
 949,Glucotrol,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,96.08,GlaxoSmithKline
@@ -961,7 +961,7 @@ Product ID,Product,Description,Price,Category
 960,Lemon and Olive Oil Antibacterial Foaming Hand Wash,This prescription helps to control seizures in individuals with epilepsy,462.83,Pfizer
 961,Touch Free Hand,This medication is prescribed to treat depression and improve mood,209.27,Novartis
 962,Levemir,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,356.64,GlaxoSmithKline
-963,Adenocard,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,390.10,AbbVie
+963,Adenocard,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,390.1,AbbVie
 964,Acyclovir,This prescription helps to control seizures in individuals with epilepsy,150.24,Bristol-Myers Squibb
 965,Hydrocortisone Butyrate,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,213.56,Novartis
 966,RIte Aid,This prescription helps to control seizures in individuals with epilepsy,271.79,Johnson & Johnson
@@ -970,18 +970,18 @@ Product ID,Product,Description,Price,Category
 969,Zolpidem Tartrate,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,177.33,Bristol-Myers Squibb
 970,ALLERGY EYE DROPS,This medicine is used to manage anxiety and panic disorders,200.78,Bristol-Myers Squibb
 971,exchange select antacid,This remedy is used to reduce inflammation and pain caused by arthritis,344.65,Sanofi
-972,zonnic nicotine polacrilex,This remedy is used to reduce inflammation and pain caused by arthritis,298.30,Roche
+972,zonnic nicotine polacrilex,This remedy is used to reduce inflammation and pain caused by arthritis,298.3,Roche
 973,simply right nicotine,This drug is prescribed to relieve pain and reduce fever,53.58,AbbVie
 974,ZALEPLON,This medication is prescribed to treat depression and improve mood,121.58,GlaxoSmithKline
 975,Scrub Pine,This remedy is used to reduce inflammation and pain caused by arthritis,138.17,Pfizer
 976,Nystatin,This prescription helps to control seizures in individuals with epilepsy,66.62,Pfizer
 977,Aricept,This remedy is used to treat insomnia and promote sleep.,418.82,Pfizer
-978,"Pollens - Trees, Walnut, Black Juglans nigra",This medicine is used to manage anxiety and panic disorders,471.20,GlaxoSmithKline
+978,"Pollens - Trees, Walnut, Black Juglans nigra",This medicine is used to manage anxiety and panic disorders,471.2,GlaxoSmithKline
 979,Stila Stay All Day 10-in-1 HD Beauty Balm Broad Spectrum SPF 30,This prescription helps to control seizures in individuals with epilepsy,280.23,Johnson & Johnson
 980,Claforan,This drug is used to relieve symptoms of allergies such as sneezing and itching,458.82,Johnson & Johnson
 981,TRAMADOL HYDROCHLORIDE,This medication is used to treat high blood pressure,70.03,Novartis
 982,OXYGEN,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,169.63,Pfizer
-983,Promethazine hydrochloride,This prescription helps to control seizures in individuals with epilepsy,233.40,Pfizer
+983,Promethazine hydrochloride,This prescription helps to control seizures in individuals with epilepsy,233.4,Pfizer
 984,LBEL Couleur Luxe Rouge Amplifier XP amplifying SPF 15,This medicine is used to manage anxiety and panic disorders,342.88,AbbVie
 985,MEIJER ALOE GEL,This remedy is used to reduce inflammation and pain caused by arthritis,379.22,Bristol-Myers Squibb
 986,Cactus Compositum,This drug is used to relieve symptoms of allergies such as sneezing and itching,262.88,Novartis
@@ -990,7 +990,7 @@ Product ID,Product,Description,Price,Category
 989,Olanzapine and Fluoxetine,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,358.65,Bristol-Myers Squibb
 990,Magnesium Oxide,This prescription helps to lower cholesterol levels and reduce the risk of heart disease,126.02,Johnson & Johnson
 991,Degree,This medicine is used to manage anxiety and panic disorders,227.51,GlaxoSmithKline
-992,Torsemide,This drug is prescribed to relieve pain and reduce fever,374.70,Roche
+992,Torsemide,This drug is prescribed to relieve pain and reduce fever,374.7,Roche
 993,Childrens Ibuprofen,This remedy is used to reduce inflammation and pain caused by arthritis,350.93,Pfizer
 994,MBM 12 Male,This medicine is used to manage anxiety and panic disorders,114.03,Johnson & Johnson
 995,Montelukast Sodium,This medication is used to treat high blood pressure,319.42,AbbVie
