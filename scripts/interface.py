@@ -10,11 +10,47 @@ from scatter_chart import report_price_by_quantity
 from data_export import save_tables, save_as
 import os
 import pandas as pd
+import numpy as np
 
-os.chdir('C:\\Users\Stepan\PycharmProjects\pythonProject\work')
+
+def create_pivot_table():
+    dialog = tk.Toplevel(root)
+    dialog.title("Сводная таблица")
+
+    tk.Label(dialog, text="Выберите значения (values):").grid(row=0, column=0, sticky="nesw")
+    values_entry = ttk.Combobox(dialog, values=['None'] + list(MERGED.columns), state='readonly')
+    values_entry.grid(row=1, column=0, sticky="nesw")
+
+    tk.Label(dialog, text="Выберите индекс (index):").grid(row=0, column=1, sticky="nesw")
+    index_entry = ttk.Combobox(dialog, values=['None'] + list(MERGED.columns), state='readonly')
+    index_entry.grid(row=1, column=1, sticky="nesw")
+
+    tk.Label(dialog, text="Выберите столбцы (columns):").grid(row=0, column=2, sticky="nesw")
+    columns_entry = ttk.Combobox(dialog, values=['None'] + list(MERGED.columns), state='readonly')
+    columns_entry.grid(row=1, column=2, sticky="nesw")
+
+    def create_pivot_table():
+        values = values_entry.get()
+        index = index_entry.get()
+        columns = columns_entry.get()
+
+        try:
+            pivot_data = pd.pivot_table(MERGED,
+                                        values=values if values != 'None' else None,
+                                        index=index if index != 'None' else None,
+                                        columns=columns if columns != 'None' else None,
+                                        aggfunc=np.sum)
+            dialog2 = tk.Toplevel(root)
+            dialog2.title("Сводная таблица")
+            create_table(dialog2, pivot_data, True)
+        except Exception:
+            print("Данные не подходят для создания сводной таблицы")
+
+    tk.Button(dialog, text="Создать таблицу", command=create_pivot_table).grid(row=2, column=0, columnspan=3, sticky="nesw")
+    config_widgets(dialog, 3, 3)
 
 
-def create_table(tab, data: pd.DataFrame) -> Treeview:
+def create_table(tab, data: pd.DataFrame, pivot=False) -> Treeview:
     """
     Функция для добавления таблицы в окно
     :param tab: Название окна
@@ -42,6 +78,8 @@ def create_table(tab, data: pd.DataFrame) -> Treeview:
     scrollbar.pack(side='right', fill='y')
     table.configure(yscroll=scrollbar.set)
 
+    if pivot:
+        data = data.reset_index()
     heads = [translater[x] for x in data.columns]
     table['columns'] = heads
     table['show'] = 'headings'
@@ -346,7 +384,7 @@ btn_1 = ttk.Button(root, text='Текстовый отчёт', command=report_1)
 btn_1.grid(column=1, row=0, sticky="nesw")
 btn_2 = ttk.Button(root, text='Статистический отчёт', command=report_2)
 btn_2.grid(column=1, row=1, sticky="nesw")
-btn_3 = ttk.Button(root, text='Сводная таблица', command=report_3)
+btn_3 = ttk.Button(root, text='Сводная таблица', command=create_pivot_table)
 btn_3.grid(column=1, row=2, sticky="nesw")
 btn_4 = ttk.Button(root, text='Гистограмма', command=create_hist)
 btn_4.grid(column=1, row=3, sticky="nesw")
