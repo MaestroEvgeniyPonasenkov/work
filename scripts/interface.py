@@ -3,7 +3,7 @@ from tkinter import ttk, Spinbox, Entry
 from tkinter.ttk import Treeview, Scrollbar, Spinbox
 from typing import Tuple
 
-from text_reports import report_about_firm, merge_files
+from text_reports import report_about_firm, merge_files, generate_attribute_report
 from hist_chart import histogram
 from bar_chart import report_day_sales, report_week_sales, report_year_sales, report_month_sales
 from boxplot_chart import report_price_by_category
@@ -68,6 +68,37 @@ def create_pivot_table():
     tk.Button(dialog, text="Создать таблицу", command=create_pivot_table).grid(row=2, column=0, columnspan=4,
                                                                                sticky="nesw")
     config_widgets(dialog, 3, 4)
+
+
+def create_statistic_report():
+    dialog = tk.Toplevel(root)
+    dialog.title("Сводная таблица")
+    
+    tk.Label(dialog, text="Выберите первый атрибут:").grid(row=0, column=0, sticky="nesw")
+    attribute_1_entry = ttk.Combobox(dialog, values=list(MERGED.columns), state='readonly')
+    attribute_1_entry.grid(row=1, column=0, sticky="nesw")
+
+    tk.Label(dialog, text="Выберите второй атрибут:").grid(row=0, column=1, sticky="nesw")
+    attribute_2_entry = ttk.Combobox(dialog, values=list(MERGED.columns), state='readonly')
+    attribute_2_entry.grid(row=1, column=1, sticky="nesw")
+
+
+    def create_stat_report():
+        attribute_1 = attribute_1_entry.get()
+        attribute_2 = attribute_2_entry.get()
+        
+        attribute_rep = generate_attribute_report(MERGED, attribute_1, attribute_2)
+        
+        dialog2 = tk.Toplevel(root)
+        dialog2.title("Сводная таблица")
+        create_table(dialog2, attribute_rep[0])
+        create_table(dialog2, attribute_rep[1])
+        create_table(dialog2, attribute_rep[2])
+        create_table(dialog2, attribute_rep[3])
+
+
+    tk.Button(dialog, text="Создать таблицу", command=create_stat_report).grid(row=2, column=0, columnspan=2, sticky="nesw")
+    config_widgets(dialog, 3, 2)
 
 
 def create_table(tab, data: pd.DataFrame, pivot=False) -> Treeview:
@@ -624,7 +655,7 @@ MERGED = merge_files(GOODS, ORDERS, ORDERS_STRUCTURE)
 merged_table = create_table(tab4, MERGED)
 
 ttk.Button(root, text='Текстовый отчёт', command=report_1).grid(column=2, row=0, sticky="nesw")
-ttk.Button(root, text='Статистический отчёт', command=report_2).grid(column=2, row=1, sticky="nesw")
+ttk.Button(root, text='Статистический отчёт', command=create_statistic_report).grid(column=2, row=1, sticky="nesw")
 ttk.Button(root, text='Сводная таблица', command=create_pivot_table).grid(column=2, row=2, sticky="nesw")
 ttk.Button(root, text='Гистограмма', command=create_hist).grid(column=2, row=3, sticky="nesw")
 ttk.Button(root, text='Стобчатая диаграмма', command=create_bar).grid(column=2, row=4, sticky="nesw")
