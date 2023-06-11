@@ -2,7 +2,13 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 
-def histogram(data: pd.DataFrame, colomn: str) -> None:
+def histogram(data: pd.DataFrame, colomn: str):
+    """
+    Создание гистограммы
+    Автор: Болезнов С.А.
+    :param data: Датафрейм с данными
+    :param colomn: Тип гистограммы
+    """
     if colomn == 'Quantity':
         plt.hist(data[colomn], bins=20, color='blue', edgecolor='black')
         plt.title('Гистограмма распределения количества\nтоваров в заказе')
