@@ -16,6 +16,20 @@ import numpy as np
 def create_pivot_table():
     dialog = tk.Toplevel(root)
     dialog.title("Сводная таблица")
+    agg_functions = {
+    "среднее значение": "mean",
+    "сумма": "sum",
+    "минимальное значение": "min",
+    "максимальное значение": "max",
+    "количество непустых значений": "count",
+    "медиана": "median",
+    "стандартное отклонение": "std",
+    "дисперсия": "var",
+    "первое значение": "first",
+    "последнее значение": "last",
+    "произведение": "prod"
+    }
+
 
     tk.Label(dialog, text="Выберите значения (values):").grid(row=0, column=0, sticky="nesw")
     values_entry = ttk.Combobox(dialog, values=['None'] + list(MERGED.columns), state='readonly')
@@ -28,26 +42,31 @@ def create_pivot_table():
     tk.Label(dialog, text="Выберите столбцы (columns):").grid(row=0, column=2, sticky="nesw")
     columns_entry = ttk.Combobox(dialog, values=['None'] + list(MERGED.columns), state='readonly')
     columns_entry.grid(row=1, column=2, sticky="nesw")
+    
+    tk.Label(dialog, text="Выберите функцию агрегации (aggfunc):").grid(row=0, column=3, sticky="nesw")
+    aggfunc_entry = ttk.Combobox(dialog, values=list(agg_functions.keys()), state='readonly')
+    aggfunc_entry.grid(row=1, column=3, sticky="nesw")
 
     def create_pivot_table():
         values = values_entry.get()
         index = index_entry.get()
         columns = columns_entry.get()
+        aggfunc = aggfunc_entry.get()
 
         try:
             pivot_data = pd.pivot_table(MERGED,
                                         values=values if values != 'None' else None,
                                         index=index if index != 'None' else None,
                                         columns=columns if columns != 'None' else None,
-                                        aggfunc=np.sum)
+                                        aggfunc=agg_functions.get(aggfunc))
             dialog2 = tk.Toplevel(root)
             dialog2.title("Сводная таблица")
             create_table(dialog2, pivot_data, True)
-        except Exception:
-            print("Данные не подходят для создания сводной таблицы")
+        except Exception as ex:
+            print(f"Данные не подходят для создания сводной таблицы\nДетали: {ex}")
 
-    tk.Button(dialog, text="Создать таблицу", command=create_pivot_table).grid(row=2, column=0, columnspan=3, sticky="nesw")
-    config_widgets(dialog, 3, 3)
+    tk.Button(dialog, text="Создать таблицу", command=create_pivot_table).grid(row=2, column=0, columnspan=4, sticky="nesw")
+    config_widgets(dialog, 3, 4)
 
 
 def create_table(tab, data: pd.DataFrame, pivot=False) -> Treeview:
@@ -80,7 +99,7 @@ def create_table(tab, data: pd.DataFrame, pivot=False) -> Treeview:
 
     if pivot:
         data = data.reset_index()
-    heads = [translater[x] for x in data.columns]
+    heads = [translater.get(head, str(head)) for head in data.columns]
     table['columns'] = heads
     table['show'] = 'headings'
 
