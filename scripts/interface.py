@@ -71,8 +71,8 @@ def create_pivot_table():
 
 def create_statistic_report():
     dialog = tk.Toplevel(root)
-    dialog.title("Сводная таблица")
-    
+    dialog.title("Статистический отчет")
+
     tk.Label(dialog, text="Выберите первый атрибут:").grid(row=0, column=0, sticky="nesw")
     attribute_1_entry = ttk.Combobox(dialog, values=list(MERGED.columns), state='readonly')
     attribute_1_entry.grid(row=1, column=0, sticky="nesw")
@@ -81,13 +81,12 @@ def create_statistic_report():
     attribute_2_entry = ttk.Combobox(dialog, values=list(MERGED.columns), state='readonly')
     attribute_2_entry.grid(row=1, column=1, sticky="nesw")
 
-
     def create_stat_report():
         attribute_1 = attribute_1_entry.get()
         attribute_2 = attribute_2_entry.get()
-        
+
         attribute_rep = generate_attribute_report(MERGED, attribute_1, attribute_2)
-        
+
         dialog2 = tk.Toplevel(root)
         dialog2.title("Сводная таблица")
         create_table(dialog2, attribute_rep[0])
@@ -95,8 +94,8 @@ def create_statistic_report():
         create_table(dialog2, attribute_rep[2])
         create_table(dialog2, attribute_rep[3])
 
-
-    tk.Button(dialog, text="Создать таблицу", command=create_stat_report).grid(row=2, column=0, columnspan=2, sticky="nesw")
+    tk.Button(dialog, text="Создать таблицу", command=create_stat_report).grid(row=2, column=0, columnspan=2,
+                                                                               sticky="nesw")
     config_widgets(dialog, 3, 2)
 
 
@@ -261,10 +260,6 @@ def report_1():
 
     tk.Button(dialog, text="Создать", command=ok_button).grid(row=6, column=0, columnspan=2, sticky="nesw")
     tk.Button(dialog, text='Отменить', command=dialog.destroy).grid(row=6, column=2, sticky='nsew')
-
-
-def report_2():
-    pass
 
 
 def create_hist():
@@ -559,11 +554,20 @@ def generate_id(index) -> int:
         return max(ids) + 1
     if index == 1:
         ids = [x for x in ORDERS['Order ID']]
-        np.random.random()
-
+        new_id = ids[0]
+        while new_id in ids:
+            first_part = np.random.randint(1, 100)
+            second_part = np.random.randint(1, 1000)
+            third_part = np.random.randint(1, 10000)
+            new_id = f'{first_part}-{second_part}-{third_part}'
+        return new_id
 
 
 def add_order():
+    """
+    Функция для добавления заказа
+    Автор: Болезнов С.А.
+    """
     dialog = tk.Toplevel(root)
     dialog.title('Создание нового заказа')
     tk.Label(dialog, text='Дата').grid(column=0, row=0, columnspan=3, sticky="nesw")
@@ -594,24 +598,32 @@ def add_order():
     quantity_entry.grid(row=7, column=0, sticky="nesw", columnspan=3)
 
     def save():
+        """
+        Функция для сохранения полученных данных
+        Автор: Болезнов С.А.
+        """
         date = f'{date_month.get()}/{date_day.get()}/{date_year.get()}'
         sum = sum_entry.get()
         quantity = quantity_entry.get()
-        product = good_entry.get()
+        product = ids[products.index(good_entry.get())]
         order_id = generate_id(1)
-        order_values = {
-            "Order ID": order_id,
-            "Date": date,
-            'Sum': sum
-        }
-        struct_values = {
-            "Order ID": order_id,
-            "Product ID": product,
-            "Quantity": quantity
-        }
+        order_values = [order_id, date, sum]
+        struct_values = [order_id, product, quantity]
         global ORDERS, ORDERS_STRUCTURE
-        ORDERS = ORDERS.append(order_values, ignore_index=True)
-        ORDERS_STRUCTURE = ORDERS_STRUCTURE.append(struct_values, ignore_index=True)
+        ORDERS = pd.concat([pd.DataFrame([order_values], columns=ORDERS.columns), ORDERS], ignore_index=True)
+        ORDERS_STRUCTURE = pd.concat(
+            [pd.DataFrame([struct_values], columns=ORDERS_STRUCTURE.columns), ORDERS_STRUCTURE],
+            ignore_index=True)
+        dialog.destroy()
+        widgets_list = tab2.pack_slaves()
+        for element in widgets_list:
+            element.destroy()
+        global orders_table, orders_structure_table
+        orders_table = create_table(tab2, ORDERS)
+        widgets_list = tab3.pack_slaves()
+        for element in widgets_list:
+            element.destroy()
+        orders_structure_table = create_table(tab3, ORDERS_STRUCTURE)
 
     save_button = ttk.Button(dialog, text='Создать', command=save)
     cancel_button = ttk.Button(dialog, text='Отмена', command=dialog.destroy)
@@ -621,7 +633,56 @@ def add_order():
 
 
 def add_product():
-    pass
+    """
+    Функция для добавления товара
+    Автор: Болезнов С.А.
+    """
+    dialog = tk.Toplevel(root)
+    dialog.title('Создание нового товара')
+    tk.Label(dialog, text="Название").grid(row=0, column=0, sticky="nesw")
+    product_entry = tk.Entry(dialog)
+    product_entry.grid(row=1, column=0, sticky="nesw")
+
+    tk.Label(dialog, text="Описание").grid(row=2, column=0, sticky="nesw")
+    description_entry = tk.Entry(dialog)
+    description_entry.grid(row=3, column=0, sticky="nesw")
+
+    tk.Label(dialog, text="Цена").grid(row=4, column=0, sticky="nesw")
+    sum_entry = ttk.Spinbox(dialog, increment=1, from_=0, to=100000)
+    sum_entry.set(1000)
+    sum_entry.grid(row=5, column=0, sticky="nesw")
+
+    tk.Label(dialog, text="Категория").grid(row=6, column=0, sticky="nesw")
+    category_entry = tk.Entry(dialog)
+    category_entry.grid(row=7, column=0, sticky="nesw")
+
+    def save():
+        """
+        Функция для сохранения полученных данных
+        Автор: Болезнов С.А.
+        """
+        product = product_entry.get()
+        description = description_entry.get()
+        sum = sum_entry.get()
+        category = category_entry.get()
+
+        product_id = generate_id(0)
+        product_values = [product_id, product, description, sum, category]
+        global GOODS
+        GOODS = pd.concat([pd.DataFrame([product_values], columns=GOODS.columns), GOODS], ignore_index=True)
+        dialog.destroy()
+        widgets_list = tab1.pack_slaves()
+        for element in widgets_list:
+            element.destroy()
+        global goods_table
+        goods_table = create_table(tab1, GOODS)
+
+
+    save_button = ttk.Button(dialog, text='Создать', command=save)
+    cancel_button = ttk.Button(dialog, text='Отмена', command=dialog.destroy)
+    save_button.grid(row=8, column=0, sticky="nesw", columnspan=2)
+    cancel_button.grid(row=8, column=2, sticky="nesw")
+    config_widgets(dialog, 9, 3)
 
 
 def config_color():
