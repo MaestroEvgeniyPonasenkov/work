@@ -422,7 +422,7 @@ def replace_row_values(df: pd.DataFrame, old_values: list, new_values: list) -> 
     """
     Функция для замены одной строки датафрейма на новую
     Автор: Болезнов С.А.
-    :param df: Исходный датафрейм
+    :param df(pd.DataFrame): Исходный датафрейм
     :param old_values: Список значений, которые будут изсменены
     :param new_values: Список новых значений
     :return: Изменененный датафрейм
