@@ -42,7 +42,7 @@ def generate_frequency_table(data, attribute):
     Автор: Ряднов И.М.
     :param data(pd.DataFrame): датафрейм со всеми данными
     :param attribute(str): имя атрибута
-    :return freq_table():
+    :return freq_table(pd.DataFrame): отчёт о частотах
     """
     freq_table = data[attribute].value_counts().reset_index()
     freq_table.columns = [attribute, 'Частота']
@@ -56,7 +56,7 @@ def generate_descriptive_stats(data, attribute):
     Автор: Ряднов И.М.
     :param data(pd.DataFrame): датафрейм со всеми данными
     :param attribute(str): имя атрибута
-    :return descriptive_stats():
+    :return descriptive_stats(pd.DataFrame): отчёт описания
     """
     descriptive_stats = data[attribute].describe().reset_index()
     descriptive_stats.columns = ['Статистика', attribute]
@@ -86,10 +86,10 @@ def generate_attribute_report(data, attribute1, attribute2):
     :param data(pd.DataFrame): датафрейм со всеми данными
     :param attribute1(str): имя первого атрибута
     :param attribute2(str): имя второго атрибута
-    :return freq_table1():
-    :return stats_table1():
-    :return freq_table2():
-    :return stats_table2():
+    :return freq_table1(pd.DataFrame): отчёт о частотах первого атрибута
+    :return stats_table1(pd.DataFrame): отчёт описания второго атрибута
+    :return freq_table2(pd.DataFrame): отчёт о частотах первого атрибута
+    :return stats_table2(pd.DataFrame): отчёт описания второго атрибута
     """
     freq_table1 = generate_frequency_table(data, attribute1)
     stats_table1 = generate_descriptive_stats(data, attribute1)
@@ -214,7 +214,7 @@ def format_func(value, tick_number):
     Автор: Ряднов И.М.
     :param value(int): значение показателя на графике
     :param tick_number(int): количество tick
-    :return value():
+    :return value(str): строка с измененным форматом числа
     """
     if value >= 1000000:
         value = f'{int(value / 1000000)}M'
