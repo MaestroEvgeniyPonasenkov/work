@@ -11,6 +11,7 @@ def merge_files(PRODUCT, ORDERS, TOTAL_ORDERS):
     :param PRODUCT(pd.DataFrame): датафрейм с товарами
     :param ORDERS(pd.DataFrame): датафрейм с заказами
     :param TOTAL_ORDERS(pd.DataFrame): датафрейм со всеми заказами
+    :return merged(pd.DataFrame): объединенный датафрейм
     Автор: Ряднов И.М.
     """
     merged = pd.merge(TOTAL_ORDERS, PRODUCT, on="Product ID")
@@ -20,11 +21,12 @@ def merge_files(PRODUCT, ORDERS, TOTAL_ORDERS):
 
 def report_about_firm(merged, start_date, end_date, category):
     """
-    отчет о продажах товаров выбранной компании за выбранный временной промежуток
+    Отчет о продажах товаров выбранной компании за выбранный временной промежуток
     :param merged(pd.DataFrame): датафрейм со всеми данными
     :param start_date(str): начальная дата
     :param end_date(str): конечная дата
     :param category(str): категория
+    :return result(pd.DataFrame): полученный отчет
     Автор: Ряднов И.М.
     """
     merged['Date'] = merged['Date'].astype("datetime64[ns]")
