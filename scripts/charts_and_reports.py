@@ -7,11 +7,11 @@ from matplotlib.ticker import FuncFormatter
 def merge_files(PRODUCT, ORDERS, TOTAL_ORDERS):
     """
     Мердж данных
+    Автор: Ряднов И.М.
     :param PRODUCT(pd.DataFrame): датафрейм с товарами
     :param ORDERS(pd.DataFrame): датафрейм с заказами
     :param TOTAL_ORDERS(pd.DataFrame): датафрейм со всеми заказами
     :return merged(pd.DataFrame): объединенный датафрейм
-    Автор: Ряднов И.М.
     """
     merged = pd.merge(TOTAL_ORDERS, PRODUCT, on="Product ID")
     merged = pd.merge(merged, ORDERS, on="Order ID")
@@ -21,16 +21,16 @@ def merge_files(PRODUCT, ORDERS, TOTAL_ORDERS):
 def report_about_firm(merged, start_date, end_date, category):
     """
     Отчет о продажах товаров выбранной компании за выбранный временной промежуток
+    Автор: Болезнов С.А.
     :param merged(pd.DataFrame): датафрейм со всеми данными
     :param start_date(str): начальная дата
     :param end_date(str): конечная дата
     :param category(str): категория
     :return result(pd.DataFrame): полученный отчет
-    Автор: Ряднов И.М.
     """
     merged['Date'] = merged['Date'].astype("datetime64[ns]")
     selector = (merged['Date'].between(start_date, end_date)) & (
-        merged['Category'] == category)
+            merged['Category'] == category)
     result = merged.loc[selector, ['Product',
                                    'Description', 'Price', 'Quantity', 'Sum']]
     return result
@@ -39,23 +39,24 @@ def report_about_firm(merged, start_date, end_date, category):
 def generate_frequency_table(data, attribute):
     """
     Отчет о частоте встречаемости атрибута
+    Автор: Ряднов И.М.
     :param data(pd.DataFrame): датафрейм со всеми данными
     :param attribute(str): имя атрибута
-    Автор: Ряднов И.М.
+    :return freq_table():
     """
     freq_table = data[attribute].value_counts().reset_index()
     freq_table.columns = [attribute, 'Частота']
-    freq_table['Процент'] = (
-        freq_table['Частота'] / len(data)) * 100
+    freq_table['Процент'] = (freq_table['Частота'] / len(data)) * 100
     return freq_table
 
 
 def generate_descriptive_stats(data, attribute):
     """
-    отчет-описание атрибутов
+    Отчет-описание атрибутов
+    Автор: Ряднов И.М.
     :param data(pd.DataFrame): датафрейм со всеми данными
     :param attribute(str): имя атрибута
-    Автор: Ряднов И.М.
+    :return descriptive_stats():
     """
     descriptive_stats = data[attribute].describe().reset_index()
     descriptive_stats.columns = ['Статистика', attribute]
@@ -80,11 +81,15 @@ def generate_descriptive_stats(data, attribute):
 
 def generate_attribute_report(data, attribute1, attribute2):
     """
-    генерация отчётов о паре атрибутов
+    Генерация отчётов о паре атрибутов
+    Автор: Ряднов И.М.
     :param data(pd.DataFrame): датафрейм со всеми данными
     :param attribute1(str): имя первого атрибута
     :param attribute2(str): имя второго атрибута
-    Автор: Ряднов И.М.
+    :return freq_table1():
+    :return stats_table1():
+    :return freq_table2():
+    :return stats_table2():
     """
     freq_table1 = generate_frequency_table(data, attribute1)
     stats_table1 = generate_descriptive_stats(data, attribute1)
@@ -96,22 +101,23 @@ def generate_attribute_report(data, attribute1, attribute2):
 def report_day_sales(data):
     """
     Функция для отображения графика продаж по дням
-    :param data(pd.DataFrame): Данные таблицы 2
     Автор: Ряднов И.М.
+    :param data(pd.DataFrame): Данные таблицы 2
+    :return: None
     """
     months = {
-    1: "Январь",
-    2: "Февраль",
-    3: "Март",
-    4: "Апрель",
-    5: "Май",
-    6: "Июнь",
-    7: "Июль",
-    8: "Август",
-    9: "Сентябрь",
-    10: "Октябрь",
-    11: "Ноябрь",
-    12: "Декабрь"
+        1: "Январь",
+        2: "Февраль",
+        3: "Март",
+        4: "Апрель",
+        5: "Май",
+        6: "Июнь",
+        7: "Июль",
+        8: "Август",
+        9: "Сентябрь",
+        10: "Октябрь",
+        11: "Ноябрь",
+        12: "Декабрь"
     }
     if data.index.name is None:
         data['Date'] = data['Date'].astype("datetime64[ns]")
@@ -138,8 +144,9 @@ def report_day_sales(data):
 def report_week_sales(data):
     """
     Функция для отображения графика продаж по неделям
-    :param data(pd.DataFrame): Данные таблицы 2
     Автор: Ряднов И.М.
+    :param data(pd.DataFrame): Данные таблицы 2
+    :return: None
     """
     if data.index.name is None:
         data['Date'] = data['Date'].astype("datetime64[ns]")
@@ -158,8 +165,9 @@ def report_week_sales(data):
 def report_month_sales(data):
     """
     Функция для отображения графика продаж по месяцам
-    :param data(pd.DataFrame): Данные таблицы 2
     Автор: Ряднов И.М.
+    :param data(pd.DataFrame): Данные таблицы 2
+    :return: None
     """
     if data.index.name is None:
         data['Date'] = data['Date'].astype("datetime64[ns]")
@@ -180,8 +188,9 @@ def report_month_sales(data):
 def report_year_sales(data):
     """
     Функция для отображения графика продаж по годам
-    :param data(pd.DataFrame): Данные таблицы 2
     Автор: Ряднов И.М.
+    :param data(pd.DataFrame): Данные таблицы 2
+    :return: None
     """
     if data.index.name is None:
         data['Date'] = data['Date'].astype("datetime64[ns]")
@@ -202,9 +211,10 @@ def report_year_sales(data):
 def format_func(value, tick_number):
     """
     Функция для изменения отображения больших значений на осях графиков
+    Автор: Ряднов И.М.
     :param value(int): значение показателя на графике
     :param tick_number(int): количество tick
-    Автор: Ряднов И.М.
+    :return value():
     """
     if value >= 1000000:
         value = f'{int(value / 1000000)}M'
@@ -216,8 +226,9 @@ def format_func(value, tick_number):
 def report_price_by_category(data: pd.DataFrame) -> None:
     """
     Функция для отображения графика распределения цен по категориям товаров
-    :param data(pd.DataFrame): Данные таблицы 1
     Автор: Ряднов И.М.
+    :param data(pd.DataFrame): Данные таблицы 1
+    :return: None
     """
     data['Price'] = data['Price'].replace(
         '[\$,]', '', regex=True).astype(float)
@@ -240,6 +251,7 @@ def histogram(data: pd.DataFrame, colomn: str):
     Автор: Болезнов С.А.
     :param data: Датафрейм с данными
     :param colomn: Тип гистограммы
+    :return: None
     """
     if colomn == 'Quantity':
         plt.hist(data[colomn], bins=20, color='blue', edgecolor='black')
@@ -258,13 +270,14 @@ def histogram(data: pd.DataFrame, colomn: str):
         plt.xlabel('Сумма заказа')
         plt.ylabel('Количество')
     plt.show()
-    
+
 
 def report_price_by_quantity(data):
     """
     Функция для отображения графика распределения количества заказанных товаров по их цене
-    :param data(pd.DataFrame): Данные таблицы 3
     Автор: Ряднов И.М.
+    :param data(pd.DataFrame): Данные таблицы 3
+    :return: None
     """
     plt.scatter(data['Price'], data['Quantity'])
     plt.xlabel('Цена')
