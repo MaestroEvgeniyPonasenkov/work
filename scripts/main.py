@@ -11,7 +11,7 @@ import tkinter as tk
 from tkinter import ttk, Entry, colorchooser
 from tkinter.ttk import Treeview, Spinbox
 
-os.chdir("\\".join(os.getcwd().split("\\")))
+os.chdir("\\".join(os.getcwd().split("\\")[:-1]))
 sys.path.append("\\".join(os.getcwd().split("\\")))
 from library.utils import *
 from charts_and_reports import *
@@ -21,6 +21,7 @@ def create_pivot_table():
     """
     Создание окна с выбором параметров для сводной таблицы
     Автор Ряднов И.М.
+    :return: None
     """
     dialog = tk.Toplevel(root)
     dialog.title("Сводная таблица")
@@ -58,6 +59,7 @@ def create_pivot_table():
         """
         Создание сводной таблицы
         Автор Ряднов И.М.
+        :return: None
         """
         values = values_entry.get()
         index = index_entry.get()
@@ -92,6 +94,7 @@ def create_statistic_report():
     """
     Создание окна с выбором атрибутов для статистического отчета
     Автор Ряднов И.М.
+    :return: None
     """
     dialog = tk.Toplevel(root)
     dialog.title("Статистический отчет")
@@ -104,11 +107,11 @@ def create_statistic_report():
     attribute_2_entry = ttk.Combobox(dialog, values=list(MERGED.columns), state='readonly')
     attribute_2_entry.grid(row=1, column=1, sticky="nesw")
 
-    
     def create_stat_report():
         """
         Создание статистического отчета
         Автор Ряднов И.М., Болезнов С.А.
+        :return: None
         """
         attribute_1 = attribute_1_entry.get()
         attribute_2 = attribute_2_entry.get()
@@ -145,7 +148,6 @@ def create_statistic_report():
         export_button_1.grid(row=2, column=1, sticky='nsew')
         config_widgets(dialog2, 3, 2)
 
-    
     tk.Button(dialog, text="Создать таблицу", command=create_stat_report).grid(row=2, column=0, columnspan=2,
                                                                                sticky="nesw")
     config_widgets(dialog, 3, 2)
@@ -205,6 +207,7 @@ def new_save():
     """
     Функция для сохранения одной таблицы в отдельный файл
     Автор: Болезнов С.А.
+    :return: None
     """
     index = tab_control.index(tab_control.select())
     tabs = [GOODS, ORDERS, ORDERS_STRUCTURE, MERGED]
@@ -247,6 +250,7 @@ def config_widgets(parent, rows: int, cols: int):
     :param parent: Название окна
     :param rows: Количество рядов в сетке окна
     :param cols: Количество столбцов в сетке окна
+    :return: None
     """
     for col in range(cols):
         parent.columnconfigure(index=col, weight=1)
@@ -258,6 +262,7 @@ def report_1():
     """
     Создание нового окна для ввода необходимых параметров для текстового отчета
     Автор: Болезнов С.А.
+    :return: None
     """
     dialog = tk.Toplevel(root)
     dialog.title("Текстовый отчёт")
@@ -274,6 +279,7 @@ def report_1():
         """
         Вывод полученного отчета на экран
         Автор: Болезнов С.А.
+        :return: None
         """
         first_date = f'{start_date_year.get()}-{start_date_month.get()}-{start_date_day.get()}'
         second_date = f'{end_date_year.get()}-{end_date_month.get()}-{end_date_day.get()}'
@@ -297,6 +303,7 @@ def create_hist():
     """
     Создание нового окна с выбором гистограмм
     Автор: Болезнов С.А.
+    :return: None
     """
     dialog = tk.Toplevel(root)
     dialog.title("Создание гистограммы")
@@ -314,6 +321,7 @@ def create_bar():
     """
     Создание нового окна для выбора столбчатых диаграмм
     Автор: Болезнов С.А.
+    :return: None
     """
     dialog = tk.Toplevel(root)
     dialog.title("Создание столбчатой диаграммы")
@@ -333,6 +341,7 @@ def create_scatter():
     """
     Функция для подготовки данных и отображения таблицы рассеивания
     Автор: Ряднов И.М.
+    :return: None
     """
     data = pd.merge(ORDERS_STRUCTURE, GOODS, on="Product ID")
     data['Price'] = data['Price'].astype(float)
@@ -343,6 +352,7 @@ def del_line():
     """
     Функция для удаления строк таблицы.
     Автор: Болезнов С.А.
+    :return: None
     """
     index = tab_control.index(tab_control.select())
     if index == 0:
@@ -376,6 +386,7 @@ def edit_line():
     """
     Внесение изменений в строку таблицы.
     Автор: Болезнов С.А.
+    :return: None
     """
     index = tab_control.index(tab_control.select())
     if index == 0:
@@ -436,6 +447,7 @@ def goods_dialog(selected_item, selected_line) -> tuple[Entry, Entry, Spinbox, E
         """
         Функция для сохранения полученных значений
         Автор: Болезнов С.А.
+        :return: None
         """
         name = name_entry.get()
         description = description_entry.get()
@@ -469,7 +481,7 @@ def replace_row_values(df: pd.DataFrame, old_values: list, new_values: list) -> 
         row_idx = (df['Order ID'] == old_values[0])
     elif 'Product ID' in df.columns:
         row_idx = (df['Product ID'] == old_values[0])
-    elif 'Order ID' in df.columns:
+    else:
         row_idx = (df['Order ID'] == old_values[0])
     df.loc[row_idx] = new_values
     return df
@@ -501,6 +513,7 @@ def orders_dialog(selected_item, selected_line):
         """
         Функция для сохранения полученных значений
         Автор: Болезнов С.А.
+        :return: None
         """
         date = f'{date_month.get()}/{date_day.get()}/{date_year.get()}'
         sum = sum_entry.get()
@@ -523,6 +536,7 @@ def create_new_merge():
     """
     Функция для обновления общей таблицы после внесения изменений в справочники
     Автор: Болезнов С.А.
+    :return: None
     """
     global MERGED
     widgets_list = tab4.pack_slaves()
@@ -554,6 +568,7 @@ def orders_structure_dialog(selected_item, selected_line):
         """
         Функция для сохранения полученных значений
         Автор: Болезнов С.А.
+        :return: None
         """
         good_id = int(good_entry.get())
         quantity = quantity_entry.get()
@@ -576,6 +591,7 @@ def generate_id(index) -> int:
     """
     Функция для создания нового айди для справочников
     Автор: Болезнов С.А.
+    :return: None
     """
     if index == 0:
         ids = [int(x) for x in GOODS['Product ID']]
@@ -598,6 +614,7 @@ def add_order():
     """
     Функция для добавления заказа
     Автор: Болезнов С.А.
+    :return: None
     """
     dialog = tk.Toplevel(root)
     dialog.title('Создание нового заказа')
@@ -632,6 +649,7 @@ def add_order():
         """
         Функция для сохранения полученных данных
         Автор: Болезнов С.А.
+        :return: None
         """
         date = f'{date_month.get()}/{date_day.get()}/{date_year.get()}'
         sum = sum_entry.get()
@@ -667,6 +685,7 @@ def add_product():
     """
     Функция для добавления товара
     Автор: Болезнов С.А.
+    :return: None
     """
     dialog = tk.Toplevel(root)
     dialog.title('Создание нового товара')
@@ -691,6 +710,7 @@ def add_product():
         """
         Функция для сохранения полученных данных
         Автор: Болезнов С.А.
+        :return: None
         """
         product = product_entry.get()
         description = description_entry.get()
@@ -719,6 +739,7 @@ def config_color():
     """
     Открытие палитры и изменение цвета
     Автор Ряднов И.М.
+    :return: None
     """
     style = ttk.Style()
     color = colorchooser.askcolor(title="Выберите цвет фона")
@@ -731,6 +752,7 @@ def get_settings():
     """
     Чтение ini файла и применение полученных значений к приложению
     Автор Ряднов И.М.
+    :return: None
     """
     config = read_ini_file().get('Settings')
     height = config.get('Height')
@@ -756,22 +778,22 @@ def open_font_settings():
     """
     Окно с изменением шрифта
     Автор Ряднов И.М.
+    :return: None
     """
     font_settings_window = tk.Toplevel(root)
     font_settings_window.title("Настройки шрифта")
 
-    
     def apply_font_settings():
         """
         Подтверждение изменения настроек шрифта
         Автор Ряднов И.М.
+        :return: None
         """
         font = font_var.get()
         size = size_var.get()
         weight = weight_var.get()
         change_font(font, size, weight)
         font_settings_window.destroy()
-
 
     font_var = tk.StringVar()
     font_var.set("Arial")
@@ -799,15 +821,18 @@ def change_resolution(width, height):
     """
     Изменение разрешения
     Автор Ряднов И.М.
+    :return: None
     """
     root.geometry(f"{width}x{height}".format(root.winfo_screenwidth() // 2 - 400, root.winfo_screenheight() // 2 - 300))
     update_ini_value('Height', height)
     update_ini_value('Width', width)
 
+
 def change_font(font, size, weight):
     """
     Изменение параметров шрифта
     Автор Ряднов И.М.
+    :return: None
     """
     style = ttk.Style()
     style.configure("Treeview", font=(font, size, weight))
@@ -820,6 +845,7 @@ def toggle_window_resize():
     """
     Изменение свойства окна, которое определяет, можно ли его растягивать в длину и в ширину
     Автор Ряднов И.М.
+    :return: None
     """
     is_resizable = window_resize_var.get()
     root.resizable(is_resizable, is_resizable)
@@ -840,7 +866,7 @@ if __name__ == "__main__":
     tab4 = ttk.Frame(tab_control)
 
     ttk.Style().configure("Treeview", background=settings[4],
-                        foreground="black", fieldbackground="white", font=(settings[6], settings[5], settings[7]))
+                          foreground="black", fieldbackground="white", font=(settings[6], settings[5], settings[7]))
 
     tab_control.add(tab1, text='Товары')
     tab_control.add(tab2, text='Заказы')
@@ -871,11 +897,11 @@ if __name__ == "__main__":
 
     menu_bar = tk.Menu(root)
     root.config(menu=menu_bar)
-    file_menu = tk.Menu(menu_bar)
+    file_menu = tk.Menu(menu_bar, tearoff=False)
     menu_bar.add_cascade(label="Файл", menu=file_menu)
     file_menu.add_command(label="Сохранить", command=lambda: save_tables(GOODS, ORDERS, ORDERS_STRUCTURE))
     file_menu.add_command(label="Сохранить как", command=new_save)
-    edit_menu = tk.Menu(menu_bar)
+    edit_menu = tk.Menu(menu_bar, tearoff=False)
     menu_bar.add_cascade(label="Изменить", menu=edit_menu)
     edit_menu.add_command(label="Удалить запись", command=del_line)
     edit_menu.add_command(label="Изменить запись", command=edit_line)
@@ -893,12 +919,13 @@ if __name__ == "__main__":
     settings_menu.add_cascade(label="Шрифт", menu=font_menu)
     window_resize_var = tk.BooleanVar()
     window_resize_var.set(True)
-    settings_menu.add_checkbutton(label="Изменять размер окна", variable=window_resize_var, command=toggle_window_resize)
+    settings_menu.add_checkbutton(label="Изменять размер окна", variable=window_resize_var,
+                                  command=toggle_window_resize)
     font_menu.add_command(label="Изменить", command=open_font_settings)
 
     config_widgets(root, 7, 3)
     root.geometry(
-        f"{settings[0]}x{settings[1]}".format(root.winfo_screenwidth() // 2 - 400, root.winfo_screenheight() // 2 - 300))
+        f"{settings[0]}x{settings[1]}".format(root.winfo_screenwidth() // 2 - 400,
+                                              root.winfo_screenheight() // 2 - 300))
     root.resizable(settings[2], settings[3])
     root.mainloop()
-    
