@@ -38,7 +38,7 @@ def report_about_firm(merged, start_date, end_date, category):
 
 def generate_frequency_table(data, attribute):
     """
-    отчет о частоте встречаемости атрибута
+    Отчет о частоте встречаемости атрибута
     :param data(pd.DataFrame): датафрейм со всеми данными
     :param attribute(str): имя атрибута
     Автор: Ряднов И.М.
