@@ -11,9 +11,8 @@ import tkinter as tk
 from tkinter import ttk, Entry, colorchooser
 from tkinter.ttk import Treeview, Spinbox
 
-os.chdir("\\".join(os.getcwd().split("\\")))
+os.chdir("\\".join(os.getcwd().split("\\")[:-1]))
 sys.path.append("\\".join(os.getcwd().split("\\")))
-sys.path.append("\\".join(os.getcwd().split("\\")) + '\\library')
 from library.read_ini import read_ini_file, update_ini_value
 from library.text_reports import report_about_firm, merge_files, generate_attribute_report
 from library.hist_chart import histogram
@@ -25,7 +24,7 @@ from library.data_export import save_tables, save_as
 
 def create_pivot_table():
     """
-    Создание сводной таблицы
+    Создание окна с выбором параметров для сводной таблицы
     Автор Ряднов И.М.
     """
     dialog = tk.Toplevel(root)
@@ -61,6 +60,10 @@ def create_pivot_table():
     aggfunc_entry.grid(row=1, column=3, sticky="nesw")
 
     def create_pivot_table():
+        """
+        Создание сводной таблицы
+        Автор Ряднов И.М.
+        """
         values = values_entry.get()
         index = index_entry.get()
         columns = columns_entry.get()
@@ -72,9 +75,15 @@ def create_pivot_table():
                                         index=index if index != 'None' else None,
                                         columns=columns if columns != 'None' else None,
                                         aggfunc=agg_functions.get(aggfunc))
+            dialog.destroy()
             dialog2 = tk.Toplevel(root)
             dialog2.title("Сводная таблица")
-            create_table(dialog2, pivot_data, True)
+            table = create_table(dialog2, pivot_data, True)
+            table.pack(fill='both', expand=True)
+            export_button = ttk.Button(dialog2, text='Экспорт', command=lambda: save_as(pivot_data))
+            export_button.pack(fill='both', expand=True, )
+            config_widgets(dialog2, 2, 1)
+
         except Exception as ex:
             print(f"Данные не подходят для создания сводной таблицы\nДетали: {ex}")
 
@@ -85,7 +94,7 @@ def create_pivot_table():
 
 def create_statistic_report():
     """
-    Создание статистического отчета
+    Создание окна с выбором атрибутов для статистического отчета
     Автор Ряднов И.М.
     """
     dialog = tk.Toplevel(root)
@@ -99,25 +108,55 @@ def create_statistic_report():
     attribute_2_entry = ttk.Combobox(dialog, values=list(MERGED.columns), state='readonly')
     attribute_2_entry.grid(row=1, column=1, sticky="nesw")
 
+    def export():
+        print(1)
+
     def create_stat_report():
+        """
+        Создание статистического отчета
+        Автор Ряднов И.М., Болезнов С.А.
+        """
         attribute_1 = attribute_1_entry.get()
         attribute_2 = attribute_2_entry.get()
 
         attribute_rep = generate_attribute_report(MERGED, attribute_1, attribute_2)
 
+        dialog.destroy()
         dialog2 = tk.Toplevel(root)
         dialog2.title("Статистический отчёт")
-        create_table(dialog2, attribute_rep[0])
-        create_table(dialog2, attribute_rep[1])
-        create_table(dialog2, attribute_rep[2])
-        create_table(dialog2, attribute_rep[3])
+        tab_controler = ttk.Notebook(dialog2)
+        tab_1 = ttk.Frame(tab_controler)
+        tab_2 = ttk.Frame(tab_controler)
+        tab_3 = ttk.Frame(tab_controler)
+        tab_4 = ttk.Frame(tab_controler)
+        tab_controler.add(tab_1, text='Таблица 1')
+        tab_controler.add(tab_2, text='Таблица 2')
+        tab_controler.add(tab_3, text='Таблица 3')
+        tab_controler.add(tab_4, text='Таблица 4')
+        create_table(tab_1, attribute_rep[0])
+        create_table(tab_2, attribute_rep[1])
+        create_table(tab_3, attribute_rep[2])
+        create_table(tab_4, attribute_rep[3])
+        tab_controler.grid(row=0, column=0, columnspan=2, sticky='nsew')
+        export_button_1 = ttk.Button(dialog2, text='Экспорт 1', command=lambda: save_as(attribute_rep[0]))
+        export_button_1.grid(row=1, column=0, sticky='nsew')
+
+        export_button_1 = ttk.Button(dialog2, text='Экспорт 2', command=lambda: save_as(attribute_rep[1]))
+        export_button_1.grid(row=1, column=1, sticky='nsew')
+
+        export_button_1 = ttk.Button(dialog2, text='Экспорт 3', command=lambda: save_as(attribute_rep[2]))
+        export_button_1.grid(row=2, column=0, sticky='nsew')
+
+        export_button_1 = ttk.Button(dialog2, text='Экспорт 4', command=lambda: save_as(attribute_rep[3]))
+        export_button_1.grid(row=2, column=1, sticky='nsew')
+        config_widgets(dialog2, 3, 2)
 
     tk.Button(dialog, text="Создать таблицу", command=create_stat_report).grid(row=2, column=0, columnspan=2,
                                                                                sticky="nesw")
     config_widgets(dialog, 3, 2)
 
 
-def create_table(tab: tk.ttk.Frame, data: pd.DataFrame, pivot=False) -> Treeview:
+def create_table(tab, data: pd.DataFrame, pivot=False) -> Treeview:
     """
     Функция для добавления таблицы в окно
     :param pivot: Является ли таблица сводной
@@ -249,12 +288,11 @@ def report_1():
         dialog.destroy()
         dialog2 = tk.Toplevel(root)
         dialog2.title(f"Текстовый отчёт о продажах {category}")
-        tab_control = ttk.Notebook(root)
-        tab1 = ttk.Frame(tab_control)
-        tab_control.add(tab1, text='Товары')
-        dialog2.columnconfigure(index=0, weight=1)
-        dialog2.rowconfigure(index=0, weight=1)
-        create_table(dialog2, report)
+        table = create_table(dialog2, report)
+        table.pack(fill='both', expand=True)
+        export_button = ttk.Button(dialog2, text='Экспорт', command=lambda: save_as(report))
+        export_button.pack(fill='both', expand=True, )
+        config_widgets(dialog2, 2, 1)
 
     tk.Button(dialog, text="Создать", command=ok_button).grid(row=6, column=0, columnspan=2, sticky="nesw")
     tk.Button(dialog, text='Отменить', command=dialog.destroy).grid(row=6, column=2, sticky='nsew')
