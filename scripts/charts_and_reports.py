@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import calendar
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 
@@ -100,6 +99,20 @@ def report_day_sales(data):
     :param data(pd.DataFrame): Данные таблицы 2
     Автор: Ряднов И.М.
     """
+    months = {
+    1: "Январь",
+    2: "Февраль",
+    3: "Март",
+    4: "Апрель",
+    5: "Май",
+    6: "Июнь",
+    7: "Июль",
+    8: "Август",
+    9: "Сентябрь",
+    10: "Октябрь",
+    11: "Ноябрь",
+    12: "Декабрь"
+    }
     if data.index.name is None:
         data['Date'] = data['Date'].astype("datetime64[ns]")
         data.set_index('Date', inplace=True)
@@ -107,7 +120,7 @@ def report_day_sales(data):
     x_labels = []
     for date in sales_by_day.index:
         if date.day % 5 == 0:
-            month = calendar.month_name[date.month]
+            month = months.get(date.month)
             day = str(date.day)
             x_labels.append(f'{month} {day}')
         else:
