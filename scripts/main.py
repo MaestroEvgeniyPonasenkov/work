@@ -11,7 +11,7 @@ import tkinter as tk
 from tkinter import ttk, Entry, colorchooser
 from tkinter.ttk import Treeview, Spinbox
 
-os.chdir("\\".join(os.getcwd().split("\\")[:-1]))
+os.chdir("\\".join(os.getcwd().split("\\")))
 sys.path.append("\\".join(os.getcwd().split("\\")))
 from library.read_ini import read_ini_file, update_ini_value
 from library.text_reports import report_about_firm, merge_files, generate_attribute_report
@@ -80,7 +80,8 @@ def create_pivot_table():
             dialog2.title("Сводная таблица")
             table = create_table(dialog2, pivot_data, True)
             table.pack(fill='both', expand=True)
-            export_button = ttk.Button(dialog2, text='Экспорт', command=lambda: save_as(pivot_data))
+            export_data = pivot_data.reset_index()
+            export_button = ttk.Button(dialog2, text='Экспорт', command=lambda: save_as(export_data))
             export_button.pack(fill='both', expand=True, )
             config_widgets(dialog2, 2, 1)
 
@@ -108,9 +109,7 @@ def create_statistic_report():
     attribute_2_entry = ttk.Combobox(dialog, values=list(MERGED.columns), state='readonly')
     attribute_2_entry.grid(row=1, column=1, sticky="nesw")
 
-    def export():
-        print(1)
-
+    
     def create_stat_report():
         """
         Создание статистического отчета
@@ -138,19 +137,20 @@ def create_statistic_report():
         create_table(tab_3, attribute_rep[2])
         create_table(tab_4, attribute_rep[3])
         tab_controler.grid(row=0, column=0, columnspan=2, sticky='nsew')
-        export_button_1 = ttk.Button(dialog2, text='Экспорт 1', command=lambda: save_as(attribute_rep[0]))
+        export_button_1 = ttk.Button(dialog2, text='Экспорт таблицы 1', command=lambda: save_as(attribute_rep[0]))
         export_button_1.grid(row=1, column=0, sticky='nsew')
 
-        export_button_1 = ttk.Button(dialog2, text='Экспорт 2', command=lambda: save_as(attribute_rep[1]))
+        export_button_1 = ttk.Button(dialog2, text='Экспорт таблицы 2', command=lambda: save_as(attribute_rep[1]))
         export_button_1.grid(row=1, column=1, sticky='nsew')
 
-        export_button_1 = ttk.Button(dialog2, text='Экспорт 3', command=lambda: save_as(attribute_rep[2]))
+        export_button_1 = ttk.Button(dialog2, text='Экспорт таблицы 3', command=lambda: save_as(attribute_rep[2]))
         export_button_1.grid(row=2, column=0, sticky='nsew')
 
-        export_button_1 = ttk.Button(dialog2, text='Экспорт 4', command=lambda: save_as(attribute_rep[3]))
+        export_button_1 = ttk.Button(dialog2, text='Экспорт таблицы 4', command=lambda: save_as(attribute_rep[3]))
         export_button_1.grid(row=2, column=1, sticky='nsew')
         config_widgets(dialog2, 3, 2)
 
+    
     tk.Button(dialog, text="Создать таблицу", command=create_stat_report).grid(row=2, column=0, columnspan=2,
                                                                                sticky="nesw")
     config_widgets(dialog, 3, 2)
@@ -757,60 +757,153 @@ def get_settings():
     return cfg
 
 
-settings = get_settings()
+def open_font_settings():
+    """
+    Окно с изменением шрифта
+    Автор Ряднов И.М.
+    """
+    font_settings_window = tk.Toplevel(root)
+    font_settings_window.title("Настройки шрифта")
 
-root = tk.Tk()
-root.title("Редактор справочников")
+    
+    def apply_font_settings():
+        """
+        Подтверждение изменения настроек шрифта
+        Автор Ряднов И.М.
+        """
+        font = font_var.get()
+        size = size_var.get()
+        weight = weight_var.get()
+        change_font(font, size, weight)
+        font_settings_window.destroy()
 
-tab_control = ttk.Notebook(root)
-tab1 = ttk.Frame(tab_control)
-tab2 = ttk.Frame(tab_control)
-tab3 = ttk.Frame(tab_control)
-tab4 = ttk.Frame(tab_control)
 
-ttk.Style().configure("Treeview", background=settings[4],
-                      foreground="black", fieldbackground="white", font=(settings[6], settings[5], settings[7]))
+    font_var = tk.StringVar()
+    font_var.set("Arial")
+    font_label = ttk.Label(font_settings_window, text="Название шрифта:")
+    font_label.pack()
+    font_optionmenu = ttk.OptionMenu(font_settings_window, font_var, "Arial", "Arial", "Times New Roman", "Courier")
+    font_optionmenu.pack()
+    size_var = tk.StringVar()
+    size_var.set("12")
+    size_label = ttk.Label(font_settings_window, text="Размер шрифта:")
+    size_label.pack()
+    size_optionmenu = ttk.OptionMenu(font_settings_window, size_var, "12", "12", "14", "16")
+    size_optionmenu.pack()
+    weight_var = tk.StringVar()
+    weight_var.set("normal")
+    weight_label = ttk.Label(font_settings_window, text="Толщина шрифта:")
+    weight_label.pack()
+    weight_optionmenu = ttk.OptionMenu(font_settings_window, weight_var, "normal", "normal", "bold")
+    weight_optionmenu.pack()
+    apply_button = ttk.Button(font_settings_window, text="Применить", command=apply_font_settings)
+    apply_button.pack()
 
-tab_control.add(tab1, text='Товары')
-tab_control.add(tab2, text='Заказы')
-tab_control.add(tab3, text='Состав заказов')
-tab_control.add(tab4, text='Полная таблица')
-tab_control.grid(column=0, row=0, rowspan=6, columnspan=2, sticky='nswe')
 
-path = f'{os.getcwd()}\\data'
-GOODS = pd.read_csv(f"{path}\MOCK_DATA_1.csv")
-goods_table = create_table(tab1, GOODS)
-ORDERS = pd.read_csv(f"{path}\MOCK_DATA_2.csv")
-orders_table = create_table(tab2, ORDERS)
-ORDERS_STRUCTURE = pd.read_csv(f"{path}\MOCK_DATA_3.csv")
-orders_structure_table = create_table(tab3, ORDERS_STRUCTURE)
-MERGED = merge_files(GOODS, ORDERS, ORDERS_STRUCTURE)
-merged_table = create_table(tab4, MERGED)
+def change_resolution(width, height):
+    """
+    Изменение разрешения
+    Автор Ряднов И.М.
+    """
+    root.geometry(f"{width}x{height}".format(root.winfo_screenwidth() // 2 - 400, root.winfo_screenheight() // 2 - 300))
+    update_ini_value('Height', height)
+    update_ini_value('Width', width)
 
-ttk.Button(root, text='Текстовый отчёт', command=report_1).grid(column=2, row=0, sticky="nesw")
-ttk.Button(root, text='Статистический отчёт', command=create_statistic_report).grid(column=2, row=1, sticky="nesw")
-ttk.Button(root, text='Сводная таблица', command=create_pivot_table).grid(column=2, row=2, sticky="nesw")
-ttk.Button(root, text='Гистограмма', command=create_hist).grid(column=2, row=3, sticky="nesw")
-ttk.Button(root, text='Стобчатая диаграмма', command=create_bar).grid(column=2, row=4, sticky="nesw")
-ttk.Button(root, text='Блочная диаграмма', command=lambda: report_price_by_category(GOODS)) \
-    .grid(column=2, row=5, sticky="nesw")
-ttk.Button(root, text='Диаграмма рассеяния', command=create_scatter).grid(column=2, row=6, sticky="nesw")
-ttk.Button(root, text='Добавить заказ', command=add_order).grid(column=0, row=6, sticky='nesw')
-ttk.Button(root, text='Добавить товар', command=add_product).grid(column=1, row=6, sticky='nesw')
+def change_font(font, size, weight):
+    """
+    Изменение параметров шрифта
+    Автор Ряднов И.М.
+    """
+    style = ttk.Style()
+    style.configure("Treeview", font=(font, size, weight))
+    update_ini_value('FontFamily', font)
+    update_ini_value('FontSize', size)
+    update_ini_value('FontStyle', weight)
 
-menu_bar = tk.Menu(root)
-root.config(menu=menu_bar)
-file_menu = tk.Menu(menu_bar)
-menu_bar.add_cascade(label="Файл", menu=file_menu)
-file_menu.add_command(label="Сохранить", command=lambda: save_tables(GOODS, ORDERS, ORDERS_STRUCTURE))
-file_menu.add_command(label="Сохранить как", command=new_save)
-edit_menu = tk.Menu(menu_bar)
-menu_bar.add_cascade(label="Изменить", menu=edit_menu)
-edit_menu.add_command(label="Удалить запись", command=del_line)
-edit_menu.add_command(label="Изменить запись", command=edit_line)
-menu_bar.add_command(label='Изменить цвет', command=config_color)
-config_widgets(root, 7, 3)
-root.geometry(
-    f"{settings[0]}x{settings[1]}".format(root.winfo_screenwidth() // 2 - 400, root.winfo_screenheight() // 2 - 300))
-root.resizable(settings[2], settings[3])
-root.mainloop()
+
+def toggle_window_resize():
+    """
+    Изменение свойства окна, которое определяет, можно ли его растягивать в длину и в ширину
+    Автор Ряднов И.М.
+    """
+    is_resizable = window_resize_var.get()
+    root.resizable(is_resizable, is_resizable)
+    update_ini_value('ResizableHeight', is_resizable)
+    update_ini_value('ResizableWidth', is_resizable)
+
+
+if __name__ == "__main__":
+    settings = get_settings()
+
+    root = tk.Tk()
+    root.title("Редактор справочников")
+
+    tab_control = ttk.Notebook(root)
+    tab1 = ttk.Frame(tab_control)
+    tab2 = ttk.Frame(tab_control)
+    tab3 = ttk.Frame(tab_control)
+    tab4 = ttk.Frame(tab_control)
+
+    ttk.Style().configure("Treeview", background=settings[4],
+                        foreground="black", fieldbackground="white", font=(settings[6], settings[5], settings[7]))
+
+    tab_control.add(tab1, text='Товары')
+    tab_control.add(tab2, text='Заказы')
+    tab_control.add(tab3, text='Состав заказов')
+    tab_control.add(tab4, text='Полная таблица')
+    tab_control.grid(column=0, row=0, rowspan=6, columnspan=2, sticky='nswe')
+
+    path = f'{os.getcwd()}\\data'
+    GOODS = pd.read_csv(f"{path}\MOCK_DATA_1.csv")
+    goods_table = create_table(tab1, GOODS)
+    ORDERS = pd.read_csv(f"{path}\MOCK_DATA_2.csv")
+    orders_table = create_table(tab2, ORDERS)
+    ORDERS_STRUCTURE = pd.read_csv(f"{path}\MOCK_DATA_3.csv")
+    orders_structure_table = create_table(tab3, ORDERS_STRUCTURE)
+    MERGED = merge_files(GOODS, ORDERS, ORDERS_STRUCTURE)
+    merged_table = create_table(tab4, MERGED)
+
+    ttk.Button(root, text='Текстовый отчёт', command=report_1).grid(column=2, row=0, sticky="nesw")
+    ttk.Button(root, text='Статистический отчёт', command=create_statistic_report).grid(column=2, row=1, sticky="nesw")
+    ttk.Button(root, text='Сводная таблица', command=create_pivot_table).grid(column=2, row=2, sticky="nesw")
+    ttk.Button(root, text='Гистограмма', command=create_hist).grid(column=2, row=3, sticky="nesw")
+    ttk.Button(root, text='Стобчатая диаграмма', command=create_bar).grid(column=2, row=4, sticky="nesw")
+    ttk.Button(root, text='Блочная диаграмма', command=lambda: report_price_by_category(GOODS)) \
+        .grid(column=2, row=5, sticky="nesw")
+    ttk.Button(root, text='Диаграмма рассеяния', command=create_scatter).grid(column=2, row=6, sticky="nesw")
+    ttk.Button(root, text='Добавить заказ', command=add_order).grid(column=0, row=6, sticky='nesw')
+    ttk.Button(root, text='Добавить товар', command=add_product).grid(column=1, row=6, sticky='nesw')
+
+    menu_bar = tk.Menu(root)
+    root.config(menu=menu_bar)
+    file_menu = tk.Menu(menu_bar)
+    menu_bar.add_cascade(label="Файл", menu=file_menu)
+    file_menu.add_command(label="Сохранить", command=lambda: save_tables(GOODS, ORDERS, ORDERS_STRUCTURE))
+    file_menu.add_command(label="Сохранить как", command=new_save)
+    edit_menu = tk.Menu(menu_bar)
+    menu_bar.add_cascade(label="Изменить", menu=edit_menu)
+    edit_menu.add_command(label="Удалить запись", command=del_line)
+    edit_menu.add_command(label="Изменить запись", command=edit_line)
+
+    settings_menu = tk.Menu(menu_bar, tearoff=False)
+    menu_bar.add_cascade(label="Настройки", menu=settings_menu)
+    settings_menu.add_command(label="Изменить цвет", command=config_color)
+    resolution_menu = tk.Menu(settings_menu, tearoff=False)
+    settings_menu.add_cascade(label="Разрешение экрана", menu=resolution_menu)
+    resolution_menu.add_command(label="800x600", command=lambda: change_resolution(800, 600))
+    resolution_menu.add_command(label="1024x768", command=lambda: change_resolution(1024, 768))
+    resolution_menu.add_command(label="1280x720", command=lambda: change_resolution(1280, 720))
+    resolution_menu.add_command(label="1500x1500", command=lambda: change_resolution(1500, 1500))
+    font_menu = tk.Menu(settings_menu, tearoff=False)
+    settings_menu.add_cascade(label="Шрифт", menu=font_menu)
+    window_resize_var = tk.BooleanVar()
+    window_resize_var.set(True)
+    settings_menu.add_checkbutton(label="Изменять размер окна", variable=window_resize_var, command=toggle_window_resize)
+    font_menu.add_command(label="Изменить", command=open_font_settings)
+
+    config_widgets(root, 7, 3)
+    root.geometry(
+        f"{settings[0]}x{settings[1]}".format(root.winfo_screenwidth() // 2 - 400, root.winfo_screenheight() // 2 - 300))
+    root.resizable(settings[2], settings[3])
+    root.mainloop()
+    

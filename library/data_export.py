@@ -24,7 +24,7 @@ def save_as(table: pd.DataFrame):
     Автор: Болезнов С.А.
     :param table: таблица
     """
-    path = f'{os.getcwd()}\\data'
+    path = f'{os.getcwd()}\\output'
     ftypes = [('csv', '.csv'), ('excel', '.xlsx'), ('pickle', '.pickle')]
     filepath = fld.asksaveasfilename(filetypes=ftypes, initialdir=path, defaultextension='csv')
     if filepath != "":
