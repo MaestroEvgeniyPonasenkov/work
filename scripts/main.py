@@ -1,17 +1,12 @@
-"""
-Программа для отображения, изменения и описания данныхиз справочников с графическим интерфейсом
-Бригада 7
-Авторы: Ряднов И.М, Болезнов С.А.
-"""
 import os
 import sys
 import pandas as pd
 import numpy as np
 import tkinter as tk
-from tkinter import ttk, Spinbox, Entry, colorchooser
+from tkinter import ttk, Entry, colorchooser
 from tkinter.ttk import Treeview, Spinbox
 
-os.chdir("\\".join(os.getcwd().split("\\")))
+os.chdir("\\".join(os.getcwd().split("\\")[:-1]))
 sys.path.append("\\".join(os.getcwd().split("\\")))
 sys.path.append("\\".join(os.getcwd().split("\\")) + '\\library')
 from library.read_ini import read_ini_file, update_ini_value
@@ -117,11 +112,11 @@ def create_statistic_report():
     config_widgets(dialog, 3, 2)
 
 
-def create_table(tab, data: pd.DataFrame, pivot=False) -> Treeview:
+def create_table(tab: tk.ttk.Frame, data: pd.DataFrame, pivot=False) -> Treeview:
     """
     Функция для добавления таблицы в окно
-    :param pivot:
-    :param tab: Название окна
+    :param pivot: Является ли таблица сводной
+    :param tab(tk.ttk.Frame): Название окна
     :param data(pd.DataFrame): Данные таблицы
     :return: Полученный виджет таблицы
     Автор: Болезнов С.А., Ряднов И.М.
