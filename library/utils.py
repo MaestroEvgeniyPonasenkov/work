@@ -10,6 +10,7 @@ def save_tables(GOODS: pd.DataFrame, ORDERS: pd.DataFrame, ORDERS_STRUCTURE: pd.
     :param GOODS: Датафрейм товаров
     :param ORDERS: Датафрейм заказов
     :param ORDERS_STRUCTURE: Датафрейм содержания заказов
+    :return: None
     """
     path = f'{os.getcwd()}\\data'
     GOODS.to_csv(f'{path}/MOCK_DATA_1.csv', index=False)
@@ -22,6 +23,7 @@ def save_as(table: pd.DataFrame):
     Сохранение отдельной таблицы
     Автор: Болезнов С.А.
     :param table: таблица
+    :return: None
     """
     path = f'{os.getcwd()}\\output'
     ftypes = [('csv', '.csv'), ('excel', '.xlsx'), ('pickle', '.pickle')]
@@ -30,19 +32,17 @@ def save_as(table: pd.DataFrame):
         file_format = filepath.split('.')[-1]
         if file_format == 'csv':
             table.to_csv(filepath, index=False)
-            return
-        if file_format == 'xlsx':
+        elif file_format == 'xlsx':
             table.to_excel(filepath, index=False)
-            return
-        if file_format == 'pick':
+        elif file_format == 'pick':
             table.to_pickle(filepath)
-            return
 
 
 def read_ini_file():
     """
     Функция для чтения конфигурации .ini
     Автор: Ряднов И.М.
+    :return config(dict): Словарь с конфигурацией
     """
     config = {}
     current_section = None
@@ -63,8 +63,9 @@ def read_ini_file():
 def write_ini_file(config):
     """
     Функция для перезаписи новой конфигурации .ini
-    :param key(dict): словарь с конфигурацией
     Автор: Ряднов И.М.
+    :param key(dict): словарь с конфигурацией
+    :return None
     """
     with open(f"{os.getcwd()}\scripts\config.ini", 'w') as file:
         for section, values in config.items():
@@ -77,9 +78,10 @@ def write_ini_file(config):
 def update_ini_value(key, value):
     """
     Функция для изменения определенного параметра конфигурации .ini
+    Автор: Ряднов И.М.
     :param key(str): название конфигурации
     :param value: новое значение
-    Автор: Ряднов И.М.
+    :return None
     """
     config = read_ini_file()
     config['Settings'][key] = value
