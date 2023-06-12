@@ -159,7 +159,7 @@ def create_table(tab, data: pd.DataFrame, pivot=False) -> Treeview:
     :param pivot: Является ли таблица сводной
     :param tab(tk.ttk.Frame): Название окна
     :param data(pd.DataFrame): Данные таблицы
-    :return: Полученный виджет таблицы
+    :return table(ttk.Treeview): Полученный виджет таблицы
     Автор: Болезнов С.А., Ряднов И.М.
     """
     translater = {
@@ -220,7 +220,12 @@ def add_datas(parent) -> tuple[Spinbox, Spinbox, Spinbox, Spinbox, Spinbox, Spin
     Функция для добавления в окно полей ввода даты
     Автор: Болезнов С.А.
     :param parent: Название окна
-    :return: Добавленные виджеты
+    :return start_date_day(tk.Spinbox): Добавленный виджет
+    :return start_date_month(tk.Spinbox): Добавленный виджет
+    :return start_date_year(tk.Spinbox): Добавленный виджет
+    :return end_date_day(tk.Spinbox): Добавленный виджет
+    :return end_date_month(tk.Spinbox): Добавленный виджет
+    :return end_date_year(tk.Spinbox): Добавленный виджет
     """
     start_date_label = tk.Label(parent, text='Выберите начальную дату:')
     start_date_label.grid(column=0, row=0, columnspan=3, sticky="nesw")
@@ -423,7 +428,10 @@ def goods_dialog(selected_item, selected_line) -> tuple[Entry, Entry, Spinbox, E
     Автор: Болезнов С.А.
     :param selected_item: Выбранный объект в таблице
     :param selected_line: Список выбранных значений
-    :return: Виджеты ввода значений
+    :return name_entry (tk.Entry): Виджет для ввода названия
+    :return description_entry (tk.Entry): Виджет для ввода описания
+    :return price_entry (tk.Entry): Виджет для ввода цены
+    :return category_entry(tk.Entry): Виджет для ввода категории
     """
     dialog = tk.Toplevel(root)
     dialog.title('Изменение товара')
@@ -475,7 +483,7 @@ def replace_row_values(df: pd.DataFrame, old_values: list, new_values: list) -> 
     :param df(pd.DataFrame): Исходный датафрейм
     :param old_values: Список значений, которые будут изсменены
     :param new_values: Список новых значений
-    :return: Изменененный датафрейм
+    :return df(pd.DataFrame): Изменененный датафрейм
     """
     if 'Quantity' in df.columns:
         row_idx = (df['Order ID'] == old_values[0])
@@ -493,7 +501,10 @@ def orders_dialog(selected_item, selected_line):
     Автор: Болезнов С.А.
     :param selected_item: Выбранный объект в таблице
     :param selected_line: Список выбранных значений
-    :return: Виджеты ввода значений
+    :return date_day(ttk.Spinbox): Виджет для ввода дня
+    :return date_month(ttk.Spinbox): Виджет для ввода месяца
+    :return date_year(ttk.Spinbox): Виджет для ввода года
+    :return sum_entry(ttk.Spinbox): Виджет для ввода суммы заказа
     """
     dialog = tk.Toplevel(root)
     dialog.title('Изменение заказ')
@@ -552,7 +563,8 @@ def orders_structure_dialog(selected_item, selected_line):
     Автор: Болезнов С.А.
     :param selected_item: Выбранный объект в таблице
     :param selected_line: Список выбранных значений
-    :return: Виджеты ввода значений
+    :return good_entry(tk.Entry): Виджет для ввода товара
+    :return quantity_entry(tk.Entry): Виджеты ввода количества
     """
     dialog = tk.Toplevel(root)
     dialog.title('Изменение состава заказа')
@@ -589,9 +601,9 @@ def orders_structure_dialog(selected_item, selected_line):
 
 def generate_id(index) -> int:
     """
-    Функция для создания нового айди для справочников
+    Функция для создания нового индекса для справочников
     Автор: Болезнов С.А.
-    :return: None
+    :return new_id(int): Новый индекс
     """
     if index == 0:
         ids = [int(x) for x in GOODS['Product ID']]
@@ -752,7 +764,7 @@ def get_settings():
     """
     Чтение ini файла и применение полученных значений к приложению
     Автор Ряднов И.М.
-    :return: None
+    :return cfg(list): Список конфигурация
     """
     config = read_ini_file().get('Settings')
     height = config.get('Height')
