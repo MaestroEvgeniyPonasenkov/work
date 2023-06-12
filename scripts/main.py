@@ -13,13 +13,8 @@ from tkinter.ttk import Treeview, Spinbox
 
 os.chdir("\\".join(os.getcwd().split("\\")))
 sys.path.append("\\".join(os.getcwd().split("\\")))
-from library.read_ini import read_ini_file, update_ini_value
-from library.text_reports import report_about_firm, merge_files, generate_attribute_report
-from library.hist_chart import histogram
-from library.bar_chart import report_day_sales, report_week_sales, report_year_sales, report_month_sales
-from library.boxplot_chart import report_price_by_category
-from library.scatter_chart import report_price_by_quantity
-from library.data_export import save_tables, save_as
+from library.utils import *
+from charts_and_reports import *
 
 
 def create_pivot_table():
